@@ -1,9 +1,8 @@
-﻿using MediatR;
+﻿namespace AvBeacon.Application.Candidates.Dto;
 
-namespace AvBeacon.Application.CQH.Commands.Candidates;
-
-public class CreateCandidateCommand : IRequest<long>
+public class CandidateDto
 {
+    public long Id { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public required string Mail { get; set; }

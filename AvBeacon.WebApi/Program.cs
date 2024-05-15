@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Text;
-using AvBeacon.Application.Configuration;
+using AvBeacon.Application;
 using AvBeacon.Infrastructure.Configuration;
 using AvBeacon.Persistence.Configuration;
 
@@ -20,39 +20,39 @@ builder.Services
     .AddInfrastructure()
     .AddPersistence(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException());
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
-})
-.AddGoogle(options =>
-{
-    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-});
+// builder.Services.AddAuthentication(options =>
+// {
+//     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+// })
+// .AddJwtBearer(options =>
+// {
+//     options.TokenValidationParameters = new TokenValidationParameters
+//     {
+//         ValidateIssuer = true,
+//         ValidateAudience = true,
+//         ValidateLifetime = true,
+//         ValidateIssuerSigningKey = true,
+//         ValidIssuer = builder.Configuration["Jwt:Issuer"],
+//         ValidAudience = builder.Configuration["Jwt:Audience"],
+//         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+//     };
+// })
+// .AddGoogle(options =>
+// {
+//     options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+//     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+// });
 
-// Añadir CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngularApp",
-        b => b
-            .AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod());
-});
+// // Añadir CORS
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAngularApp",
+//         b => b
+//             .AllowAnyOrigin()
+//             .AllowAnyHeader()
+//             .AllowAnyMethod());
+// });
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

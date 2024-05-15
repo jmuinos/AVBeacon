@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Application.Configuration;
+namespace AvBeacon.Application;
 
 public static class DependencyInjection
 {
