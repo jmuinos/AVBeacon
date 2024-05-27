@@ -18,9 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Candidates\Commands\" />
-      <Folder Include="Candidates\Handlers\" />
-      <Folder Include="Candidates\Queries\" />
+        <Folder Include="Candidates\Commands\"/>
+        <Folder Include="Candidates\Handlers\"/>
+        <Folder Include="Candidates\Queries\"/>
     </ItemGroup>
 
 </Project>

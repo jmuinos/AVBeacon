@@ -1,12 +1,11 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
 using AvBeacon.Domain.Interfaces;
 using AvBeacon.Domain.Interfaces.Repositories;
-using AVBEACON.Persistence;
 using AvBeacon.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Persistence.Configuration;
+namespace AvBeacon.Persistence;
 
 public static class DependencyInjection
 {

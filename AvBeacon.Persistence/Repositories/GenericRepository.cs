@@ -1,5 +1,4 @@
 ﻿using AvBeacon.Domain.Interfaces.Repositories;
-using AVBEACON.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;

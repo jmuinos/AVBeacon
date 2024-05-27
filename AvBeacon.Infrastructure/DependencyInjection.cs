@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Infrastructure.Configuration;
+namespace AvBeacon.Infrastructure;
 
 public static class DependencyInjection
 {

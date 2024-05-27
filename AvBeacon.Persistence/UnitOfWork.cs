@@ -1,6 +1,5 @@
 ﻿using AvBeacon.Domain.Interfaces;
 using AvBeacon.Domain.Interfaces.Repositories;
-using AVBEACON.Persistence;
 using AvBeacon.Persistence.Repositories;
 
 namespace AvBeacon.Persistence;
