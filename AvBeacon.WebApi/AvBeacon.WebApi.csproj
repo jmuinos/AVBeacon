@@ -10,7 +10,6 @@
         <ProjectReference Include="..\AvBeacon.Application\AvBeacon.Application.csproj"/>
         <ProjectReference Include="..\AvBeacon.Domain\AvBeacon.Domain.csproj"/>
         <ProjectReference Include="..\AvBeacon.Infrastructure\AvBeacon.Infrastructure.csproj"/>
-        <ProjectReference Include="..\AvBeacon.Persistence\AvBeacon.Persistence.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

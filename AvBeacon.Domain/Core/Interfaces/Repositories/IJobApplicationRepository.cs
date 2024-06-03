@@ -1,8 +1,7 @@
-using AvBeacon.Domain._Core.Enumerables;
-using AvBeacon.Domain._Core.Interfaces;
+using AvBeacon.Domain.Core.Enumerables;
 using AvBeacon.Domain.Entities;
 
-namespace AvBeacon.Domain.Repositories;
+namespace AvBeacon.Domain.Core.Interfaces.Repositories;
 
 public interface IJobApplicationRepository : IGenericRepository<JobApplication>
 {

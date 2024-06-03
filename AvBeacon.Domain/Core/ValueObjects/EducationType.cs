@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
 
-namespace AvBeacon.Domain._Core.ValueObjects;
+namespace AvBeacon.Domain.Core.ValueObjects;
 
 /// <summary>Representa el value object de tipo education type.</summary>
 public sealed class EducationType : ValueObject

@@ -1,4 +1,7 @@
-﻿namespace AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
+using AvBeacon.Domain.Core.Abstractions.Primitives.Result;
+
+namespace AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
 /// <summary>
 ///     Representa el resultado de alguna operación, con información de estado y posiblemente un error.

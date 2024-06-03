@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain.Repositories;
+﻿using AvBeacon.Domain.Core.Interfaces.Repositories;
 
-namespace AvBeacon.Domain._Core.Interfaces;
+namespace AvBeacon.Domain.Core.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
@@ -12,5 +12,5 @@ public interface IUnitOfWork : IDisposable
     IJobApplicationRepository JobApplications { get; }
     IRecruiterRepository Recruiters { get; }
 
-    Task<int> CompleteAsync(CancellationToken cancellationToken);
+    Task<int> CompleteAsync(CancellationToken cancellationToken = default);
 }

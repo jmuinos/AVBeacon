@@ -1,6 +1,5 @@
 using AvBeacon.Application;
 using AvBeacon.Infrastructure;
-using AvBeacon.Persistence;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +13,8 @@ builder.Host.UseSerilog((context, loggerConfiguration) =>
 // Añadir servicios de layers
 builder.Services
     .AddApplication()
-    .AddInfrastructure()
-    .AddPersistence(builder.Configuration.GetConnectionString("DefaultConnection") ??
-                    throw new InvalidOperationException());
+    .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection") ??
+                       throw new InvalidOperationException());
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

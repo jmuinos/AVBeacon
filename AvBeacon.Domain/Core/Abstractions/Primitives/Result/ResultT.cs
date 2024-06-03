@@ -1,10 +1,12 @@
-﻿namespace AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+
+namespace AvBeacon.Domain.Core.Abstractions.Primitives.Result;
 
 /// <summary>
 ///     Representa el resultado de alguna operación, con información de estado y posiblemente un valor y un error.
 /// </summary>
 /// <typeparam name="TValue">El tipo de valor del resultado.</typeparam>
-public class Result<TValue> : Result
+public class Result<TValue> : _Core.Abstractions.Primitives.Result.Result
 {
     private readonly TValue _value;
 

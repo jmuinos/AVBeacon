@@ -1,7 +1,6 @@
-using AvBeacon.Domain._Core.Interfaces;
 using AvBeacon.Domain.Entities;
 
-namespace AvBeacon.Domain.Repositories;
+namespace AvBeacon.Domain.Core.Interfaces.Repositories;
 
 public interface IExperienceRepository : IGenericRepository<Experience>
 {

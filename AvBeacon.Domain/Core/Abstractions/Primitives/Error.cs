@@ -1,4 +1,4 @@
-﻿namespace AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿namespace AvBeacon.Domain.Core.Abstractions.Primitives;
 
 /// <summary>Representa un error concreto del domain.</summary>
 public sealed class Error : ValueObject

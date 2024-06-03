@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Events;
+﻿using AvBeacon.Domain.Core.Abstractions.Events;
 
-namespace AvBeacon.Domain._Core.Abstractions.Primitives;
+namespace AvBeacon.Domain.Core.Abstractions.Primitives;
 
 /// <summary>Representa la clase base de la que derivan todas las entidades.</summary>
 public abstract class Entity : IEquatable<Entity>

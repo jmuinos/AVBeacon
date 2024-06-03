@@ -1,5 +1,5 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
-using AvBeacon.Domain._Core.Enumerables;
+﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
+using AvBeacon.Domain.Core.Enumerables;
 
 namespace AvBeacon.Domain.Entities;
 

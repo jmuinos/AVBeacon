@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace AvBeacon.Domain._Core.Abstractions.Events;
+namespace AvBeacon.Domain.Core.Abstractions.Events;
 
 public interface IDomainEvent : INotification
 {

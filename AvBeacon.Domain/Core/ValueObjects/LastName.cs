@@ -1,8 +1,9 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Errors;
-using AvBeacon.Domain._Core.Abstractions.Primitives;
-using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+using AvBeacon.Domain.Core.Abstractions.Errors;
+using AvBeacon.Domain.Core.Abstractions.Primitives;
+using AvBeacon.Domain.Core.Abstractions.Primitives.Result;
 
-namespace AvBeacon.Domain._Core.ValueObjects;
+namespace AvBeacon.Domain.Core.ValueObjects;
 
 /// <summary>Representa el value object de tipo last name.</summary>
 public sealed class LastName : ValueObject

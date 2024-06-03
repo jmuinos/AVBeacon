@@ -1,7 +1,8 @@
-﻿using AvBeacon.Domain._Core.Interfaces;
+﻿using AvBeacon.Domain.Core.Interfaces;
+using AvBeacon.Domain.Core.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace AvBeacon.Persistence.Repositories;
+namespace AvBeacon.Infrastructure.Repositories;
 
 public class GenericRepository<T>(ApplicationDbContext context) : IGenericRepository<T>
     where T : class

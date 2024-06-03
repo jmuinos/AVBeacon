@@ -1,4 +1,4 @@
-﻿namespace AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿namespace AvBeacon.Domain.Core.Abstractions.Primitives;
 
 /// <summary>Representa la clase base de la que derivan todos los value objects.</summary>
 public abstract class ValueObject : IEquatable<ValueObject>

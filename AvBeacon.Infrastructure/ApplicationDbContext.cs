@@ -2,7 +2,7 @@
 using AvBeacon.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace AvBeacon.Persistence;
+namespace AvBeacon.Infrastructure;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : DbContext(options), IApplicationDbContext
