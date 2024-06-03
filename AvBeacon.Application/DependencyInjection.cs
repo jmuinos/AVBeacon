@@ -10,7 +10,7 @@ public static class DependencyInjection
         var assembly = Assembly.GetExecutingAssembly();
 
         services.AddMediatR(configuration =>
-            configuration.RegisterServicesFromAssembly(assembly));
+                                configuration.RegisterServicesFromAssembly(assembly));
 
         services.AddAutoMapper(assembly);
 

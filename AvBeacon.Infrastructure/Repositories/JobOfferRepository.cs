@@ -1,5 +1,4 @@
-using AvBeacon.Domain.Core.Interfaces.Repositories;
-using AvBeacon.Domain.Entities;
+using AvBeacon.Domain.JobOffers;
 
 namespace AvBeacon.Infrastructure.Repositories;
 

@@ -1,4 +1,11 @@
-﻿using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Domain.Candidates;
+using AvBeacon.Domain.Educations;
+using AvBeacon.Domain.Experiences;
+using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.JobOffers;
+using AvBeacon.Domain.Recruiters;
+using AvBeacon.Domain.Skills;
+using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Application.Abstractions.Data;

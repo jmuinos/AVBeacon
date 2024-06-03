@@ -1,5 +1,4 @@
-﻿using AvBeacon.Domain.Core.Interfaces;
-using AvBeacon.Domain.Core.Interfaces.Repositories;
+﻿using AvBeacon.Domain._Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Infrastructure.Repositories;
@@ -25,13 +24,7 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
         await DbSet.AddAsync(entity, cancellationToken);
     }
 
-    public void Update(T entity)
-    {
-        DbSet.Update(entity);
-    }
+    public void Update(T entity) { DbSet.Update(entity); }
 
-    public void Delete(T entity)
-    {
-        DbSet.Remove(entity);
-    }
+    public void Delete(T entity) { DbSet.Remove(entity); }
 }

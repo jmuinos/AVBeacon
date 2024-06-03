@@ -12,9 +12,9 @@ builder.Host.UseSerilog((context, loggerConfiguration) =>
 
 // Añadir servicios de layers
 builder.Services
-    .AddApplication()
-    .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection") ??
-                       throw new InvalidOperationException());
+       .AddApplication()
+       .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection") ??
+                          throw new InvalidOperationException());
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

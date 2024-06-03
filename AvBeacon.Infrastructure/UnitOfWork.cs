@@ -1,5 +1,11 @@
-﻿using AvBeacon.Domain.Core.Interfaces;
-using AvBeacon.Domain.Core.Interfaces.Repositories;
+﻿using AvBeacon.Domain._Core.Interfaces;
+using AvBeacon.Domain.Candidates;
+using AvBeacon.Domain.Educations;
+using AvBeacon.Domain.Experiences;
+using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.JobOffers;
+using AvBeacon.Domain.Recruiters;
+using AvBeacon.Domain.Skills;
 using AvBeacon.Infrastructure.Repositories;
 
 namespace AvBeacon.Infrastructure;
@@ -19,8 +25,5 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
         return await context.SaveChangesAsync(cancellationToken);
     }
 
-    public void Dispose()
-    {
-        context.Dispose();
-    }
+    public void Dispose() { context.Dispose(); }
 }

@@ -1,9 +1,15 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Core.Interfaces;
-using AvBeacon.Domain.Core.Interfaces.Repositories;
+using AvBeacon.Domain._Core.Interfaces;
+using AvBeacon.Domain.Candidates;
+using AvBeacon.Domain.Educations;
+using AvBeacon.Domain.Experiences;
+using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.JobOffers;
+using AvBeacon.Domain.Recruiters;
+using AvBeacon.Domain.Skills;
+using AvBeacon.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using AvBeacon.Infrastructure.Repositories;
 
 namespace AvBeacon.Infrastructure;
 
@@ -12,7 +18,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString)
     {
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
+                                                        options.UseSqlServer(connectionString));
 
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();

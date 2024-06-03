@@ -1,5 +1,4 @@
-using AvBeacon.Domain.Core.Interfaces.Repositories;
-using AvBeacon.Domain.Entities;
+using AvBeacon.Domain.Candidates;
 
 namespace AvBeacon.Infrastructure.Repositories;
 
