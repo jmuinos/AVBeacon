@@ -1,10 +1,16 @@
-﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
-using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+using AvBeacon.Domain._Core.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 
 public sealed class Skill : Entity
 {
+    #region Properties
+
+    public required Name Name { get; set; }
+
+    #endregion
+
     #region Constructors
 
     public Skill(Guid id, Name name) : base(id)
@@ -17,12 +23,6 @@ public sealed class Skill : Entity
     public Skill()
     {
     }
-
-    #endregion
-    
-    #region Properties
-
-    public required Name Name { get; set; }
 
     #endregion
 }

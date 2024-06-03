@@ -1,5 +1,5 @@
-﻿using AvBeacon.Domain.Interfaces;
-using AvBeacon.Domain.Interfaces.Repositories;
+﻿using AvBeacon.Domain._Core.Interfaces;
+using AvBeacon.Domain.Repositories;
 using AvBeacon.Persistence.Repositories;
 
 namespace AvBeacon.Persistence;
@@ -14,9 +14,9 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     public IJobApplicationRepository JobApplications { get; } = new JobApplicationRepository(context);
     public IRecruiterRepository Recruiters { get; } = new RecruiterRepository(context);
 
-    public async Task<int> CompleteAsync()
+    public async Task<int> CompleteAsync(CancellationToken cancellationToken = default)
     {
-        return await context.SaveChangesAsync();
+        return await context.SaveChangesAsync(cancellationToken);
     }
 
     public void Dispose()

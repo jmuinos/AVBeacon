@@ -3,4 +3,5 @@ using AvBeacon.Domain.Repositories;
 
 namespace AvBeacon.Persistence.Repositories;
 
-public class SkillRepository(ApplicationDbContext context) : GenericRepository<Skill>(context), ISkillRepository;
+public class UserRepository(ApplicationDbContext context)
+    : GenericRepository<User>(context), IUserRepository;

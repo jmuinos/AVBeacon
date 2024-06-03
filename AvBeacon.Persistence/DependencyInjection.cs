@@ -1,6 +1,6 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Interfaces;
-using AvBeacon.Domain.Interfaces.Repositories;
+using AvBeacon.Domain._Core.Interfaces;
+using AvBeacon.Domain.Repositories;
 using AvBeacon.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

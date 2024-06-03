@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
 
-namespace AvBeacon.Domain.Core.Abstractions.Errors;
+namespace AvBeacon.Domain._Core.Abstractions.Errors;
 
 /// <summary>Contiene los errores del domain. /// </summary>
 public static class DomainErrors

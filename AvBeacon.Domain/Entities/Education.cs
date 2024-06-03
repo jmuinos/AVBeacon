@@ -1,5 +1,5 @@
-﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
-using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+using AvBeacon.Domain._Core.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 

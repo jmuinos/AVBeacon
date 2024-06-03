@@ -1,8 +1,8 @@
-﻿using AvBeacon.Domain.Core.Abstractions.Errors;
-using AvBeacon.Domain.Core.Abstractions.Primitives;
-using AvBeacon.Domain.Core.Abstractions.Primitives.Result;
+﻿using AvBeacon.Domain._Core.Abstractions.Errors;
+using AvBeacon.Domain._Core.Abstractions.Primitives;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
-namespace AvBeacon.Domain.ValueObjects;
+namespace AvBeacon.Domain._Core.ValueObjects;
 
 /// <summary>Representa el value object de tipo first name.</summary>
 public sealed class FirstName : ValueObject
@@ -22,17 +22,23 @@ public sealed class FirstName : ValueObject
 
     public static Result<FirstName> Create(string firstName)
     {
-        return string.IsNullOrWhiteSpace(firstName) 
-            ? Result.Failure<FirstName>(DomainErrors.FirstName.NullOrEmpty) 
-            : firstName.Length > MaxLength 
-                ? Result.Failure<FirstName>(DomainErrors.FirstName.LongerThanAllowed) 
+        return string.IsNullOrWhiteSpace(firstName)
+            ? Result.Failure<FirstName>(DomainErrors.FirstName.NullOrEmpty)
+            : firstName.Length > MaxLength
+                ? Result.Failure<FirstName>(DomainErrors.FirstName.LongerThanAllowed)
                 : Result.Success(new FirstName(firstName));
     }
-    
-    public static implicit operator string(FirstName firstName) => firstName.Value;
+
+    public static implicit operator string(FirstName firstName)
+    {
+        return firstName.Value;
+    }
 
     /// <inheritdoc />
-    public override string ToString()=> Value;
+    public override string ToString()
+    {
+        return Value;
+    }
 
     /// <inheritdoc />
     protected override IEnumerable<object> GetAtomicValues()

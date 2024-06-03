@@ -1,4 +1,4 @@
-﻿using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Domain._Core.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 

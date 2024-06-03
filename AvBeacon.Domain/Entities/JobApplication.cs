@@ -1,4 +1,5 @@
-﻿using AvBeacon.Domain.Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+using AvBeacon.Domain._Core.Enumerables;
 
 namespace AvBeacon.Domain.Entities;
 
@@ -7,11 +8,12 @@ public sealed class JobApplication : Entity
 {
     #region Constructors
 
-    public JobApplication(Guid id, Guid candidateId, Guid jobOfferId)
+    public JobApplication(Guid id, Guid candidateId, Guid jobOfferId, JobApplicationState state)
         : base(id)
     {
         CandidateId = candidateId;
         JobOfferId = jobOfferId;
+        JobApplicationState = state;
     }
 
     /// <summary>Inicializa una nueva instancia de la clase <see cref="JobApplication" />.</summary>
@@ -26,6 +28,8 @@ public sealed class JobApplication : Entity
 
     public Guid CandidateId { get; private set; }
     public Guid JobOfferId { get; private set; }
+
+    public JobApplicationState JobApplicationState { get; set; }
 
     #endregion
 }

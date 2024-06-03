@@ -1,41 +1,36 @@
-﻿using AvBeacon.Domain.Interfaces.Repositories;
+﻿using AvBeacon.Domain._Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
-public class GenericRepository<T> : IGenericRepository<T> where T : class
+public class GenericRepository<T>(ApplicationDbContext context) : IGenericRepository<T>
+    where T : class
 {
-    protected readonly ApplicationDbContext _context;
-    protected readonly DbSet<T> _dbSet;
+    protected readonly ApplicationDbContext Context = context;
+    protected readonly DbSet<T> DbSet = context.Set<T>();
 
-    public GenericRepository(ApplicationDbContext context)
+    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        _context = context;
-        _dbSet = context.Set<T>();
+        return await DbSet.ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _dbSet.ToListAsync();
+        return await DbSet.FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
     }
 
-    public async Task<T?> GetByIdAsync(long id)
+    public async Task AddAsync(T entity, CancellationToken cancellationToken)
     {
-        return await _dbSet.FindAsync(id);
-    }
-
-    public async Task AddAsync(T entity)
-    {
-        await _dbSet.AddAsync(entity);
+        await DbSet.AddAsync(entity, cancellationToken);
     }
 
     public void Update(T entity)
     {
-        _dbSet.Update(entity);
+        DbSet.Update(entity);
     }
 
     public void Delete(T entity)
     {
-        _dbSet.Remove(entity);
+        DbSet.Remove(entity);
     }
 }

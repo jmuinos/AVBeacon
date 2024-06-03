@@ -1,8 +1,12 @@
-﻿namespace AvBeacon.Domain.Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Abstractions.Events;
+
+namespace AvBeacon.Domain._Core.Abstractions.Primitives;
 
 /// <summary>Representa la clase base de la que derivan todas las entidades.</summary>
 public abstract class Entity : IEquatable<Entity>
 {
+    private readonly List<IDomainEvent> _domainEvents = [];
+
     /// <summary>Inicializa una nueva instancia de la clase <see cref="Entity" />.</summary>
     /// <param name="id">El identificador de la entidad.</param>
     protected Entity(Guid id)

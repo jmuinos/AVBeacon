@@ -1,8 +1,8 @@
-﻿using AvBeacon.Domain.Core.Abstractions.Errors;
-using AvBeacon.Domain.Core.Abstractions.Primitives;
-using AvBeacon.Domain.Core.Abstractions.Primitives.Result;
+﻿using AvBeacon.Domain._Core.Abstractions.Errors;
+using AvBeacon.Domain._Core.Abstractions.Primitives;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
-namespace AvBeacon.Domain.ValueObjects;
+namespace AvBeacon.Domain._Core.ValueObjects;
 
 /// <summary>Representa el value object de tipo name.</summary>
 public class Name : ValueObject

@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using AvBeacon.Domain.Core.Abstractions.Errors;
-using AvBeacon.Domain.Core.Abstractions.Primitives;
-using AvBeacon.Domain.Core.Abstractions.Primitives.Result;
+using AvBeacon.Domain._Core.Abstractions.Errors;
+using AvBeacon.Domain._Core.Abstractions.Primitives;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
-namespace AvBeacon.Domain.ValueObjects;
+namespace AvBeacon.Domain._Core.ValueObjects;
 
 /// <summary>Representa el value object de tipo email.</summary>
 public sealed class Email : ValueObject
@@ -19,7 +19,10 @@ public sealed class Email : ValueObject
 
     /// <summary>Inicializa una nueva instancia de la clase <see cref="Email" />.</summary>
     /// <param name="value">El valor del email.</param>
-    private Email(string value) => Value = value;
+    private Email(string value)
+    {
+        Value = value;
+    }
 
     /// <summary>Obtiene el valor del email.</summary>
     public string Value { get; }
@@ -35,7 +38,10 @@ public sealed class Email : ValueObject
                     : Result.Success(new Email(email));
     }
 
-    public static implicit operator string(Email email) => email.Value;
+    public static implicit operator string(Email email)
+    {
+        return email.Value;
+    }
 
     /// <inheritdoc />
     protected override IEnumerable<object> GetAtomicValues()

@@ -1,10 +1,16 @@
-﻿using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Domain._Core.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 
 /// <summary>Representa un usuario de tipo reclutador.</summary>
 public sealed class Recruiter : User
 {
+    #region Properties
+
+    public List<JobOffer>? JobOffers { get; private set; }
+
+    #endregion
+
     #region Constructors
 
     public Recruiter(Guid id, Email email, FirstName firstName, LastName lastName, List<JobOffer>? jobOffers)
@@ -18,12 +24,6 @@ public sealed class Recruiter : User
     public Recruiter()
     {
     }
-
-    #endregion
-
-    #region Properties
-
-    public List<JobOffer>? JobOffers { get; private set; }
 
     #endregion
 }

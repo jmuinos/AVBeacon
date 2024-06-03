@@ -9,12 +9,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Candidate> Candidates { get; set; }
-    public DbSet<Recruiter> Recruiters { get; set; }
-    public DbSet<Education> Educations { get; set; }
-    public DbSet<Experience> Experiences { get; set; }
     public DbSet<Skill> Skills { get; set; }
-    public DbSet<JobApplication> JobApplications { get; set; }
+    public DbSet<Recruiter> Recruiters { get; set; }
     public DbSet<JobOffer> JobOffers { get; set; }
+    public DbSet<JobApplication> JobApplications { get; set; }
+    public DbSet<Experience> Experiences { get; set; }
+    public DbSet<Education> Educations { get; set; }
 
     public new Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
