@@ -19,8 +19,7 @@ public sealed class JobApplication : Entity
         State = state;
     }
 
-    /// <summary>Inicializa una nueva instancia de la clase <see cref="JobApplication" />.</summary>
-    /// <remarks>Es requerido por Entity Framework Core.</remarks>
+
     public JobApplication() { }
 
     #endregion

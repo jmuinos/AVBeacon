@@ -14,12 +14,12 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
         return await DbSet.ToListAsync(cancellationToken);
     }
 
-    public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await DbSet.FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
     }
 
-    public async Task AddAsync(T entity, CancellationToken cancellationToken)
+    public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {
         await DbSet.AddAsync(entity, cancellationToken);
     }

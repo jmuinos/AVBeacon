@@ -2,4 +2,7 @@ using AvBeacon.Domain._Core.Interfaces;
 
 namespace AvBeacon.Domain.Skills;
 
-public interface ISkillRepository : IGenericRepository<Skill>;
+public interface ISkillRepository : IGenericRepository<Skill>
+{
+    // TODO
+}
