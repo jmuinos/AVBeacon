@@ -17,4 +17,6 @@ public class JobApplicationRepository(ApplicationDbContext context)
     {
         return await DbSet.FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
     }
+
+    public Task<JobApplication?> GetAllByTitleAsync<T>(string titleText, CancellationToken cancellationToken = default) { throw new NotImplementedException(); }
 }
