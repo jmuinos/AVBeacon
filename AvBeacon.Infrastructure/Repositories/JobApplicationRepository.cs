@@ -12,7 +12,7 @@ public class JobApplicationRepository(ApplicationDbContext context)
     }
 
     public async Task<JobApplication?> GetByCandidateIdAndState<T>(
-        Guid id, JobApplicationStateEnum jobApplicationStateEnum,
+        Guid id, JobApplicationState jobApplicationState,
         CancellationToken cancellationToken)
     {
         return await DbSet.FindAsync(new object?[] { id, cancellationToken }, cancellationToken);

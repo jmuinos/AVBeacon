@@ -1,4 +1,5 @@
 ﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+using Microsoft.VisualBasic;
 
 namespace AvBeacon.Domain.Shared;
 
@@ -11,12 +12,15 @@ public sealed class DateRange : ValueObject
     {
         Start = start;
         End = end;
+        DaysPassed = end.DayNumber - start.DayNumber;
     }
 
     public DateRange() { }
 
     private DateOnly Start { get; }
     private DateOnly End { get; }
+    
+    public int DaysPassed { get; set; }
 
 
     protected override IEnumerable<object> GetAtomicValues()

@@ -7,11 +7,11 @@ public sealed class JobApplication : Entity
 {
     public Guid CandidateId { get; private set; }
     public Guid JobOfferId { get; private set; }
-    public JobApplicationStateEnum State { get; set; }
+    public JobApplicationState State { get; set; }
 
     #region Constructors
 
-    public JobApplication(Guid id, Guid candidateId, Guid jobOfferId, JobApplicationStateEnum state)
+    public JobApplication(Guid id, Guid candidateId, Guid jobOfferId, JobApplicationState state)
         : base(id)
     {
         CandidateId = candidateId;
