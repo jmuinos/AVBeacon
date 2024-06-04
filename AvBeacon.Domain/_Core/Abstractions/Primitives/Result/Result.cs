@@ -36,13 +36,19 @@ public class Result
 
     /// <summary>Devuelve un <see cref="Result" /> exitoso.</summary>
     /// <returns>Una nueva instancia de <see cref="Result" /> con el indicador de éxito establecido.</returns>
-    public static Result Success() { return new Result(true, Error.None); }
+    public static Result Success()
+    {
+        return new Result(true, Error.None);
+    }
 
     /// <summary>Devuelve un <see cref="Result{TValue}" /> exitoso con el valor especificado.</summary>
     /// <typeparam title="TValue">El tipo de resultado.</typeparam>
     /// <param name="value">El valor del resultado.</param>
     /// <returns>Una nueva instancia de <see cref="Result{TValue}" /> con el indicador de éxito establecido.</returns>
-    public static Result<TValue> Success<TValue>(TValue value) { return new Result<TValue>(value, true, Error.None); }
+    public static Result<TValue> Success<TValue>(TValue value)
+    {
+        return new Result<TValue>(value, true, Error.None);
+    }
 
     /// <summary>Crea un nuevo <see cref="Result{TValue}" /> con el valor nullable especificado y el error especificado.</summary>
     /// <typeparam title="TValue">El tipo de resultado.</typeparam>
@@ -58,7 +64,10 @@ public class Result
     /// <summary>Devuelve un <see cref="Result" /> de fracaso con el error especificado.</summary>
     /// <param name="error">El error.</param>
     /// <returns>Una nueva instancia de <see cref="Result" /> con el error especificado y el indicador de fracaso establecido.</returns>
-    public static Result Failure(Error error) { return new Result(false, error); }
+    public static Result Failure(Error error)
+    {
+        return new Result(false, error);
+    }
 
     /// <summary>Devuelve un <see cref="Result{TValue}" /> de fracaso con el error especificado.</summary>
     /// <typeparam title="TValue">El tipo de resultado.</typeparam>
@@ -71,7 +80,10 @@ public class Result
     ///     Se ignora deliberadamente la asignación nullable aquí porque la API nunca permitirá que se acceda a ella.
     ///     Al valor se accede a través de un método que lanzará una excepción si el resultado es un fracaso.
     /// </remarks>
-    public static Result<TValue> Failure<TValue>(Error error) { return new Result<TValue>(default!, false, error); }
+    public static Result<TValue> Failure<TValue>(Error error)
+    {
+        return new Result<TValue>(default!, false, error);
+    }
 
     /// <summary>
     ///     Devuelve el primer fracaso de los resultados especificados <paramref title="results" />.

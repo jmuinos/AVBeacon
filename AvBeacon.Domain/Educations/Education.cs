@@ -9,7 +9,7 @@ public sealed class Education(Guid id, EducationType name, Description descripti
     : Entity(id)
 {
     public EducationType Name { get; private set; } = name;
-    public  Description Description { get; private set; } = description;
-    public  DateTime? Start { get; private set; } = start;
-    public  DateTime? End { get; private set; } = end;
+    public Description Description { get; private set; } = description;
+    public DateTime? Start { get; private set; } = start;
+    public DateTime? End { get; private set; } = end;
 }

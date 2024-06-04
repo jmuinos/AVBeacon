@@ -1,6 +1,6 @@
 ﻿namespace AvBeacon.Application.DTOs;
 
-public class CandidateDto
+public class ApplicantDto
 {
     public Guid Id { get; set; }
     public required string FirstName { get; set; }

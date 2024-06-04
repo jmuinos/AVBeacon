@@ -18,8 +18,8 @@ public static class EducationTypeMapper
     public static IEnumerable<EducationTypeDto> ToDtoList()
     {
         return Enum.GetValues(typeof(EducationType))
-                   .Cast<EducationType>()
-                   .Select(e => e.ToDto())
-                   .ToList();
+            .Cast<EducationType>()
+            .Select(e => e.ToDto())
+            .ToList();
     }
 }

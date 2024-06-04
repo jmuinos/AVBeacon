@@ -19,7 +19,10 @@ public sealed class Email : ValueObject
 
     /// <summary>Inicializa una nueva instancia de la clase <see cref="Email" />.</summary>
     /// <param name="value">El valor del email.</param>
-    private Email(string value) { Value = value; }
+    private Email(string value)
+    {
+        Value = value;
+    }
 
     /// <summary>Obtiene el valor del email.</summary>
     public string Value { get; }
@@ -27,16 +30,22 @@ public sealed class Email : ValueObject
     public static Result<Email> Create(string email)
     {
         return string.IsNullOrWhiteSpace(email)
-                   ? Result.Failure<Email>(DomainErrors.Email.NullOrEmpty)
-                   : email.Length > MaxLength
-                       ? Result.Failure<Email>(DomainErrors.Email.LongerThanAllowed)
-                       : !EmailFormatRegex.Value.IsMatch(email)
-                           ? Result.Failure<Email>(DomainErrors.Email.InvalidFormat)
-                           : Result.Success(new Email(email));
+            ? Result.Failure<Email>(DomainErrors.Email.NullOrEmpty)
+            : email.Length > MaxLength
+                ? Result.Failure<Email>(DomainErrors.Email.LongerThanAllowed)
+                : !EmailFormatRegex.Value.IsMatch(email)
+                    ? Result.Failure<Email>(DomainErrors.Email.InvalidFormat)
+                    : Result.Success(new Email(email));
     }
 
-    public static implicit operator string(Email email) { return email.Value; }
+    public static implicit operator string(Email email)
+    {
+        return email.Value;
+    }
 
     /// <inheritdoc />
-    protected override IEnumerable<object> GetAtomicValues() { yield return Value; }
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
+    }
 }

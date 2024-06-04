@@ -3,10 +3,10 @@ using AvBeacon.Domain.Experiences;
 using AvBeacon.Domain.Skills;
 using AvBeacon.Domain.Users;
 
-namespace AvBeacon.Domain.Candidates;
+namespace AvBeacon.Domain.Applicants;
 
 /// <summary>Representa un usuario de tipo candidato.</summary>
-public sealed class Candidate(
+public sealed class Applicant(
     Guid id,
     Email email,
     FirstName firstName,
@@ -19,5 +19,4 @@ public sealed class Candidate(
     public List<Education>? Educations { get; private set; } = educations;
     public List<Experience>? Experiences { get; private set; } = experiences;
     public List<Skill>? Skills { get; private set; } = skills;
-
 }

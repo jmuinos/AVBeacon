@@ -4,7 +4,10 @@
 public abstract class ValueObject : IEquatable<ValueObject>
 {
     /// <inheritdoc />
-    public bool Equals(ValueObject? other) { return other is not null && AreValuesEqual(other); }
+    public bool Equals(ValueObject? other)
+    {
+        return other is not null && AreValuesEqual(other);
+    }
 
     /// <summary>Obtiene el valor atómico del value object.</summary>
     /// <returns>La colección de objetos representando los valores del value object.</returns>
@@ -13,16 +16,19 @@ public abstract class ValueObject : IEquatable<ValueObject>
     private bool AreValuesEqual(ValueObject other)
     {
         return GetAtomicValues()
-           .SequenceEqual(other.GetAtomicValues());
+            .SequenceEqual(other.GetAtomicValues());
     }
 
     /// <inheritdoc />
-    public override bool Equals(object? obj) { return obj is ValueObject other && AreValuesEqual(other); }
+    public override bool Equals(object? obj)
+    {
+        return obj is ValueObject other && AreValuesEqual(other);
+    }
 
     /// <inheritdoc />
     public override int GetHashCode()
     {
         return GetAtomicValues()
-           .Aggregate(default(int), HashCode.Combine);
+            .Aggregate(default(int), HashCode.Combine);
     }
 }

@@ -20,15 +20,15 @@ public static class DomainErrors
             new("User.CannotChangePassword", "The password cannot be changed to the specified password.");
     }
 
-    /// <summary>Contiene los errores para un candidate.</summary>
-    public static class Candidate
+    /// <summary>Contiene los errores para un applicant.</summary>
+    public static class Applicant
     {
         public static Error NotFound =>
-            new("Candidate.NotFound",
-                "The candidate with the specified identifier was not found.");
+            new("Applicant.NotFound",
+                "The applicant with the specified identifier was not found.");
 
         public static Error AlreadyProcessed =>
-            new("Candidate.AlreadyProcessed", "The candidate has already been processed.");
+            new("Applicant.AlreadyProcessed", "The applicant has already been processed.");
     }
 
     /// <summary>Contiene los errores para un recruiter.</summary>
@@ -74,13 +74,13 @@ public static class DomainErrors
     public static class JobApplication
     {
         public static Error NotFound => new("JobApplication.NotFound",
-                                            "The job application with the specified identifier was not found.");
+            "The job application with the specified identifier was not found.");
 
         public static Error UserNotFound => new("JobApplication.UserNotFound",
-                                                "The user with the specified identifier was not found.");
+            "The user with the specified identifier was not found.");
 
         public static Error AlreadyProcessed => new("JobApplication.AlreadyProcessed",
-                                                    "The job application has already been processed.");
+            "The job application has already been processed.");
     }
 
     /// <summary>Contiene los errores de job offer.</summary>

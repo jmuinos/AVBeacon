@@ -12,7 +12,10 @@ public sealed class Title : ValueObject
 
     /// <summary>Inicializa una nueva instancia de la clase <see cref="Title" />.</summary>
     /// <param name="value">El valor del title.</param>
-    private Title(string value) { Value = value; }
+    private Title(string value)
+    {
+        Value = value;
+    }
 
     /// <summary>Obtiene el valor del title.</summary>
     public string Value { get; }
@@ -20,17 +23,26 @@ public sealed class Title : ValueObject
     public static Result<Title> Create(string title)
     {
         return string.IsNullOrWhiteSpace(title)
-                   ? Result.Failure<Title>(DomainErrors.Title.NullOrEmpty)
-                   : title.Length > MaxLength
-                       ? Result.Failure<Title>(DomainErrors.Title.LongerThanAllowed)
-                       : Result.Success(new Title(title));
+            ? Result.Failure<Title>(DomainErrors.Title.NullOrEmpty)
+            : title.Length > MaxLength
+                ? Result.Failure<Title>(DomainErrors.Title.LongerThanAllowed)
+                : Result.Success(new Title(title));
     }
 
-    public static implicit operator string(Title title) { return title.Value; }
+    public static implicit operator string(Title title)
+    {
+        return title.Value;
+    }
 
     /// <inheritdoc />
-    public override string ToString() { return Value; }
+    public override string ToString()
+    {
+        return Value;
+    }
 
     /// <inheritdoc />
-    protected override IEnumerable<object> GetAtomicValues() { yield return Value; }
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
+    }
 }

@@ -1,4 +1,4 @@
-﻿using AvBeacon.Domain.Candidates;
+﻿using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Educations;
 using AvBeacon.Domain.Experiences;
 using AvBeacon.Domain.JobApplications;
@@ -13,7 +13,7 @@ namespace AvBeacon.Application.Abstractions.Data;
 public interface IApplicationDbContext
 {
     DbSet<User> Users { get; }
-    DbSet<Candidate> Candidates { get; }
+    DbSet<Applicant> Applicants { get; }
     DbSet<Recruiter> Recruiters { get; }
     DbSet<Education> Educations { get; }
     DbSet<Experience> Experiences { get; }

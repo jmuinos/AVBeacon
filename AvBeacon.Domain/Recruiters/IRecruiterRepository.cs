@@ -4,5 +4,6 @@ namespace AvBeacon.Domain.Recruiters;
 
 public interface IRecruiterRepository : IGenericRepository<Recruiter>
 {
-    // TODO
+    Task<Recruiter?> GetAllBySimilarFirstNameOrLastNameAsync<T>(string nameText,
+        CancellationToken cancellationToken = default);
 }

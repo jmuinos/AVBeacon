@@ -1,5 +1,5 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Candidates;
+using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Educations;
 using AvBeacon.Domain.Experiences;
 using AvBeacon.Domain.JobApplications;
@@ -15,7 +15,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     : DbContext(options), IApplicationDbContext
 {
     public DbSet<User> Users { get; set; }
-    public DbSet<Candidate> Candidates { get; set; }
+    public DbSet<Applicant> Applicants { get; set; }
     public DbSet<Skill> Skills { get; set; }
     public DbSet<Recruiter> Recruiters { get; set; }
     public DbSet<JobOffer> JobOffers { get; set; }

@@ -21,7 +21,10 @@ public sealed class Error : ValueObject
     /// <summary>Obtiene la instancia de error vacío.</summary>
     internal static Error None => new(string.Empty, string.Empty);
 
-    public static implicit operator string(Error error) { return error.Code; }
+    public static implicit operator string(Error error)
+    {
+        return error.Code;
+    }
 
     /// <inheritdoc />
     protected override IEnumerable<object> GetAtomicValues()

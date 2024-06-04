@@ -4,7 +4,7 @@
 ///     Representa el resultado de alguna operación, con información de estado y posiblemente un valor y un error.
 /// </summary>
 /// <typeparam title="TValue">El tipo de valor del resultado.</typeparam>
-public class Result<TValue> : _Core.Abstractions.Primitives.Result.Result
+public class Result<TValue> : Result
 {
     private readonly TValue _value;
 
@@ -26,9 +26,12 @@ public class Result<TValue> : _Core.Abstractions.Primitives.Result.Result
     /// <returns>El valor del resultado si el resultado es exitoso.</returns>
     /// <exception cref="InvalidOperationException">cuando <see cref="Result.IsFailure" /> es verdadero.</exception>
     public TValue Value => IsSuccess
-                               ? _value
-                               : throw new
-                                     InvalidOperationException("No se puede acceder al valor de un resultado fallido.");
+        ? _value
+        : throw new
+            InvalidOperationException("No se puede acceder al valor de un resultado fallido.");
 
-    public static implicit operator Result<TValue>(TValue value) { return Success(value); }
+    public static implicit operator Result<TValue>(TValue value)
+    {
+        return Success(value);
+    }
 }

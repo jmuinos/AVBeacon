@@ -1,4 +1,4 @@
-﻿using AvBeacon.Domain.Candidates;
+﻿using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Educations;
 using AvBeacon.Domain.Experiences;
 using AvBeacon.Domain.JobApplications;
@@ -10,7 +10,7 @@ namespace AvBeacon.Domain._Core.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
-    ICandidateRepository Candidates { get; }
+    IApplicantRepository Applicants { get; }
     IEducationRepository Educations { get; }
     IExperienceRepository Experiences { get; }
     ISkillRepository Skills { get; }

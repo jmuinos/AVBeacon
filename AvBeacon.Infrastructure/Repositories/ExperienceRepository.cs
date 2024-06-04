@@ -1,27 +1,25 @@
 using AvBeacon.Domain.Experiences;
+using AvBeacon.Domain.Shared;
 
 namespace AvBeacon.Infrastructure.Repositories;
 
 public class ExperienceRepository(ApplicationDbContext context)
     : GenericRepository<Experience>(context), IExperienceRepository
 {
-    public Task<Experience?> GetAllByTitle<T>(string titleText, CancellationToken cancellationToken = default)
+    // TODO
+    public Task<Experience?> GetAllBySimilarTitle<T>(Title title, CancellationToken cancellationToken = default)
     {
-        // TODO
         throw new NotImplementedException();
     }
 
-    public Task<Experience?> GetAllByCandidateId<T>(Guid candidateId, CancellationToken cancellationToken = default)
+    public Task<Experience?> GetAllByApplicantId<T>(Guid applicantId, CancellationToken cancellationToken = default)
     {
-        // TODO
         throw new NotImplementedException();
     }
 
     public Task<Experience?> GetAllByMinExperienceDays<T>(int minExperienceDays,
         CancellationToken cancellationToken = default)
     {
-        // TODO
         throw new NotImplementedException();
     }
 }
-

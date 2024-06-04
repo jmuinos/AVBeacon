@@ -1,5 +1,5 @@
 ﻿using AvBeacon.Domain._Core.Interfaces;
-using AvBeacon.Domain.Candidates;
+using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Educations;
 using AvBeacon.Domain.Experiences;
 using AvBeacon.Domain.JobApplications;
@@ -12,7 +12,7 @@ namespace AvBeacon.Infrastructure;
 
 public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
 {
-    public ICandidateRepository Candidates { get; } = new CandidateRepository(context);
+    public IApplicantRepository Applicants { get; } = new ApplicantRepository(context);
     public IEducationRepository Educations { get; } = new EducationRepository(context);
     public IExperienceRepository Experiences { get; } = new ExperienceRepository(context);
     public ISkillRepository Skills { get; } = new SkillRepository(context);
@@ -25,5 +25,8 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
         return await context.SaveChangesAsync(cancellationToken);
     }
 
-    public void Dispose() { context.Dispose(); }
+    public void Dispose()
+    {
+        context.Dispose();
+    }
 }

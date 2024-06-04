@@ -1,21 +1,25 @@
 using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.Shared;
 
 namespace AvBeacon.Infrastructure.Repositories;
 
 public class JobApplicationRepository(ApplicationDbContext context)
     : GenericRepository<JobApplication>(context), IJobApplicationRepository
 {
-    public async Task<JobApplication?> GetAllByCandidateIdAsync<T>(Guid candidateId, CancellationToken cancellationToken = default)
+    public async Task<JobApplication?> GetAllByApplicantIdAsync<T>(Guid applicantId,
+        CancellationToken cancellationToken = default)
     {
-        return await DbSet.FindAsync(new object?[] { candidateId, cancellationToken }, cancellationToken);
+        return await DbSet.FindAsync(new object?[] { applicantId, cancellationToken }, cancellationToken);
     }
 
-    public async Task<JobApplication?> GetByCandidateIdAndState<T>(Guid id, JobApplicationState jobApplicationState, CancellationToken cancellationToken = default)
+    public async Task<JobApplication?> GetAllByApplicantIdAndStateAsync<T>(Guid id,
+        JobApplicationState jobApplicationState, CancellationToken cancellationToken = default)
     {
         return await DbSet.FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
     }
 
-    public Task<JobApplication?> GetAllByTitleAsync<T>(string titleText, CancellationToken cancellationToken = default)
+    public Task<JobApplication?> GetAllBySimilarTitleAsync<T>(Title title,
+        CancellationToken cancellationToken = default)
     {
         // TODO
         throw new NotImplementedException();

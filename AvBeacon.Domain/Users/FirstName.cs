@@ -12,7 +12,10 @@ public sealed class FirstName : ValueObject
 
     /// <summary>Inicializa una nueva instancia de la clase <see cref="FirstName" /></summary>
     /// <param name="value">El valor del first name.</param>
-    private FirstName(string value) { Value = value; }
+    private FirstName(string value)
+    {
+        Value = value;
+    }
 
     /// <summary>Obtiene el valor del first name.</summary>
     public string Value { get; }
@@ -20,17 +23,26 @@ public sealed class FirstName : ValueObject
     public static Result<FirstName> Create(string firstName)
     {
         return string.IsNullOrWhiteSpace(firstName)
-                   ? Result.Failure<FirstName>(DomainErrors.FirstName.NullOrEmpty)
-                   : firstName.Length > MaxLength
-                       ? Result.Failure<FirstName>(DomainErrors.FirstName.LongerThanAllowed)
-                       : Result.Success(new FirstName(firstName));
+            ? Result.Failure<FirstName>(DomainErrors.FirstName.NullOrEmpty)
+            : firstName.Length > MaxLength
+                ? Result.Failure<FirstName>(DomainErrors.FirstName.LongerThanAllowed)
+                : Result.Success(new FirstName(firstName));
     }
 
-    public static implicit operator string(FirstName firstName) { return firstName.Value; }
+    public static implicit operator string(FirstName firstName)
+    {
+        return firstName.Value;
+    }
 
     /// <inheritdoc />
-    public override string ToString() { return Value; }
+    public override string ToString()
+    {
+        return Value;
+    }
 
     /// <inheritdoc />
-    protected override IEnumerable<object> GetAtomicValues() { yield return Value; }
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
+    }
 }

@@ -6,5 +6,9 @@ public class RecruiterRepository(ApplicationDbContext context)
     : GenericRepository<Recruiter>(context), IRecruiterRepository
 {
     // TODO
-
+    public Task<Recruiter?> GetAllBySimilarFirstNameOrLastNameAsync<T>(string nameText,
+        CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
 }
