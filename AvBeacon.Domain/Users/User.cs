@@ -1,18 +1,13 @@
 ﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
 using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Recruiters;
+using AvBeacon.Domain.Users.Recruiters;
 
 namespace AvBeacon.Domain.Users;
 
-/// <summary>Clase base que representa un usuario.</summary>
-/// <remarks>
-///     De esta clase derivan entidades que representan tipos de usuario,
-///     como por ejemplo <see cref="Applicant" /> o <see cref="Recruiter" />
-/// </remarks>
-public abstract class User(Guid id, Email email, FirstName firstName, LastName lastName)
+public abstract class User(Guid id, string email, string firstName, string lastName)
     : Entity(id)
 {
-    public Email Email { get; init; } = email;
-    public FirstName FirstName { get; init; } = firstName;
-    public LastName LastName { get; init; } = lastName;
+    public string Email { get; private init; } = email;
+    public string FirstName { get; private init; } = firstName;
+    public string LastName { get; private init; } = lastName;
 }

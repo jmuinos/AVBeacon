@@ -2,7 +2,7 @@
 
 public enum JobApplicationState
 {
-    Accepted,
     Sent,
+    Accepted,
     Denied
 }

@@ -1,16 +1,15 @@
 ﻿using AvBeacon.Domain.Educations;
-using AvBeacon.Domain.Experiences;
 using AvBeacon.Domain.Skills;
 using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Experiences;
 
 namespace AvBeacon.Domain.Applicants;
 
-/// <summary>Representa un usuario de tipo candidato.</summary>
 public sealed class Applicant(
     Guid id,
-    Email email,
-    FirstName firstName,
-    LastName lastName,
+    string email,
+    string firstName,
+    string lastName,
     List<Education>? educations,
     List<Experience>? experiences,
     List<Skill>? skills)

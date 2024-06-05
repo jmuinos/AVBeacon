@@ -17,4 +17,8 @@
         <ProjectReference Include="..\AvBeacon.Domain\AvBeacon.Domain.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Core\" />
+    </ItemGroup>
+
 </Project>

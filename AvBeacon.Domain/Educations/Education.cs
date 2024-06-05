@@ -1,15 +1,13 @@
 ﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
-using AvBeacon.Domain.Shared;
-using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Applicants;
 
 namespace AvBeacon.Domain.Educations;
 
-/// <summary>Representa una oferta de trabajo creada por un usuario reclutador.</summary>
-public sealed class Education(Guid id, EducationType name, Description description, DateTime? start, DateTime? end)
+public sealed class Education(Guid id, EducationType educationType, string description, DateTime? start, DateTime? end)
     : Entity(id)
 {
-    public EducationType Name { get; private set; } = name;
-    public Description Description { get; private set; } = description;
+    public EducationType EducationType { get; private set; } = educationType;
+    public string Description { get; private set; } = description;
     public DateTime? Start { get; private set; } = start;
     public DateTime? End { get; private set; } = end;
 }

@@ -5,16 +5,7 @@ public abstract class Entity : IEquatable<Entity>
 {
     /// <summary>Inicializa una nueva instancia de la clase <see cref="Entity" />.</summary>
     /// <param name="id">El identificador de la entidad.</param>
-    protected Entity(Guid id)
-    {
-        Id = id;
-    }
-
-    /// <summary>Inicializa una nueva instancia de la clase <see cref="Entity" />.</summary>
-    /// <remarks>Es requerido por Entity Framework Core.</remarks>
-    protected Entity()
-    {
-    }
+    protected Entity(Guid id) { Id = id; }
 
     private Guid Id { get; }
 
@@ -33,10 +24,7 @@ public abstract class Entity : IEquatable<Entity>
         return first is not null && second is not null && first.Equals(second);
     }
 
-    public static bool operator !=(Entity? first, Entity? second)
-    {
-        return !(first == second);
-    }
+    public static bool operator !=(Entity? first, Entity? second) { return !(first == second); }
 
     /// <inheritdoc />
     public override bool Equals(object? obj)
@@ -51,8 +39,5 @@ public abstract class Entity : IEquatable<Entity>
     }
 
     /// <inheritdoc />
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode();
-    }
+    public override int GetHashCode() { return Id.GetHashCode(); }
 }

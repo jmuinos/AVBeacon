@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Application", "AvB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Domain", "AvBeacon.Domain\AvBeacon.Domain.csproj", "{636072CD-64AC-4636-90A1-AF61574592C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Infrastructure", "AvBeacon.Infrastructure\AvBeacon.Infrastructure.csproj", "{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Persistence", "AvBeacon.Persistence\AvBeacon.Persistence.csproj", "{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.WebApi", "AvBeacon.WebApi\AvBeacon.WebApi.csproj", "{903030BF-DA6D-45FA-A845-278078D3CEA2}"
 EndProject

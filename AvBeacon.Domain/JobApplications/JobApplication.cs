@@ -2,7 +2,6 @@
 
 namespace AvBeacon.Domain.JobApplications;
 
-/// <summary>Representa una aplicación de un candidato a una oferta de trabajo.</summary>
 public sealed class JobApplication(Guid id, Guid applicantId, Guid jobOfferId, JobApplicationState state)
     : Entity(id)
 {
