@@ -9,7 +9,7 @@
     <ItemGroup>
         <ProjectReference Include="..\AvBeacon.Application\AvBeacon.Application.csproj"/>
         <ProjectReference Include="..\AvBeacon.Domain\AvBeacon.Domain.csproj"/>
-        <ProjectReference Include="..\AvBeacon.Persistence\AvBeacon.Persistence.csproj" />
+        <ProjectReference Include="..\AvBeacon.Persistence\AvBeacon.Persistence.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

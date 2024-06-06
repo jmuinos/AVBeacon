@@ -1,18 +1,16 @@
 using AvBeacon.Domain.JobOffers;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
 public class JobOfferRepository(ApplicationDbContext context)
     : GenericRepository<JobOffer>(context), IJobOfferRepository
 {
-    // TODO
-    public Task<JobOffer?> GetAllByRecruiterId<T>(Guid applicantId, CancellationToken cancellationToken = default)
+    public async Task<List<JobOffer>> SearchByTitleAsync(string titleText,
+        CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<JobOffer?> GetAllBySimilarTitle<T>(string title, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
+        return await DbSet
+                    .Where(jo => EF.Functions.Like(jo.Title, $"%{titleText}%"))
+                    .ToListAsync(cancellationToken);
     }
 }

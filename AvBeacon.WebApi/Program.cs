@@ -12,8 +12,8 @@ builder.Host.UseSerilog((context, loggerConfiguration) =>
 
 // Añadir servicios de layers
 builder.Services
-    .AddApplication()
-    .AddPersistence(builder.Configuration.GetConnectionString("DefaultConnection") ??
+       .AddApplication()
+       .AddPersistence(builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException());
 
 builder.Services.AddControllers();

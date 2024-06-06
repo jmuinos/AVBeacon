@@ -1,24 +1,16 @@
-using AvBeacon.Domain.Users.Experiences;
+using AvBeacon.Domain.Experiences;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
 public class ExperienceRepository(ApplicationDbContext context)
     : GenericRepository<Experience>(context), IExperienceRepository
 {
-    // TODO
-    public Task<Experience?> GetAllBySimilarTitle<T>(string title, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Experience?> GetAllByApplicantId<T>(Guid applicantId, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Experience?> GetAllByMinExperienceDays<T>(int minExperienceDays,
+    public async Task<List<Experience>> SearchByTitleAsync(string titleText,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet
+                    .Where(e => EF.Functions.Like(e.Title, $"%{titleText}%"))
+                    .ToListAsync(cancellationToken);
     }
 }

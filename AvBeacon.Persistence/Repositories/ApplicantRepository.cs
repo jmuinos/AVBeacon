@@ -1,20 +1,21 @@
 using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Users;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
 public class ApplicantRepository(ApplicationDbContext context)
     : GenericRepository<Applicant>(context), IApplicantRepository
 {
-    // TODO
-    public Task<Applicant?> GetAllBySimilarFirstNameOrLastNameAsync<T>(string nameText,
-        CancellationToken cancellationToken = default)
+    public async Task<List<Applicant>> SearchByNameAsync(string nameText, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet
+                    .Where(a => EF.Functions.Like(a.FirstName, $"%{nameText}%") ||
+                                EF.Functions.Like(a.LastName, $"%{nameText}%"))
+                    .ToListAsync(cancellationToken);
     }
 
-    public Task<Applicant?> GetAllByEmailAsync<T>(string email, CancellationToken cancellationToken = default)
+    public async Task<Applicant?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet.FirstOrDefaultAsync(a => a.Email == email, cancellationToken);
     }
 }

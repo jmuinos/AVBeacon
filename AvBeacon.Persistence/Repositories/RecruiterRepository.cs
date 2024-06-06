@@ -1,19 +1,21 @@
-using AvBeacon.Domain.Users.Recruiters;
+using AvBeacon.Domain.Recruiters;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
 public class RecruiterRepository(ApplicationDbContext context)
     : GenericRepository<Recruiter>(context), IRecruiterRepository
 {
-    // TODO
-    public Task<Recruiter?> GetAllBySimilarFirstNameOrLastNameAsync<T>(string nameText,
-        CancellationToken cancellationToken = default)
+    public async Task<Recruiter?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet.FirstOrDefaultAsync(r => r.Email == email, cancellationToken);
     }
 
-    public Task<Recruiter?> GetAllByEmailAsync<T>(string email, CancellationToken cancellationToken = default)
+    public async Task<List<Recruiter>> SearchByNameAsync(string nameText, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet
+                    .Where(r => EF.Functions.Like(r.FirstName, $"%{nameText}%") ||
+                                EF.Functions.Like(r.LastName, $"%{nameText}%"))
+                    .ToListAsync(cancellationToken);
     }
 }

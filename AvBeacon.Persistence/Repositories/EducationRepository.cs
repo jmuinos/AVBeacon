@@ -1,15 +1,16 @@
 using AvBeacon.Domain.Educations;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
 public class EducationRepository(ApplicationDbContext context)
     : GenericRepository<Education>(context), IEducationRepository
 {
-    // TODO
-    public Task<Education?> GetAllBySimilarTitle<T>(string title, CancellationToken cancellationToken = default) { throw new NotImplementedException(); }
-
-    public Task<Education?> GetAllByApplicantId<T>(Guid applicantId, CancellationToken cancellationToken = default)
+    public async Task<List<Education>> SearchByDescriptionAsync(string descriptionText,
+        CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet
+                    .Where(e => EF.Functions.Like(e.Description, $"%{descriptionText}%"))
+                    .ToListAsync(cancellationToken);
     }
 }

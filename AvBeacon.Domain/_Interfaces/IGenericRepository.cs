@@ -1,4 +1,4 @@
-﻿namespace AvBeacon.Domain._Core;
+﻿namespace AvBeacon.Domain._Interfaces;
 
 public interface IGenericRepository<T> where T : class
 {

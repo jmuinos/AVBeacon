@@ -1,26 +1,26 @@
 using AvBeacon.Domain.JobApplications;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
 public class JobApplicationRepository(ApplicationDbContext context)
     : GenericRepository<JobApplication>(context), IJobApplicationRepository
 {
-    public async Task<JobApplication?> GetAllByApplicantIdAsync<T>(Guid applicantId,
+    public async Task<List<JobApplication>> GetByApplicantIdAsync(Guid applicantId,
         CancellationToken cancellationToken = default)
     {
-        return await DbSet.FindAsync(new object?[] { applicantId, cancellationToken }, cancellationToken);
+        return await DbSet
+                    .Where(ja => ja.ApplicantId == applicantId)
+                    .ToListAsync(cancellationToken);
     }
 
-    public async Task<JobApplication?> GetAllByApplicantIdAndStateAsync<T>(Guid id,
-        JobApplicationState jobApplicationState, CancellationToken cancellationToken = default)
-    {
-        return await DbSet.FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
-    }
-
-    public Task<JobApplication?> GetAllBySimilarTitleAsync<T>(string title,
+    public async Task<List<JobApplication>> GetByApplicantNameAsync(string nameText,
         CancellationToken cancellationToken = default)
     {
-        // TODO
-        throw new NotImplementedException();
+        return await Context.JobApplications
+                            .Include(ja => ja.Applicant)
+                            .Where(ja => EF.Functions.Like(ja.Applicant.FirstName, $"%{nameText}%") ||
+                                         EF.Functions.Like(ja.Applicant.LastName, $"%{nameText}%"))
+                            .ToListAsync(cancellationToken);
     }
 }

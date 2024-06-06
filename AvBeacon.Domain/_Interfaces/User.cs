@@ -1,8 +1,6 @@
 ﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
-using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Users.Recruiters;
 
-namespace AvBeacon.Domain.Users;
+namespace AvBeacon.Domain._Interfaces;
 
 public abstract class User(Guid id, string email, string firstName, string lastName)
     : Entity(id)

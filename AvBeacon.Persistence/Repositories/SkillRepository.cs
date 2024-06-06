@@ -1,13 +1,14 @@
 using AvBeacon.Domain.Skills;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;
 
-public class SkillRepository(ApplicationDbContext context)
-    : GenericRepository<Skill>(context), ISkillRepository
+public class SkillRepository(ApplicationDbContext context) : GenericRepository<Skill>(context), ISkillRepository
 {
-    // TODO
-    public Task<Skill?> GetAllBySimilarTitleAsync<T>(string title, CancellationToken cancellationToken = default)
+    public async Task<List<Skill>> SearchByNameAsync(string nameText, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await DbSet
+                    .Where(s => EF.Functions.Like(s.Name, $"%{nameText}%"))
+                    .ToListAsync(cancellationToken);
     }
 }

@@ -18,7 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Core\" />
+        <Folder Include="Applicant\Commands\"/>
+        <Folder Include="Applicant\Queries\"/>
+        <Folder Include="Core\"/>
     </ItemGroup>
 
 </Project>

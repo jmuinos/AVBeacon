@@ -1,13 +1,9 @@
-using AvBeacon.Domain._Core;
+using AvBeacon.Domain._Interfaces;
 
 namespace AvBeacon.Domain.JobApplications;
 
 public interface IJobApplicationRepository : IGenericRepository<JobApplication>
 {
-    Task<JobApplication?> GetAllByApplicantIdAsync<T>(Guid applicantId, CancellationToken cancellationToken = default);
-
-    Task<JobApplication?> GetAllByApplicantIdAndStateAsync<T>(Guid applicantId, JobApplicationState jobApplicationState,
-        CancellationToken cancellationToken = default);
-
-    Task<JobApplication?> GetAllBySimilarTitleAsync<T>(string title, CancellationToken cancellationToken = default);
+    Task<List<JobApplication>> GetByApplicantIdAsync(Guid applicantId, CancellationToken cancellationToken = default);
+    Task<List<JobApplication>> GetByApplicantNameAsync(string nameText, CancellationToken cancellationToken = default);
 }
