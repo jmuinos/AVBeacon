@@ -35,4 +35,6 @@ public sealed class Applicant(Guid id, string email, string firstName, string la
     public void RemoveJobApplication(JobApplication jobApplication) { JobApplications.Remove(jobApplication); }
 
     #endregion
+
+    public void UpdateDetails(string? requestEmail, string? requestFirstName, string? requestLastName) { throw new NotImplementedException(); }
 }
