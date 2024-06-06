@@ -1,4 +1,4 @@
-﻿namespace AvBeacon.Domain.Educations;
+namespace AvBeacon.Domain.Enumerables;
 
 public enum EducationType
 {

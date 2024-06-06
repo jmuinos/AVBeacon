@@ -6,9 +6,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Application", "AvB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Domain", "AvBeacon.Domain\AvBeacon.Domain.csproj", "{636072CD-64AC-4636-90A1-AF61574592C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Persistence", "AvBeacon.Persistence\AvBeacon.Persistence.csproj", "{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Infrastructure", "AvBeacon.Infrastructure\AvBeacon.Infrastructure.csproj", "{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.WebApi", "AvBeacon.WebApi\AvBeacon.WebApi.csproj", "{903030BF-DA6D-45FA-A845-278078D3CEA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.WebApi", "AvBeacon.WebApi\AvBeacon.WebApi.csproj", "{E67391F4-CA30-4B38-9D8F-03269C97A7B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C46DCF8-4900-48A7-97D8-3F1DE219C0CA}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,7 +24,7 @@ Global
 		{856D73BF-A3F7-4751-A5E5-68347733ED8B} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
 		{636072CD-64AC-4636-90A1-AF61574592C3} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
 		{4B98E7BD-AD53-4458-8F89-D2C753D24F5C} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
-		{903030BF-DA6D-45FA-A845-278078D3CEA2} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
+		{E67391F4-CA30-4B38-9D8F-03269C97A7B5} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{856D73BF-A3F7-4751-A5E5-68347733ED8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -34,9 +39,9 @@ Global
 		{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B98E7BD-AD53-4458-8F89-D2C753D24F5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{903030BF-DA6D-45FA-A845-278078D3CEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{903030BF-DA6D-45FA-A845-278078D3CEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{903030BF-DA6D-45FA-A845-278078D3CEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{903030BF-DA6D-45FA-A845-278078D3CEA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E67391F4-CA30-4B38-9D8F-03269C97A7B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E67391F4-CA30-4B38-9D8F-03269C97A7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E67391F4-CA30-4B38-9D8F-03269C97A7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E67391F4-CA30-4B38-9D8F-03269C97A7B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

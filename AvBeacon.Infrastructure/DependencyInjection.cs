@@ -1,16 +1,11 @@
 ﻿using AvBeacon.Application.Core.Data;
-using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Educations;
-using AvBeacon.Domain.Experiences;
-using AvBeacon.Domain.JobApplications;
-using AvBeacon.Domain.JobOffers;
-using AvBeacon.Domain.Recruiters;
-using AvBeacon.Domain.Skills;
-using AvBeacon.Persistence.Repositories;
+using AvBeacon.Domain.Entities;
+using AvBeacon.Domain.Repositories;
+using AvBeacon.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Persistence;
+namespace AvBeacon.Infrastructure;
 
 public static class DependencyInjection
 {

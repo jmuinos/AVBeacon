@@ -1,11 +1,4 @@
-﻿using AvBeacon.Domain._Interfaces;
-using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Educations;
-using AvBeacon.Domain.Experiences;
-using AvBeacon.Domain.JobApplications;
-using AvBeacon.Domain.JobOffers;
-using AvBeacon.Domain.Recruiters;
-using AvBeacon.Domain.Skills;
+﻿using AvBeacon.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Application.Core.Data;
@@ -13,7 +6,7 @@ namespace AvBeacon.Application.Core.Data;
 public interface IApplicationDbContext
 {
     DbSet<User> Users { get; }
-    DbSet<Applicant> Applicants { get; }
+    DbSet<Domain.Entities.Applicant> Applicants { get; }
     DbSet<Recruiter> Recruiters { get; }
     DbSet<Education> Educations { get; }
     DbSet<Experience> Experiences { get; }
@@ -22,4 +15,9 @@ public interface IApplicationDbContext
     DbSet<JobOffer> JobOffers { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+}
+
+public interface IUnitOfWork
+{
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

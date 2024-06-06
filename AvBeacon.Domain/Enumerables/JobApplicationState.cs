@@ -1,4 +1,4 @@
-﻿namespace AvBeacon.Domain.JobApplications;
+namespace AvBeacon.Domain.Enumerables;
 
 public enum JobApplicationState
 {

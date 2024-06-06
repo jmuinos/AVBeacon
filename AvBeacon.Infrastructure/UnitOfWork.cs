@@ -1,6 +1,6 @@
 ﻿using AvBeacon.Application.Core.Data;
 
-namespace AvBeacon.Persistence;
+namespace AvBeacon.Infrastructure;
 
 internal sealed class UnitOfWork : IUnitOfWork
 {
