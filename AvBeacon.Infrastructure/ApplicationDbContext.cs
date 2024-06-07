@@ -1,6 +1,9 @@
-﻿using AvBeacon.Application.Core.Data;
+﻿using AvBeacon.Application._Core.Abstractions.Data;
 using AvBeacon.Domain.Entities;
+using AvBeacon.Infrastructure.Configurations;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AvBeacon.Infrastructure;
 
@@ -16,55 +19,33 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Experience> Experiences => Set<Experience>();
     public DbSet<Education> Educations => Set<Education>();
 
-    public new async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return await base.SaveChangesAsync(cancellationToken);
     }
 
+
+    public Task<int> ExecuteSqlAsync(string sql, IEnumerable<SqlParameter> parameters,
+        CancellationToken cancellationToken = default)
+    {
+        return Database.ExecuteSqlRawAsync(sql, parameters, cancellationToken);
+    }
+
+    public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return Database.BeginTransactionAsync(cancellationToken);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new ApplicantConfiguration());
+        modelBuilder.ApplyConfiguration(new RecruiterConfiguration());
+        modelBuilder.ApplyConfiguration(new JobOfferConfiguration());
+        modelBuilder.ApplyConfiguration(new JobApplicationConfiguration());
+        modelBuilder.ApplyConfiguration(new SkillConfiguration());
+        modelBuilder.ApplyConfiguration(new EducationConfiguration());
+        modelBuilder.ApplyConfiguration(new ExperienceConfiguration());
         base.OnModelCreating(modelBuilder);
-
-        // Configurar la relación entre Applicant y JobApplication
-        modelBuilder.Entity<JobApplication>()
-                    .HasOne(ja => ja.Applicant)
-                    .WithMany()
-                    .HasForeignKey(ja => ja.ApplicantId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-        // Configurar la relación entre JobApplication y JobOffer
-        modelBuilder.Entity<JobApplication>()
-                    .HasOne(ja => ja.JobOffer)
-                    .WithMany()
-                    .HasForeignKey(ja => ja.JobOfferId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-        // Configurar la relación entre Recruiter y JobOffer
-        modelBuilder.Entity<JobOffer>()
-                    .HasOne(jo => jo.Recruiter)
-                    .WithMany(r => r.JobOffers)
-                    .HasForeignKey(jo => jo.RecruiterId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-        // Configurar la relación entre Applicant y Education
-        modelBuilder.Entity<Education>()
-                    .HasOne<Applicant>()
-                    .WithMany(a => a.Educations)
-                    .HasForeignKey(e => e.ApplicantId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-        // Configurar la relación entre Applicant y Experience
-        modelBuilder.Entity<Experience>()
-                    .HasOne<Applicant>()
-                    .WithMany(a => a.Experiences)
-                    .HasForeignKey(e => e.ApplicantId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-        // Configurar la relación entre Applicant y Skill
-        modelBuilder.Entity<Skill>()
-                    .HasOne<Applicant>()
-                    .WithMany(a => a.Skills)
-                    .HasForeignKey(s => s.ApplicantId)
-                    .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -7,10 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="13.0.1"/>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1"/>
-        <PackageReference Include="MediatR" Version="12.2.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4"/>
+        <PackageReference Include="FluentValidation" Version="11.9.1" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1" />
+        <PackageReference Include="MediatR.CommandQuery" Version="15.9.1" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -18,9 +20,37 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Applicant\Events\"/>
-        <Folder Include="Applicant\Queries\"/>
-        <Folder Include="Core\"/>
+        <Folder Include="Applicants\Queries\"/>
+        <Folder Include="Experiences\Events\"/>
+        <Folder Include="Experiences\Queries\"/>
+        <Folder Include="JobApplications\Events\"/>
+        <Folder Include="JobOffers\Events\"/>
+        <Folder Include="JobOffers\Queries\"/>
+        <Folder Include="Recruiters\Events\"/>
+        <Folder Include="Recruiters\Queries\"/>
+        <Folder Include="Skills\Events\"/>
+        <Folder Include="Skills\Queries\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Applicants\Commands\CreateApplicantCommandHandler.cs">
+            <DependentUpon>CreateApplicantCommand.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Applicants\Commands\CreateApplicantCommandValidator.cs">
+            <DependentUpon>CreateApplicantCommand.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Applicants\Commands\UpdateApplicantCommandHandler.cs">
+            <DependentUpon>UpdateApplicantCommand.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Applicants\Commands\UpdateApplicantCommandValidator.cs">
+            <DependentUpon>UpdateApplicantCommand.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.Data.SqlClient">
+            <HintPath>..\AvBeacon.WebApi\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

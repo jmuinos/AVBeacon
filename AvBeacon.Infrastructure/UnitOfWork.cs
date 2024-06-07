@@ -1,15 +1,18 @@
-﻿using AvBeacon.Application.Core.Data;
+﻿using AvBeacon.Application._Core.Abstractions.Data;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AvBeacon.Infrastructure;
 
-internal sealed class UnitOfWork : IUnitOfWork
+internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public UnitOfWork(ApplicationDbContext dbContext) { _dbContext = dbContext; }
+    // TODO Seguro que puedo evitar tener que instanciar el método así
+    public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
 
     public Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        return _dbContext.SaveChangesAsync(cancellationToken);
+        return dbContext.SaveChangesAsync(cancellationToken);
     }
 }

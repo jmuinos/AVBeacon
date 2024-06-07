@@ -1,13 +1,35 @@
+using AvBeacon.Application;
+using AvBeacon.Application.Applicants.Commands;
+using AvBeacon.Application.Recruiters.Commands.CreateRecruiter;
+using AvBeacon.Domain.Entities;
+using AvBeacon.Infrastructure;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Configurar Serilog
+builder.Host.UseSerilog((context, loggerConfiguration) =>
+{
+    loggerConfiguration.ReadFrom.Configuration(context.Configuration);
+});
+
+// Añadir servicios de layers
+builder.Services
+       .AddApplication()
+       .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection") ??
+                          throw new InvalidOperationException("ConnectionString inválido."));
+
+// Añadir servicios de Identity
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuración de middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -15,30 +37,78 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
-var summaries = new[]
+// Minimal API Endpoints
+app.MapPost("/register/applicant", async (CreateApplicantCommand command, IMediator mediator) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var result = await mediator.Send(command);
+    if (result.IsSuccess) return Results.Ok(result.Value);
+    return Results.BadRequest(result.Error);
+});
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                                                         new WeatherForecast
-                                                             (
-                                                              DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                                                              Random.Shared.Next(-20, 55),
-                                                              summaries[Random.Shared.Next(summaries.Length)]
-                                                             ))
-                                 .ToArray();
-        return forecast;
-    })
-   .WithName("GetWeatherForecast")
-   .WithOpenApi();
+app.MapPost("/register/recruiter", async (CreateRecruiterCommand command, IMediator mediator) =>
+{
+    var result = await mediator.Send(command);
+    if (result.IsSuccess) return Results.Ok(result.Value);
+    return Results.BadRequest(result.Error);
+});
+
+// app.MapPost("/jobapplication/create", async (CreateJobApplicationCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok(result.Value);
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapPost("/jobapplication/update", async (UpdateJobApplicationStateCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok();
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapGet("/jobapplications/applicant/{applicantId}", async (Guid applicantId, IMediator mediator) =>
+// {
+//     var query = new GetJobApplicationsByApplicantIdQuery { ApplicantId = applicantId };
+//     var result = await mediator.Send(query);
+//     if (result.IsSuccess) return Results.Ok(result.Value);
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapPost("/joboffer/create", async (CreateJobOfferCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok(result.Value);
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapPost("/joboffer/update", async (UpdateJobOfferCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok();
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapPost("/skill/create", async (CreateSkillCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok(result.Value);
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapPost("/experience/create", async (CreateExperienceCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok(result.Value);
+//     return Results.BadRequest(result.Error);
+// });
+//
+// app.MapPost("/education/create", async (CreateEducationCommand command, IMediator mediator) =>
+// {
+//     var result = await mediator.Send(command);
+//     if (result.IsSuccess) return Results.Ok(result.Value);
+//     return Results.BadRequest(result.Error);
+// });
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

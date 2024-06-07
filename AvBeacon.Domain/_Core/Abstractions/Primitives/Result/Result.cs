@@ -1,7 +1,11 @@
 ﻿namespace AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
+/// <summary>Represents a result of some operation, with status information and possibly an error.</summary>
 public class Result
 {
+    /// <summary>Initializes a new instance of the <see cref="Result" /> class with the specified parameters.</summary>
+    /// <param name="isSuccess">The flag indicating if the result is successful.</param>
+    /// <param name="error">The error.</param>
     protected Result(bool isSuccess, Error error)
     {
         if ((isSuccess && !error.Equals(Error.None)) || (!isSuccess && error.Equals(Error.None)))
@@ -10,8 +14,13 @@ public class Result
         Error = error;
     }
 
+    /// <summary>Gets a value indicating whether the result is a success result.</summary>
     public bool IsSuccess { get; }
+
+    /// <summary>Gets a value indicating whether the result is a failure result.</summary>
     public bool IsFailure => !IsSuccess;
+
+    /// <summary>Gets the error.</summary>
     public Error Error { get; }
 
     public static Result Success() { return new Result(true, Error.None); }
@@ -31,16 +40,4 @@ public class Result
     {
         return results.FirstOrDefault(result => result.IsFailure) ?? Success();
     }
-}
-
-public class Result<TValue> : Result
-{
-    private readonly TValue _value;
-
-    protected internal Result(TValue value, bool isSuccess, Error error) : base(isSuccess, error) { _value = value; }
-
-    public TValue Value =>
-        IsSuccess ? _value : throw new InvalidOperationException("Cannot access the value of a failed result.");
-
-    public static implicit operator Result<TValue>(TValue value) { return Success(value); }
 }

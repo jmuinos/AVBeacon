@@ -1,6 +1,117 @@
 @AvBeacon.WebApi_HostAddress = http://localhost:5281
 
-GET {{AvBeacon.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
+# Register Applicant
+POST {{AvBeacon.WebApi_HostAddress}}/register/applicant
+Content-Type: application/json
+
+{
+  "email": "applicant@example.com",
+  "firstName": "John",
+  "lastName": "Doe",
+  "password": "SecurePassword123"
+}
 
 ###
+
+# Register Recruiter
+POST {{AvBeacon.WebApi_HostAddress}}/register/recruiter
+Content-Type: application/json
+
+{
+  "email": "recruiter@example.com",
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "password": "SecurePassword123"
+}
+
+###
+#
+## Create Job Application
+#POST {{AvBeacon.WebApi_HostAddress}}/jobapplication/create
+#Content-Type: application/json
+#
+#{
+#  "applicantId": "applicant-guid",
+#  "jobOfferId": "joboffer-guid"
+#}
+#
+####
+#
+## Update Job Application State
+#POST {{AvBeacon.WebApi_HostAddress}}/jobapplication/update
+#Content-Type: application/json
+#
+#{
+#  "jobApplicationId": "jobapplication-guid",
+#  "state": "Accepted"
+#}
+#
+####
+#
+## Get Job Applications by Applicant ID
+#GET {{AvBeacon.WebApi_HostAddress}}/jobapplications/applicant/{{applicantId}}
+#Accept: application/json
+#
+####
+#
+## Create Job Offer
+#POST {{AvBeacon.WebApi_HostAddress}}/joboffer/create
+#Content-Type: application/json
+#
+#{
+#  "recruiterId": "recruiter-guid",
+#  "title": "Software Engineer",
+#  "description": "Develop and maintain software applications."
+#}
+#
+####
+#
+## Update Job Offer
+#POST {{AvBeacon.WebApi_HostAddress}}/joboffer/update
+#Content-Type: application/json
+#
+#{
+#  "id": "joboffer-guid",
+#  "title": "Senior Software Engineer",
+#  "description": "Lead software development projects."
+#}
+#
+####
+#
+## Create Skill
+#POST {{AvBeacon.WebApi_HostAddress}}/skill/create
+#Content-Type: application/json
+#
+#{
+#  "applicantId": "applicant-guid",
+#  "name": "C# Programming"
+#}
+#
+####
+#
+## Create Experience
+#POST {{AvBeacon.WebApi_HostAddress}}/experience/create
+#Content-Type: application/json
+#
+#{
+#  "applicantId": "applicant-guid",
+#  "title": "Software Developer",
+#  "description": "Worked on various software projects.",
+#  "recruiterName": "ABC Corp",
+#  "start": "2022-01-01",
+#  "end": "2023-01-01"
+#}
+#
+####
+#
+## Create Education
+#POST {{AvBeacon.WebApi_HostAddress}}/education/create
+#Content-Type: application/json
+#
+#{
+#  "applicantId": "applicant-guid",
+#  "description": "Bachelor's Degree in Computer Science",
+#  "educationType": 1,
+#  "start": "2018-01-01",
+#  "end": "2022-01-01"
+#}
