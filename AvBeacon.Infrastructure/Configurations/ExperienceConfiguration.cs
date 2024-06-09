@@ -30,6 +30,7 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
 
         builder.HasOne(e => e.Applicant)
                .WithMany(a => a.Experiences)
-               .HasForeignKey(e => e.ApplicantId);
+               .HasForeignKey(e => e.ApplicantId)
+               .OnDelete(DeleteBehavior.Cascade); // Eliminar en cascada
     }
 }

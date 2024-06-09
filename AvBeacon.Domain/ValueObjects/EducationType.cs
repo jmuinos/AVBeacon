@@ -28,4 +28,18 @@ public class EducationType : ValueObject
             _                    => throw new ArgumentException($"Invalid value: {value}", nameof(value))
         };
     }
+
+    public static bool TryFromString(string value, out EducationType? educationType)
+    {
+        try
+        {
+            educationType = FromString(value);
+            return true;
+        }
+        catch
+        {
+            educationType = null;
+            return false;
+        }
+    }
 }

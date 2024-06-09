@@ -14,9 +14,10 @@ public class UpdateJobOfferCommandHandler(IJobOfferRepository jobOfferRepository
         var jobOffer = await jobOfferRepository.GetByIdAsync(request.Id, cancellationToken);
         if (jobOffer == null) return Result.Failure(DomainErrors.JobOffer.NotFound);
 
-        if (request.Title != null && !request.Title.Equals(string.Empty)) jobOffer.Title = request.Title;
+        if (!string.IsNullOrEmpty(request.Title))
+            jobOffer.Title = request.Title;
 
-        if (request.Description != null && !request.Description.Equals(string.Empty))
+        if (!string.IsNullOrEmpty(request.Title))
             jobOffer.Description = request.Description;
 
         jobOfferRepository.Update(jobOffer);

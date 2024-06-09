@@ -1,10 +1,6 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
-using MediatR;
+﻿using AvBeacon.Application._Core.Abstractions.Messaging;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
 namespace AvBeacon.Application.JobApplications.Commands.CreateJobApplication;
 
-public class CreateJobApplicationCommand(Guid applicantId, Guid jobOfferId) : IRequest<Result<Guid>>
-{
-    public Guid ApplicantId { get; set; } = applicantId;
-    public Guid JobOfferId { get; set; } = jobOfferId;
-}
+public sealed record CreateJobApplicationCommand(Guid ApplicantId, Guid JobOfferId) : ICommand<Result<Guid>>;

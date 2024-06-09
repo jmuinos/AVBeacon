@@ -27,6 +27,7 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
 
         builder.HasOne(e => e.Applicant)
                .WithMany(a => a.Educations)
-               .HasForeignKey(e => e.ApplicantId);
+               .HasForeignKey(e => e.ApplicantId)
+               .OnDelete(DeleteBehavior.Cascade); // Eliminar en cascada
     }
 }

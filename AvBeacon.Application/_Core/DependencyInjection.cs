@@ -4,7 +4,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Application;
+namespace AvBeacon.Application._Core;
 
 public static class DependencyInjection
 {
@@ -17,13 +17,13 @@ public static class DependencyInjection
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddValidatorsFromAssembly(assembly);
-
         services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(assembly));
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>));
+
+        services.AddValidatorsFromAssembly(assembly);
 
         return services;
     }

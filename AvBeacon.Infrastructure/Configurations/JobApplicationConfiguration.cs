@@ -17,10 +17,12 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
 
         builder.HasOne(ja => ja.Applicant)
                .WithMany(a => a.JobApplications)
-               .HasForeignKey(ja => ja.ApplicantId);
+               .HasForeignKey(ja => ja.ApplicantId)
+               .OnDelete(DeleteBehavior.Cascade); // Eliminar en cascada
 
         builder.HasOne(ja => ja.JobOffer)
                .WithMany(jo => jo.JobApplications)
-               .HasForeignKey(ja => ja.JobOfferId);
+               .HasForeignKey(ja => ja.JobOfferId)
+               .OnDelete(DeleteBehavior.Restrict); // Evitar ciclos
     }
 }

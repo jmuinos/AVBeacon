@@ -1,4 +1,5 @@
 ﻿using AvBeacon.Domain.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Application._Core.Abstractions.Data;
@@ -15,6 +16,8 @@ public interface IApplicationDbContext
     DbSet<JobOffer> JobOffers { get; }
 
     // TODO Probar en los get de los repo para realizar las queries cqrs y no abstraer doblemente la lectura de db con EF, que ya tiene su propia abstracción por ser un ORM
-    // public Task<int> ExecuteSqlAsync(string sql, IEnumerable<SqlParameter> parameters, CancellationToken cancellationToken = default)
+    public Task<int> ExecuteSqlAsync(string sql, IEnumerable<SqlParameter> parameters,
+        CancellationToken cancellationToken = default);
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

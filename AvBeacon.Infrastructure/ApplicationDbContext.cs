@@ -24,7 +24,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         return await base.SaveChangesAsync(cancellationToken);
     }
 
-
     public Task<int> ExecuteSqlAsync(string sql, IEnumerable<SqlParameter> parameters,
         CancellationToken cancellationToken = default)
     {

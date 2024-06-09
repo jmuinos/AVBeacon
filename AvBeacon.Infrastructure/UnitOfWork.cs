@@ -5,10 +5,9 @@ namespace AvBeacon.Infrastructure;
 
 internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 {
-    // TODO Seguro que puedo evitar tener que instanciar el método así
-    public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+    public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await dbContext.Database.BeginTransactionAsync(cancellationToken);
     }
 
     public Task SaveChangesAsync(CancellationToken cancellationToken = default)

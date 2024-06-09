@@ -17,7 +17,7 @@ public class GenericRepository<TEntity>(ApplicationDbContext context) : IGeneric
 
     public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await DbSet.FindAsync([id, cancellationToken], cancellationToken);
+        return await DbSet.FindAsync(new object[] { id }, cancellationToken);
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)

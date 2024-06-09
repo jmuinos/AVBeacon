@@ -145,7 +145,7 @@ namespace AvBeacon.Infrastructure.Migrations
                         column: x => x.JobOfferId,
                         principalTable: "JobOffers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_JobApplications_Users_ApplicantId",
                         column: x => x.ApplicantId,
@@ -153,6 +153,12 @@ namespace AvBeacon.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicantSkill_ApplicantId_SkillId",
+                table: "ApplicantSkill",
+                columns: new[] { "ApplicantId", "SkillId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicantSkill_SkillId",

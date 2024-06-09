@@ -1,11 +1,12 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
-using MediatR;
+﻿using AvBeacon.Application._Core.Abstractions.Messaging;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
 namespace AvBeacon.Application.JobOffers.Commands.CreateJobOffer;
 
-public class CreateJobOfferCommand(Guid recruiterId, string title, string description) : IRequest<Result<Guid>>
-{
-    public required Guid RecruiterId { get; init; } = recruiterId;
-    public required string Title { get; set; } = title;
-    public required string Description { get; set; } = description;
-}
+/// <summary> Representa el comando para crear una oferta de empleo. </summary>
+/// <param name="RecruiterId">El ID del reclutador que crea la oferta.</param>
+/// <param name="Title">El título de la oferta de empleo.</param>
+/// <param name="Description">La descripción de la oferta de empleo.</param>
+/// <returns>Un resultado del comando que indica el éxito o fracaso de la operación.</returns>
+public sealed record CreateJobOfferCommand(Guid RecruiterId, string Title, string Description)
+    : ICommand<Result<Guid>>;

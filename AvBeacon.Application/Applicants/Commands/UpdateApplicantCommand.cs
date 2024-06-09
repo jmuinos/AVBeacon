@@ -1,12 +1,14 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
-using MediatR;
+﻿using AvBeacon.Application._Core.Abstractions.Messaging;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
 namespace AvBeacon.Application.Applicants.Commands;
 
-public class UpdateApplicantCommand(Guid id, string? firstName, string? lastName)
-    : IRequest<Result>
-{
-    public required Guid Id { get; init; } = id;
-    public string? FirstName { get; } = firstName;
-    public string? LastName { get; } = lastName;
-}
+/// <summary> Representa el comando para actualizar un solicitante. </summary>
+/// <param name="Id">El Id del solicitante a actualizar.</param>
+/// <param name="FirstName">El nombre del solicitante.</param>
+/// <param name="LastName">El apellido del solicitante.</param>
+/// <returns>Un resultado del comando que indica el éxito o fracaso de la operación.</returns>
+public sealed record UpdateApplicantCommand(
+    Guid Id,
+    string? FirstName,
+    string? LastName) : ICommand<Result>;

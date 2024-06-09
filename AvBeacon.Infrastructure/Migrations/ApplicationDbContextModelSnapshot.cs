@@ -34,6 +34,9 @@ namespace AvBeacon.Infrastructure.Migrations
 
                     b.HasIndex("SkillId");
 
+                    b.HasIndex("ApplicantId", "SkillId")
+                        .IsUnique();
+
                     b.ToTable("ApplicantSkill");
                 });
 
@@ -270,7 +273,7 @@ namespace AvBeacon.Infrastructure.Migrations
                     b.HasOne("AvBeacon.Domain.Entities.JobOffer", "JobOffer")
                         .WithMany("JobApplications")
                         .HasForeignKey("JobOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Applicant");

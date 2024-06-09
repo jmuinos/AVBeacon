@@ -2,10 +2,8 @@
 
 namespace AvBeacon.Application._Core.Abstractions.Messaging;
 
-/// <summary>
-///     Represents the query interface.
-/// </summary>
-/// <typeparam name="TQuery">The query type.</typeparam>
-/// <typeparam name="TResponse">The query response type.</typeparam>
+/// <summary> Representa la interfaz de consulta. </summary>
+/// <typeparam name="TQuery">El tipo de consulta.</typeparam>
+/// <typeparam name="TResponse">El tipo de respuesta de la consulta.</typeparam>
 public interface IQueryHandler<in TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
     where TQuery : IQuery<TResponse> { }

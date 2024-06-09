@@ -10,6 +10,7 @@ public class RecruiterConfiguration : IEntityTypeConfiguration<Recruiter>
     {
         builder.HasMany(r => r.JobOffers)
                .WithOne(jo => jo.Recruiter)
-               .HasForeignKey(jo => jo.RecruiterId);
+               .HasForeignKey(jo => jo.RecruiterId)
+               .OnDelete(DeleteBehavior.Cascade); // Eliminar en cascada
     }
 }

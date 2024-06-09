@@ -1,21 +1,13 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
-using MediatR;
+﻿using AvBeacon.Application._Core.Abstractions.Messaging;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
 namespace AvBeacon.Application.Experiences.Commands.CreateExperience;
 
-public class CreateExperienceCommand(
-    Guid applicantId,
-    string? description,
-    string? recruiterName,
-    DateTime? start,
-    DateTime? end,
-    string title)
-    : IRequest<Result<Guid>>
-{
-    public Guid ApplicantId { get; set; } = applicantId;
-    public string Title { get; set; } = title;
-    public string? Description { get; set; } = description;
-    public string? RecruiterName { get; set; } = recruiterName;
-    public DateTime? Start { get; set; } = start;
-    public DateTime? End { get; set; } = end;
-}
+public sealed record CreateExperienceCommand(
+    Guid ApplicantId,
+    string? Description,
+    string? RecruiterName,
+    DateTime? Start,
+    DateTime? End,
+    string Title)
+    : ICommand<Result<Guid>>;

@@ -20,10 +20,12 @@ public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
 
         builder.HasOne(jo => jo.Recruiter)
                .WithMany(r => r.JobOffers)
-               .HasForeignKey(jo => jo.RecruiterId);
+               .HasForeignKey(jo => jo.RecruiterId)
+               .OnDelete(DeleteBehavior.Cascade); // Eliminar en cascada
 
         builder.HasMany(jo => jo.JobApplications)
                .WithOne(ja => ja.JobOffer)
-               .HasForeignKey(ja => ja.JobOfferId);
+               .HasForeignKey(ja => ja.JobOfferId)
+               .OnDelete(DeleteBehavior.Restrict); // Evitar eliminación en cascada
     }
 }

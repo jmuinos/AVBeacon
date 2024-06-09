@@ -1,13 +1,13 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
-using MediatR;
+﻿using AvBeacon.Application._Core.Abstractions.Messaging;
+using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
 
 namespace AvBeacon.Application.Applicants.Commands;
 
-public class CreateApplicantCommand(string email, string firstName, string lastName, string password)
-    : IRequest<Result<Guid>>
-{
-    public required string Email { get; init; } = email;
-    public required string FirstName { get; init; } = firstName;
-    public required string LastName { get; init; } = lastName;
-    public required string Password { get; init; } = password;
-}
+/// <summary>Representa el comando para crear un solicitante.</summary>
+/// <param name="Email">El correo electrónico del solicitante.</param>
+/// <param name="FirstName">El nombre del solicitante.</param>
+/// <param name="LastName">El apellido del solicitante.</param>
+/// <param name="Password">La contraseña del solicitante.</param>
+/// <returns>Un resultado del comando que indica el éxito o fracaso de la operación.</returns>
+public sealed record CreateApplicantCommand(string Email, string FirstName, string LastName, string Password)
+    : ICommand<Result>;

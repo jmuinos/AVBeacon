@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AvBeacon.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240607232818_Initial")]
+    [Migration("20240608233806_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -36,6 +36,9 @@ namespace AvBeacon.Infrastructure.Migrations
                     b.HasKey("ApplicantId", "SkillId");
 
                     b.HasIndex("SkillId");
+
+                    b.HasIndex("ApplicantId", "SkillId")
+                        .IsUnique();
 
                     b.ToTable("ApplicantSkill");
                 });
@@ -273,7 +276,7 @@ namespace AvBeacon.Infrastructure.Migrations
                     b.HasOne("AvBeacon.Domain.Entities.JobOffer", "JobOffer")
                         .WithMany("JobApplications")
                         .HasForeignKey("JobOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Applicant");

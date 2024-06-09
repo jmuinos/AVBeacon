@@ -1,15 +1,29 @@
-﻿using FluentValidation;
+﻿using AvBeacon.Application._Core.Abstractions.Extensions;
+using AvBeacon.Application._Core.Errors;
+using FluentValidation;
 
 namespace AvBeacon.Application.JobOffers.Commands.CreateJobOffer;
 
-public class CreateJobOfferCommandValidator : AbstractValidator<CreateJobOfferCommand>
+/// <summary>Validador para el comando <see cref="CreateJobOfferCommand" />.</summary>
+public sealed class CreateJobOfferCommandValidator : AbstractValidator<CreateJobOfferCommand>
 {
+    /// <summary>Inicializa una nueva instancia de la clase <see cref="CreateJobOfferCommandValidator" />.</summary>
     public CreateJobOfferCommandValidator()
     {
-        RuleFor(x => x.RecruiterId).NotEmpty().WithMessage("RecruiterId is required.");
-        RuleFor(x => x.Title).NotEmpty().WithMessage("Title is required.")
-                             .MaximumLength(100).WithMessage("Title must not exceed 100 characters.");
-        RuleFor(x => x.Description).NotEmpty().WithMessage("Description is required.")
-                                   .MaximumLength(500).WithMessage("Description must not exceed 500 characters.");
+        RuleFor(x => x.RecruiterId)
+           .NotEmpty()
+           .WithError(ValidationErrors.CreateJobOffer.RecruiterIdIsRequired);
+
+        RuleFor(x => x.Title)
+           .NotEmpty()
+           .WithError(ValidationErrors.CreateJobOffer.TitleIsRequired)
+           .MaximumLength(200)
+           .WithError(ValidationErrors.CreateJobOffer.TitleTooLong);
+
+        RuleFor(x => x.Description)
+           .NotEmpty()
+           .WithError(ValidationErrors.CreateJobOffer.DescriptionIsRequired)
+           .MaximumLength(500)
+           .WithError(ValidationErrors.CreateJobOffer.DescriptionTooLong);
     }
 }

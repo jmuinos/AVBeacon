@@ -2,10 +2,8 @@
 
 namespace AvBeacon.Application._Core.Abstractions.Messaging;
 
-/// <summary>
-///     Represents the command handler interface.
-/// </summary>
-/// <typeparam name="TCommand">The command type.</typeparam>
-/// <typeparam name="TResponse">The command response type.</typeparam>
+/// <summary> Representa la interfaz del manejador de comandos. </summary>
+/// <typeparam name="TCommand">El tipo de comando.</typeparam>
+/// <typeparam name="TResponse">El tipo de respuesta del comando.</typeparam>
 public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
     where TCommand : ICommand<TResponse> { }
