@@ -1,10 +1,11 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Primitives;
+using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 
 public sealed class JobOffer : Entity
 {
-    public JobOffer(Guid recruiterId, string title, string description)
+    public JobOffer(Guid recruiterId, Title title, Description description)
         : base(Guid.NewGuid())
     {
         RecruiterId = recruiterId;
@@ -12,9 +13,14 @@ public sealed class JobOffer : Entity
         Description = description;
     }
 
-    public string Title { get; set; }
-    public string Description { get; set; }
+    public Title Title { get; set; }
+    public Description Description { get; set; }
     public Guid RecruiterId { get; init; }
     public Recruiter Recruiter { get; init; } = null!;
-    public List<JobApplication> JobApplications { get; init; } = [];
+    public List<JobApplication> JobApplications { get; } = new();
+
+    public static JobOffer Create(Guid recruiterId, Title title, Description description)
+    {
+        return new JobOffer(recruiterId, title, description);
+    }
 }

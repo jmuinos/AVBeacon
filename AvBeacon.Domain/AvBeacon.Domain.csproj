@@ -7,8 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR" Version="12.3.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0"/>
+        <Compile Remove="_Core\Abstractions\Validation\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="_Core\Abstractions\Validation\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="_Core\Abstractions\Validation\**"/>
     </ItemGroup>
 
 </Project>

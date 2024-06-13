@@ -1,8 +1,12 @@
-﻿using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Domain._Core.Primitives.Maybe;
+using AvBeacon.Domain.Entities;
 
 namespace AvBeacon.Domain.Repositories;
 
-public interface ISkillRepository : IGenericRepository<Skill>
+public interface ISkillRepository
 {
-    Task<List<Skill>> SearchByNameAsync(string nameText, CancellationToken cancellationToken = default);
+    Task<Maybe<Skill>> GetByIdAsync(Guid id);
+    void Insert(Skill skill);
+    void Update(Skill skill);
+    void Remove(Skill skill);
 }

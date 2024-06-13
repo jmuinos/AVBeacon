@@ -1,8 +1,8 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Primitives;
 
 namespace AvBeacon.Domain._Core.Exceptions;
 
-/// <summary>Representa una excepción que ocurrió en el dominio.</summary>
+/// <summary> Representa una excepción que ocurrió en el dominio. </summary>
 public class DomainException : Exception
 {
     /// <summary> Inicializa una nueva instancia de la clase <see cref="DomainException" />. </summary>

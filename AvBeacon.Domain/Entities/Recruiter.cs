@@ -1,9 +1,16 @@
-﻿namespace AvBeacon.Domain.Entities;
+﻿using AvBeacon.Domain.ValueObjects;
+
+namespace AvBeacon.Domain.Entities;
 
 public sealed class Recruiter : User
 {
-    public Recruiter(string email, string firstName, string lastName, string passwordHash)
-        : base(email, firstName, lastName, passwordHash) { }
+    public Recruiter(FirstName firstName, LastName lastName, Email email, string passwordHash)
+        : base(firstName, lastName, email, passwordHash) { }
 
-    public List<JobOffer> JobOffers { get; init; } = [];
+    public List<JobOffer> JobOffers { get; } = new();
+
+    public static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+    {
+        return new Recruiter(firstName, lastName, email, passwordHash);
+    }
 }

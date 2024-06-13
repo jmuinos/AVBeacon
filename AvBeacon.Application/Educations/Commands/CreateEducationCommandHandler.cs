@@ -1,29 +1,49 @@
 ﻿using AvBeacon.Application._Core.Abstractions.Data;
 using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+using AvBeacon.Domain._Core.Errors;
+using AvBeacon.Domain._Core.Primitives.Result;
 using AvBeacon.Domain.Entities;
-using AvBeacon.Domain.Repositories;
+using AvBeacon.Domain.Enumerations;
 using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Application.Educations.Commands;
 
-/// <summary>Handler para el comando <see cref="CreateEducationCommand" /></summary>
-public sealed class CreateEducationCommandHandler(IEducationRepository educationRepository, IUnitOfWork unitOfWork)
-    : ICommandHandler<CreateEducationCommand, Result<Guid>>
+/// <summary> Representa el manejador de comandos para <see cref="CreateEducationCommand" />. </summary>
+internal sealed class CreateEducationCommandHandler : ICommandHandler<CreateEducationCommand, Result>
 {
-    /// <summary>Maneja la creación de una nueva educación.</summary>
-    /// <param name="request">El comando de creación de educación.</param>
-    /// <param name="cancellationToken">El token de cancelación.</param>
-    /// <returns>Un resultado indicando el éxito o fracaso de la operación.</returns>
-    public async Task<Result<Guid>> Handle(CreateEducationCommand request, CancellationToken cancellationToken)
+    private readonly IDbContext _dbContext;
+    private readonly IUnitOfWork _unitOfWork;
+
+    /// <summary> Inicializa una nueva instancia de la clase <see cref="CreateEducationCommandHandler" />. </summary>
+    /// <param name="unitOfWork"> La unidad de trabajo. </param>
+    /// <param name="dbContext"> El contexto de base de datos. </param>
+    public CreateEducationCommandHandler(IUnitOfWork unitOfWork, IDbContext dbContext)
     {
-        var educationType = EducationType.FromString(request.EducationType);
-        var education = new Education(educationType, request.Description,
-                                      request.Start, request.End, request.ApplicantId);
+        _unitOfWork = unitOfWork;
+        _dbContext = dbContext;
+    }
 
-        await educationRepository.AddAsync(education, cancellationToken);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+    /// <inheritdoc />
+    public async Task<Result> Handle(CreateEducationCommand request, CancellationToken cancellationToken)
+    {
+        var maybeApplicant = await _dbContext.GetBydIdAsync<Applicant>(request.ApplicantId);
 
-        return Result.Success(education.Id);
+        if (maybeApplicant.HasNoValue) return Result.Failure(DomainErrors.Applicant.NotFound);
+
+        var maybeEducationType = EducationType.FromValue(request.EducationType);
+
+        if (maybeEducationType.HasNoValue) return Result.Failure(DomainErrors.Education.InvalidEducationType);
+
+        var education = new Education(
+                                      maybeEducationType.Value,
+                                      Title.Create(request.Title).Value,
+                                      Description.Create(request.Description).Value,
+                                      request.ApplicantId);
+
+        _dbContext.Set<Education>().Add(education);
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return Result.Success();
     }
 }

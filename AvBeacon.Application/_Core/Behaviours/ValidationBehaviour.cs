@@ -2,12 +2,13 @@
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
+using ValidationException = AvBeacon.Application._Core.Exceptions.ValidationException;
 
 namespace AvBeacon.Application._Core.Behaviours;
 
 /// <summary> Representa el middleware de comportamiento de validación. </summary>
-/// <typeparam name="TRequest">El tipo de solicitud.</typeparam>
-/// <typeparam name="TResponse">El tipo de respuesta.</typeparam>
+/// <typeparam name="TRequest"> El tipo de solicitud. </typeparam>
+/// <typeparam name="TResponse"> El tipo de respuesta. </typeparam>
 internal sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : class, IRequest<TResponse>
     where TResponse : class
@@ -15,7 +16,7 @@ internal sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavi
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
     /// <summary> Inicializa una nueva instancia de la clase <see cref="ValidationBehaviour{TRequest,TResponse}" />. </summary>
-    /// <param name="validators">El validador para el tipo de solicitud actual.</param>
+    /// <param name="validators"> El validador para el tipo de solicitud actual. </param>
     public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators) { _validators = validators; }
 
     /// <inheritdoc />

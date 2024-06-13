@@ -1,11 +1,13 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives.Result;
+﻿using AvBeacon.Domain._Core.Primitives.Maybe;
 using AvBeacon.Domain.Entities;
+using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Domain.Repositories;
 
-public interface IApplicantRepository : IGenericRepository<Applicant>
+public interface IApplicantRepository : IBaseRepository<Applicant>
 {
-    Task<Applicant?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
-    Task<List<Applicant>> SearchByNameAsync(string nameText, CancellationToken cancellationToken = default);
-    public Task<Result> AddSkillAsync(Guid applicantId, Guid skillId, CancellationToken cancellationToken = default);
+    Task<List<Skill>> GetSkillsByApplicantId(Guid applicantId);
+    Task<Maybe<Applicant>> GetByEmailAsync(Email email);
+    Task<List<Applicant>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<bool> IsEmailUniqueAsync(Email email);
 }

@@ -1,27 +1,31 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Primitives;
+using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 
 public sealed class Experience : Entity
 {
-    public Experience(string title, string? description, string? recruiterName, DateTime? start, DateTime? end,
-        Guid applicantId)
+    public Experience(Guid applicantId, Title title, Description description, DateTime? start, DateTime? end)
         : base(Guid.NewGuid())
     {
+        ApplicantId = applicantId;
         Title = title;
         Description = description;
-        RecruiterName = recruiterName;
         Start = start;
         End = end;
-        ApplicantId = applicantId;
     }
 
-    public string Title { get; set; }
-    public string? Description { get; set; }
-    public string? RecruiterName { get; set; }
+    public Guid ApplicantId { get; init; }
+    public Title Title { get; set; }
+    public Description Description { get; set; }
     public DateTime? Start { get; init; }
     public DateTime? End { get; set; }
-    public Guid ApplicantId { get; init; }
 
     public Applicant Applicant { get; init; } = null!;
+
+    public static Experience Create(Guid applicantId, Title title, Description description, DateTime? start,
+        DateTime? end)
+    {
+        return new Experience(applicantId, title, description, start, end);
+    }
 }

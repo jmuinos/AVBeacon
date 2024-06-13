@@ -1,11 +1,13 @@
-﻿using AvBeacon.Domain._Core.Abstractions.Primitives;
+﻿using AvBeacon.Domain._Core.Primitives;
+using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 
 public sealed class Skill : Entity
 {
-    public Skill(string title) : base(Guid.NewGuid()) { Title = title; }
+    public Skill(Title title) : base(Guid.NewGuid()) { Title = title; }
 
-    public string Title { get; set; }
-    public List<Applicant> Applicants { get; init; } = [];
+    public Title Title { get; set; }
+    public List<Applicant> Applicants { get; } = new();
+    public List<ApplicantSkill> ApplicantSkills { get; } = new();
 }
