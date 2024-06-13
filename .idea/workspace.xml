@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8df3f1d6-6db7-40c3-8678-81d727559802" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/CreateApplicantSkill/CreateApplicantSkillCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/CreateApplicantSkill/CreateApplicantSkillCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/CreateApplicantSkill/CreateApplicantSkillCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/ChangePassword/ChangePasswordCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/ChangePassword/ChangePasswordCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/ChangePassword/ChangePasswordCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Create/Commands/RegisterCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Create/Commands/RegisterCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Create/Commands/RegisterCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Login/Commands/LoginCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Login/Commands/LoginCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Login/Commands/LoginCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Update/UpdateApplicantCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Update/UpdateApplicantCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Authentication/Update/UpdateApplicantCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/DependencyInjection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/ChangePassword/ChangePasswordCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/ChangePassword/ChangePasswordCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/ChangePassword/ChangePasswordCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/UpdateRecruiter/UpdateUserCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/UpdateRecruiter/UpdateUserCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/UpdateRecruiter/UpdateUserCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Queries/GetUserById/GetRecruiterByIdQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Queries/GetUserById/GetUserByIdQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Authentication/IJwtProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Authentication/IUserIdentifierProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Common/IDateTime.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Cryptography/IPasswordHasher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Data/IDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Applicants/ApplicantResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Applicants/ChangePasswordRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Applicants/UpdateApplicantRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Authentication/LoginUserRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Authentication/RegisterUserRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Authentication/TokenResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/AvBeacon.Contracts.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Common/PagedList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Users/ChangePasswordRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Users/UpdateUserRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Contracts/Users/UserResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/ApplicantSkill.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/Enumerations/EducationType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/Enumerations/JobApplicationState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IApplicantSkillRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/Services/IMyPasswordHashChecker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/Description.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/Email.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/FirstName.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/LastName.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/Password.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/Title.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Entity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Enumeration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Error.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Maybe/Maybe.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Maybe/MaybeExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Result/Result.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Result/ResultExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/Result/ResultT.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Primitives/ValueObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Utility/Ensure.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Infrastructure/Authentication/JwtProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Infrastructure/Authentication/Settings/JwtSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Infrastructure/Authentication/UserIdentifierProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Infrastructure/Cryptography/PasswordHasher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/AvBeacon.Persistence.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/AvBeaconDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/ApplicantConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/ApplicantSkillConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/SkillConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/DependencyInjection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Extensions/ModelBuilderExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Infrastructure/ConnectionString.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/ApplicantRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/ApplicantSkillRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/EducationRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/ExperienceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/GenericRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/JobApplicationRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/JobOfferRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/RecruiterRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/SkillRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Repositories/UserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Specifications/ApplicantWithEmailSpecification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Specifications/RecruiterWithEmailSpecification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Specifications/Specification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Specifications/UserWithEmailSpecification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AvBeaconApi/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PENDING.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README_GUIA.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/AddApplicantSkillCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/AddApplicantSkillCommandHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/AddApplicantSkillCommandValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/CreateApplicantCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/CreateApplicantCommandHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/CreateApplicantCommandValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/UpdateApplicantCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/UpdateApplicantCommandHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Applicants/Commands/UpdateApplicantCommandValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/AvBeacon.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/AvBeacon.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Educations/Commands/CreateEducationCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/Educations/Commands/CreateEducationCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Educations/Commands/CreateEducationCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/Educations/Commands/CreateEducationCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Educations/Commands/CreateEducationCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/Educations/Commands/CreateEducationCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Experiences/Commands/CreateExperience/CreateExperienceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/Experiences/Commands/CreateExperience/CreateExperienceCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Experiences/Commands/CreateExperience/CreateExperienceCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/Experiences/Commands/CreateExperience/CreateExperienceCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Experiences/Commands/CreateExperience/CreateExperienceCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/Experiences/Commands/CreateExperience/CreateExperienceCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Commands/CreateJobApplication/CreateJobApplicationCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Commands/CreateJobApplication/CreateJobApplicationCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Commands/CreateJobApplication/CreateJobApplicationCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Commands/CreateJobApplication/CreateJobApplicationCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Queries/GetJobApplicationsByApplicantIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Queries/GetJobApplicationsByApplicantIdQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Queries/GetJobApplicationsByApplicantIdQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobApplications/Queries/GetJobApplicationsByApplicantIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/CreateJobOffer/CreateJobOfferCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/CreateJobOffer/CreateJobOfferCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/CreateJobOffer/CreateJobOfferCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/CreateJobOffer/CreateJobOfferCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/CreateJobOffer/CreateJobOfferCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/CreateJobOffer/CreateJobOfferCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/UpdateJobOffer/UpdateJobOfferCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/UpdateJobOffer/UpdateJobOfferCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/UpdateJobOffer/UpdateJobOfferCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/UpdateJobOffer/UpdateJobOfferCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/UpdateJobOffer/UpdateJobOfferCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/JobOffers/Commands/UpdateJobOffer/UpdateJobOfferCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/CreateRecruiter/CreateRecruiterCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/CreateRecruiter/CreateRecruiterCommandHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/CreateRecruiter/CreateRecruiterCommandValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/UpdateRecruiter/UpdateRecruiterCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/UpdateRecruiter/UpdateRecruiterCommandHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/Recruiters/Commands/UpdateRecruiter/UpdateRecruiterCommandValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Data/IApplicationDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Data/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Data/IUnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Extensions/FluentValidationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Abstractions/Extensions/FluentValidationExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Behaviours/TransactionBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Behaviours/TransactionBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Behaviours/ValidationBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Behaviours/ValidationBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/DependencyInjection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Errors/ValidationErrors.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Errors/ValidationErrors.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Application/_Core/Exceptions/ValidationException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Application/_Core/Exceptions/ValidationException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/AvBeacon.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/AvBeacon.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Applicant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Applicant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Education.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Education.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Experience.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Experience.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/JobApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/JobApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/JobOffer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/JobOffer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Recruiter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Recruiter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/Skill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IApplicantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IApplicantRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IEducationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IEducationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IExperienceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IExperienceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IGenericRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IJobApplicationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IJobApplicationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IJobOfferRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IJobOfferRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IRecruiterRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IRecruiterRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/ISkillRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/ISkillRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/Repositories/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/EducationType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/ValueObjects/JobApplicationState.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Errors/DomainErrors.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Errors/DomainErrors.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Primitives/Entity.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Primitives/Error.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Primitives/Result/Result.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Primitives/Result/ResultT.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Primitives/ValueObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Validation/IValidationResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Validation/ValidationResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Abstractions/Validation/ValidationResultT.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Exceptions/DomainExceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Domain/_Core/Exceptions/DomainExceptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/ApplicationDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/AvBeacon.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Infrastructure/AvBeacon.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/ApplicantConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/EducationConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/EducationConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/ExperienceConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/ExperienceConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/JobApplicationConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/JobApplicationConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/JobOfferConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/JobOfferConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/RecruiterConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/RecruiterConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/SkillConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Configurations/UserConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Configurations/UserConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Context/MyDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Converters/EducationTypeConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Converters/JobApplicationStateConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Infrastructure/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/20240608233806_Initial.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/20240608233806_Initial.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/20240609020654_Pruebas.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/20240609020654_Pruebas.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/20240609021902_Prueba-Ciclo.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/20240609021902_Prueba-Ciclo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.Persistence/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/Education.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/Experience.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/JobApplication.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/JobOffer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/Skill.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Migrations/User.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/ApplicantRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/EducationRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/ExperienceRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/GenericRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/JobApplicationRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/JobOfferRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/RecruiterRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/SkillRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/Repositories/UserRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.Infrastructure/UnitOfWork.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/AvBeacon.WebApi.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/AvBeacon.WebApi.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/Errors/ApiErrorResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/Middleware/ExceptionHandlerMiddleware.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/Properties/launchSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.WebApi/logs/log-20240609.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AvBeacon.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AvBeacon.sln.DotSettings.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jmuinos"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jmuinos/AvBeacon.git",
+    "accountId": "8d9242ec-e230-4540-b9e3-ad87570eb6c1"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2hkTNnKNGt3DyuBQHrxEJTocwrI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17890.13" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8df3f1d6-6db7-40c3-8678-81d727559802" name="Changes" comment="" />
+      <created>1718137038594</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718137038594</updated>
+      <workItem from="1718137040299" duration="5000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
