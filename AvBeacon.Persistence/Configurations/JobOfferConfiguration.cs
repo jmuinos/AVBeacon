@@ -3,7 +3,7 @@ using AvBeacon.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Infrastructure.Persistence.Configurations;
+namespace AvBeacon.Persistence.Configurations;
 
 public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
 {
