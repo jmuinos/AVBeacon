@@ -31,15 +31,17 @@ internal static class ValidationErrors
         internal static Error ApplicantIdIsRequired =>
             new("CreateJobApplication.ApplicantIdIsRequired", "El ID del solicitante es requerido.");
 
-        internal static Error JobOfferIdIsRequired => new("CreateJobApplication.JobOfferIdIsRequired",
-                                                          "El ID de la oferta de trabajo es requerido.");
+        internal static Error JobOfferIdIsRequired =>
+            new("CreateJobApplication.JobOfferIdIsRequired",
+                "El ID de la oferta de trabajo es requerido.");
     }
 
     /// <summary> Contiene los errores de creación de oferta de trabajo. </summary>
     internal static class CreateJobOffer
     {
-        internal static Error DescriptionIsRequired => new("CreateJobOffer.DescriptionIsRequired",
-                                                           "La descripción de la oferta de empleo es requerida.");
+        internal static Error DescriptionIsRequired =>
+            new("CreateJobOffer.DescriptionIsRequired",
+                "La descripción de la oferta de empleo es requerida.");
 
         internal static Error RecruiterIdIsRequired =>
             new("CreateJobOffer.RecruiterIdIsRequired", "El ID del reclutador es requerido.");
@@ -51,8 +53,9 @@ internal static class ValidationErrors
     /// <summary> Contiene los errores de creación de educación. </summary>
     internal static class CreateEducation
     {
-        internal static Error ApplicantIdIsRequired => new("CreateEducation.ApplicantIdIsRequired",
-                                                           "El identificador del solicitante es obligatorio.");
+        internal static Error ApplicantIdIsRequired =>
+            new("CreateEducation.ApplicantIdIsRequired",
+                "El identificador del solicitante es obligatorio.");
 
         internal static Error DescriptionIsRequired =>
             new("CreateEducation.DescriptionIsRequired", "La descripción es obligatoria.");
@@ -70,8 +73,9 @@ internal static class ValidationErrors
         internal static Error ApplicantIdIsRequired =>
             new("CreateExperience.ApplicantIdIsRequired", "El ID del solicitante es obligatorio.");
 
-        internal static Error StartMustBeEarlierThanEnd => new("CreateExperience.StartMustBeEarlierThanEnd",
-                                                               "La fecha de inicio debe ser anterior a la fecha de finalización.");
+        internal static Error StartMustBeEarlierThanEnd =>
+            new("CreateExperience.StartMustBeEarlierThanEnd",
+                "La fecha de inicio debe ser anterior a la fecha de finalización.");
 
         internal static Error TitleIsRequired => new("CreateExperience.TitleIsRequired", "El título es obligatorio.");
     }
@@ -86,14 +90,17 @@ internal static class ValidationErrors
     /// <summary> Contiene los errores de procesamiento de la solicitud de trabajo. </summary>
     internal static class ProcessJobApplication
     {
-        internal static Error InvalidState => new("ProcessJobApplication.InvalidState",
-                                                  "El estado de la solicitud de trabajo es inválido. Debe ser 'Accepted' o 'Denied'.");
+        internal static Error InvalidState =>
+            new("ProcessJobApplication.InvalidState",
+                "El estado de la solicitud de trabajo es inválido. Debe ser 'Accepted' o 'Denied'.");
 
-        internal static Error JobApplicationIdIsRequired => new("ProcessJobApplication.JobApplicationIdIsRequired",
-                                                                "El ID de la solicitud de trabajo es requerido.");
+        internal static Error JobApplicationIdIsRequired =>
+            new("ProcessJobApplication.JobApplicationIdIsRequired",
+                "El ID de la solicitud de trabajo es requerido.");
 
-        internal static Error StateIsRequired => new("ProcessJobApplication.StateIsRequired",
-                                                     "El estado de la solicitud de trabajo es requerido.");
+        internal static Error StateIsRequired =>
+            new("ProcessJobApplication.StateIsRequired",
+                "El estado de la solicitud de trabajo es requerido.");
     }
 
     /// <summary> Contiene los errores de eliminación de oferta de trabajo. </summary>
@@ -116,8 +123,9 @@ internal static class ValidationErrors
     /// <summary> Contiene los errores de actualización de oferta de trabajo. </summary>
     internal static class UpdateJobOffer
     {
-        internal static Error DescriptionIsRequired => new("UpdateJobOffer.DescriptionIsRequired",
-                                                           "La descripción de la oferta de empleo es requerida.");
+        internal static Error DescriptionIsRequired =>
+            new("UpdateJobOffer.DescriptionIsRequired",
+                "La descripción de la oferta de empleo es requerida.");
 
         internal static Error JobOfferIdIsRequired =>
             new("UpdateJobOffer.JobOfferIdIsRequired", "El ID de la oferta de empleo es requerido.");
@@ -129,14 +137,16 @@ internal static class ValidationErrors
     /// <summary> Contiene los errores de actualización de educación. </summary>
     internal static class UpdateEducation
     {
-        internal static Error ApplicantIdIsRequired => new("UpdateEducation.ApplicantIdIsRequired",
-                                                           "El identificador del solicitante es obligatorio.");
+        internal static Error ApplicantIdIsRequired =>
+            new("UpdateEducation.ApplicantIdIsRequired",
+                "El identificador del solicitante es obligatorio.");
 
         internal static Error EducationIdIsRequired =>
             new("UpdateEducation.EducationIdIsRequired", "El ID de la educación es requerido.");
 
-        internal static Error StartMustBeEarlierThanEnd => new("UpdateEducation.StartMustBeEarlierThanEnd",
-                                                               "La fecha de inicio debe ser anterior a la fecha de finalización.");
+        internal static Error StartMustBeEarlierThanEnd =>
+            new("UpdateEducation.StartMustBeEarlierThanEnd",
+                "La fecha de inicio debe ser anterior a la fecha de finalización.");
 
         internal static Error TitleIsRequired => new("UpdateEducation.TitleIsRequired", "El título es requerido.");
     }
@@ -144,14 +154,16 @@ internal static class ValidationErrors
     /// <summary> Contiene los errores de actualización de experiencia. </summary>
     internal static class UpdateExperience
     {
-        internal static Error ApplicantIdIsRequired => new("UpdateExperience.ApplicantIdIsRequired",
-                                                           "El identificador del solicitante es obligatorio.");
+        internal static Error ApplicantIdIsRequired =>
+            new("UpdateExperience.ApplicantIdIsRequired",
+                "El identificador del solicitante es obligatorio.");
 
         internal static Error ExperienceIdIsRequired =>
             new("UpdateExperience.ExperienceIdIsRequired", "El ID de la experiencia es requerido.");
 
-        internal static Error StartMustBeEarlierThanEnd => new("UpdateExperience.StartMustBeEarlierThanEnd",
-                                                               "La fecha de inicio debe ser anterior a la fecha de finalización.");
+        internal static Error StartMustBeEarlierThanEnd =>
+            new("UpdateExperience.StartMustBeEarlierThanEnd",
+                "La fecha de inicio debe ser anterior a la fecha de finalización.");
 
         internal static Error TitleIsRequired => new("UpdateExperience.TitleIsRequired", "El título es requerido.");
     }

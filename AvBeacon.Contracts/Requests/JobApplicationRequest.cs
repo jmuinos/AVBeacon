@@ -1,7 +1,7 @@
 ﻿namespace AvBeacon.Contracts.Requests;
 
 /// <summary> Representa la solicitud para procesar una oferta de trabajo. </summary>
-public sealed class ProcessJobApplicationRequest
+public sealed class JobApplicationRequest
 {
     public required Guid JobApplicationId { get; set; }
 

@@ -12,7 +12,7 @@ internal sealed class JobOfferRepository(IDbContext context)
         CancellationToken cancellationToken = default)
     {
         return await Context.Set<JobOffer>()
-                            .Where(jo => jo.RecruiterId == recruiterId)
-                            .ToListAsync(cancellationToken);
+            .Where(jo => jo.RecruiterId == recruiterId)
+            .ToListAsync(cancellationToken);
     }
 }

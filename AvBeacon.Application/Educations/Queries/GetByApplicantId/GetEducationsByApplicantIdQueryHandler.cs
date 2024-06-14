@@ -21,16 +21,16 @@ internal sealed class GetEducationsByApplicantIdQueryHandler
         CancellationToken cancellationToken)
     {
         var educations = await _dbContext.Set<Education>()
-                                         .Where(e => e.ApplicantId == request.ApplicantId)
-                                         .Select(e => new EducationResponse
-                                          {
-                                              Id = e.Id,
-                                              Title = e.Title.Value,
-                                              Description = e.Description.Value,
-                                              EducationType = e.EducationType.Name,
-                                              ApplicantId = e.ApplicantId
-                                          })
-                                         .ToListAsync(cancellationToken);
+            .Where(e => e.ApplicantId == request.ApplicantId)
+            .Select(e => new EducationResponse
+            {
+                Id = e.Id,
+                Title = e.Title.Value,
+                Description = e.Description.Value,
+                EducationType = e.EducationType.Name,
+                ApplicantId = e.ApplicantId
+            })
+            .ToListAsync(cancellationToken);
         return educations;
     }
 }

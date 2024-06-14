@@ -19,7 +19,7 @@ internal sealed class ProcessJobApplicationCommandHandler : ICommandHandler<Proc
     /// <inheritdoc />
     public async Task<Result> Handle(ProcessJobApplicationCommand request, CancellationToken cancellationToken)
     {
-        var maybeJobApplication = await _dbContext.GetBydIdAsync<JobApplication>(request.JobApplicationId);
+        var maybeJobApplication = await _dbContext.GetByIdAsync<JobApplication>(request.JobApplicationId);
 
         if (maybeJobApplication.HasNoValue)
             return Result.Failure(DomainErrors.JobApplication.NotFound);

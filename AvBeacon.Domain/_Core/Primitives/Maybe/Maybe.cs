@@ -17,10 +17,11 @@ public sealed class Maybe<T> : IEquatable<Maybe<T>>
     public bool HasNoValue => _value is null;
 
     /// <summary> Gets the value. </summary>
-    public T Value => HasValue
-                          ? _value
-                          : throw new
-                                InvalidOperationException("The value can not be accessed because it does not exist.");
+    public T Value =>
+        HasValue
+            ? _value
+            : throw new
+                InvalidOperationException("The value can not be accessed because it does not exist.");
 
     /// <summary> Gets the default empty instance. </summary>
     public static Maybe<T?> None => new(default);
@@ -51,10 +52,10 @@ public sealed class Maybe<T> : IEquatable<Maybe<T>>
     {
         return obj switch
         {
-            null           => false,
-            T value        => Equals(new Maybe<T>(value)),
+            null => false,
+            T value => Equals(new Maybe<T>(value)),
             Maybe<T> maybe => Equals(maybe),
-            _              => false
+            _ => false
         };
     }
 

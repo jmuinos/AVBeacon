@@ -6,7 +6,7 @@ namespace AvBeacon.Domain.Entities;
 
 public sealed class Education : Entity
 {
-    public Education(EducationType educationType, Title title, Description description, Guid applicantId)
+    private Education(EducationType educationType, Title title, Description description, Guid applicantId)
         : base(Guid.NewGuid())
     {
         EducationType = educationType;

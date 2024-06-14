@@ -35,7 +35,7 @@ internal sealed class CreateJobOfferCommandHandler : IRequestHandler<CreateJobOf
         if (firstFailureOrSuccess.IsFailure)
             return Result.Failure<TokenResponse>(firstFailureOrSuccess.Error);
 
-        var jobOffer = new JobOffer(request.RecruiterId, titleResult.Value, descriptionResult.Value);
+        var jobOffer = JobOffer.Create(titleResult.Value, descriptionResult.Value);
 
         _jobOfferRepository.Insert(jobOffer);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

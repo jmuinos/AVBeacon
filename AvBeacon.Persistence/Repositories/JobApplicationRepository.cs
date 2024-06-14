@@ -12,15 +12,15 @@ internal sealed class JobApplicationRepository(IDbContext context)
         CancellationToken cancellationToken = default)
     {
         return await Context.Set<JobApplication>()
-                            .Where(ja => ja.ApplicantId == applicantId)
-                            .ToListAsync(cancellationToken);
+            .Where(ja => ja.ApplicantId == applicantId)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<List<JobApplication>> GetByJobOfferIdAsync(Guid jobOfferId,
         CancellationToken cancellationToken = default)
     {
         return await Context.Set<JobApplication>()
-                            .Where(ja => ja.JobOfferId == jobOfferId)
-                            .ToListAsync(cancellationToken);
+            .Where(ja => ja.JobOfferId == jobOfferId)
+            .ToListAsync(cancellationToken);
     }
 }

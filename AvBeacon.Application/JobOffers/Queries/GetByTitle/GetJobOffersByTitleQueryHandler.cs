@@ -21,16 +21,16 @@ internal sealed class
         CancellationToken cancellationToken)
     {
         var jobOffers = await _dbContext.Set<JobOffer>()
-                                        .Where(jo => EF.Functions.Like(jo.Title.Value,
-                                                                       $"%{request.Title}%"))
-                                        .Select(jo => new JobOfferResponse
-                                         {
-                                             Id = jo.Id,
-                                             Title = jo.Title.Value,
-                                             Description = jo.Description.Value,
-                                             RecruiterId = jo.RecruiterId
-                                         })
-                                        .ToListAsync(cancellationToken);
+            .Where(jo => EF.Functions.Like(jo.Title.Value,
+                $"%{request.Title}%"))
+            .Select(jo => new JobOfferResponse
+            {
+                Id = jo.Id,
+                Title = jo.Title.Value,
+                Description = jo.Description.Value,
+                RecruiterId = jo.RecruiterId
+            })
+            .ToListAsync(cancellationToken);
 
         return jobOffers;
     }

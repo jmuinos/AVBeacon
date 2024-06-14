@@ -17,8 +17,8 @@ internal static class ModelBuilderExtensions
         foreach (var mutableEntityType in modelBuilder.Model.GetEntityTypes())
         {
             var dateTimeUtcProperties = mutableEntityType.GetProperties()
-                                                         .Where(p => p.ClrType == typeof(DateTime) &&
-                                                                     p.Name.EndsWith("Utc", StringComparison.Ordinal));
+                .Where(p => p.ClrType == typeof(DateTime) &&
+                            p.Name.EndsWith("Utc", StringComparison.Ordinal));
 
             foreach (var mutableProperty in dateTimeUtcProperties) mutableProperty.SetValueConverter(UtcValueConverter);
         }

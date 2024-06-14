@@ -11,11 +11,11 @@ internal sealed class CreateJobApplicationCommandValidator : AbstractValidator<C
     public CreateJobApplicationCommandValidator()
     {
         RuleFor(x => x.ApplicantId)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateJobApplication.ApplicantIdIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateJobApplication.ApplicantIdIsRequired);
 
         RuleFor(x => x.JobOfferId)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateJobApplication.JobOfferIdIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateJobApplication.JobOfferIdIsRequired);
     }
 }

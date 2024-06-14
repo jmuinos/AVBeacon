@@ -20,18 +20,18 @@ internal sealed class GetJobOfferByIdQueryHandler : IQueryHandler<GetJobOfferByI
     public async Task<Maybe<JobOfferResponse>> Handle(GetJobOfferByIdQuery request, CancellationToken cancellationToken)
     {
         var jobOfferResponse = await _dbContext.Set<JobOffer>()
-                                               .Where(jo => jo.Id == request.JobOfferId)
-                                               .Select(jo => new JobOfferResponse
-                                                {
-                                                    Id = jo.Id,
-                                                    Title = jo.Title.Value,
-                                                    Description = jo.Description.Value,
-                                                    RecruiterId = jo.RecruiterId
-                                                })
-                                               .SingleOrDefaultAsync(cancellationToken);
+            .Where(jo => jo.Id == request.JobOfferId)
+            .Select(jo => new JobOfferResponse
+            {
+                Id = jo.Id,
+                Title = jo.Title.Value,
+                Description = jo.Description.Value,
+                RecruiterId = jo.RecruiterId
+            })
+            .SingleOrDefaultAsync(cancellationToken);
 
         return jobOfferResponse is not null
-                   ? Maybe<JobOfferResponse>.From(jobOfferResponse)
-                   : Maybe<JobOfferResponse>.None!;
+            ? Maybe<JobOfferResponse>.From(jobOfferResponse)
+            : Maybe<JobOfferResponse>.None!;
     }
 }

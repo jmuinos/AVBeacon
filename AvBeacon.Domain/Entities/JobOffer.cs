@@ -3,24 +3,22 @@ using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Domain.Entities;
 
-public sealed class JobOffer : Entity
+/// <summary>Representa una oferta de trabajo.</summary>
+public class JobOffer : Entity
 {
-    public JobOffer(Guid recruiterId, Title title, Description description)
-        : base(Guid.NewGuid())
+    private JobOffer(Title title, Description description) : base(Guid.NewGuid())
     {
-        RecruiterId = recruiterId;
         Title = title;
         Description = description;
     }
 
     public Title Title { get; set; }
     public Description Description { get; set; }
+
+// En JobOffer
     public Guid RecruiterId { get; init; }
     public Recruiter Recruiter { get; init; } = null!;
-    public List<JobApplication> JobApplications { get; } = new();
+    public ICollection<JobApplication> JobApplications { get; private set; } = new List<JobApplication>();
 
-    public static JobOffer Create(Guid recruiterId, Title title, Description description)
-    {
-        return new JobOffer(recruiterId, title, description);
-    }
+    public static JobOffer Create(Title title, Description description) { return new JobOffer(title, description); }
 }

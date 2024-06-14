@@ -5,7 +5,7 @@ namespace AvBeacon.Domain.Entities;
 
 public sealed class JobApplication : Entity
 {
-    public JobApplication(Guid applicantId, Guid jobOfferId)
+    private JobApplication(Guid applicantId, Guid jobOfferId)
         : base(Guid.NewGuid())
     {
         ApplicantId = applicantId;
@@ -14,6 +14,7 @@ public sealed class JobApplication : Entity
     }
 
     public JobApplicationState State { get; set; }
+
     public Guid ApplicantId { get; init; }
     public Applicant Applicant { get; init; } = null!;
     public Guid JobOfferId { get; init; }

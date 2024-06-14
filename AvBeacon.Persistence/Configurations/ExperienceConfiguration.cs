@@ -1,4 +1,5 @@
 ﻿using AvBeacon.Domain.Entities;
+using AvBeacon.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,23 +12,30 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.Title)
-               .HasMaxLength(100)
-               .IsRequired();
+            .HasConversion(t => t.Value, v => Title.Create(v).Value)
+            .HasMaxLength(100)
+            .IsRequired();
 
         builder.Property(e => e.Description)
-               .HasMaxLength(500)
-               .IsRequired(false);
+            .HasConversion(d => d.Value, v => Description.Create(v).Value)
+            .HasMaxLength(500)
+            .IsRequired();
 
         builder.Property(e => e.Start)
-               .IsRequired(false);
+            .IsRequired(false);
 
         builder.Property(e => e.End)
-               .IsRequired(false);
+            .IsRequired(false);
 
-        //TODO: OJO, PUEDE CAUSAR CICLOS?
         builder.HasOne(e => e.Applicant)
-               .WithMany(a => a.Experiences)
-               .HasForeignKey(e => e.ApplicantId)
-               .OnDelete(DeleteBehavior.Cascade);
+            .WithMany(a => a.Experiences)
+            .HasForeignKey(e => e.ApplicantId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Relación uno a muchos con Applicant
+        builder.HasOne(e => e.Applicant)
+            .WithMany(a => a.Experiences)
+            .HasForeignKey(e => e.ApplicantId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

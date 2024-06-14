@@ -12,9 +12,9 @@ public sealed class ValidationException : Exception
         : base("One or more validation failures has occurred.")
     {
         Errors = failures
-                .Distinct()
-                .Select(failure => new Error(failure.ErrorCode, failure.ErrorMessage))
-                .ToList();
+            .Distinct()
+            .Select(failure => new Error(failure.ErrorCode, failure.ErrorMessage))
+            .ToList();
     }
 
     /// <summary> Obtiene los errores de validación. </summary>

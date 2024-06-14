@@ -11,17 +11,17 @@ internal sealed class UpdateJobOfferCommandValidator : AbstractValidator<UpdateJ
     public UpdateJobOfferCommandValidator()
     {
         RuleFor(x => x.Id)
-           .NotEmpty()
-           .WithError(ValidationErrors.UpdateJobOffer.JobOfferIdIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.UpdateJobOffer.JobOfferIdIsRequired);
 
         RuleFor(x => x.Title)
-           .NotEmpty()
-           .WithError(ValidationErrors.UpdateJobOffer.TitleIsRequired)
-           .MaximumLength(200);
+            .NotEmpty()
+            .WithError(ValidationErrors.UpdateJobOffer.TitleIsRequired)
+            .MaximumLength(200);
 
         RuleFor(x => x.Description)
-           .NotEmpty()
-           .WithError(ValidationErrors.UpdateJobOffer.DescriptionIsRequired)
-           .MaximumLength(500);
+            .NotEmpty()
+            .WithError(ValidationErrors.UpdateJobOffer.DescriptionIsRequired)
+            .MaximumLength(500);
     }
 }

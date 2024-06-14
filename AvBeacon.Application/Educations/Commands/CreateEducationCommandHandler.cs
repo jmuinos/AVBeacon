@@ -26,7 +26,7 @@ internal sealed class CreateEducationCommandHandler : ICommandHandler<CreateEduc
     /// <inheritdoc />
     public async Task<Result> Handle(CreateEducationCommand request, CancellationToken cancellationToken)
     {
-        var maybeApplicant = await _dbContext.GetBydIdAsync<Applicant>(request.ApplicantId);
+        var maybeApplicant = await _dbContext.GetByIdAsync<Applicant>(request.ApplicantId);
 
         if (maybeApplicant.HasNoValue) return Result.Failure(DomainErrors.Applicant.NotFound);
 
@@ -34,11 +34,11 @@ internal sealed class CreateEducationCommandHandler : ICommandHandler<CreateEduc
 
         if (maybeEducationType.HasNoValue) return Result.Failure(DomainErrors.Education.InvalidEducationType);
 
-        var education = new Education(
-                                      maybeEducationType.Value,
-                                      Title.Create(request.Title).Value,
-                                      Description.Create(request.Description).Value,
-                                      request.ApplicantId);
+        var education = Education.Create(
+            maybeEducationType.Value,
+            Title.Create(request.Title).Value,
+            Description.Create(request.Description).Value,
+            request.ApplicantId);
 
         _dbContext.Set<Education>().Add(education);
 

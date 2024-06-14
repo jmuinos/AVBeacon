@@ -9,8 +9,9 @@ namespace AvBeacon.Application.JobApplications.Queries.GetById;
 
 /// <summary> Representa el manejador de consultas para <see cref="GetJobApplicationByIdQuery" />. </summary>
 internal sealed class
-    GetJobApplicationByIdQueryHandler : IQueryHandler<GetJobApplicationByIdQuery,
-    Maybe<JobApplicationResponse>>
+    GetJobApplicationByIdQueryHandler
+    : IQueryHandler<GetJobApplicationByIdQuery,
+        Maybe<JobApplicationResponse>>
 {
     private readonly IDbContext _dbContext;
 
@@ -24,19 +25,19 @@ internal sealed class
         CancellationToken cancellationToken)
     {
         var jobApplicationResponse = await _dbContext.Set<JobApplication>()
-                                                     .Where(ja => ja.Id == request.JobApplicationId)
-                                                     .Select(ja => new JobApplicationResponse
-                                                      {
-                                                          Id = ja.Id,
-                                                          ApplicantId = ja.ApplicantId,
-                                                          JobOfferId = ja.JobOfferId,
-                                                          JobOfferTitle = ja.JobOffer.Title.Value,
-                                                          State = ja.State.ToString()!
-                                                      })
-                                                     .SingleOrDefaultAsync(cancellationToken);
+            .Where(ja => ja.Id == request.JobApplicationId)
+            .Select(ja => new JobApplicationResponse
+            {
+                Id = ja.Id,
+                ApplicantId = ja.ApplicantId,
+                JobOfferId = ja.JobOfferId,
+                JobOfferTitle = ja.JobOffer.Title.Value,
+                State = ja.State.ToString()!
+            })
+            .SingleOrDefaultAsync(cancellationToken);
 
         return jobApplicationResponse is not null
-                   ? Maybe<JobApplicationResponse>.From(jobApplicationResponse)
-                   : Maybe<JobApplicationResponse>.None!;
+            ? Maybe<JobApplicationResponse>.From(jobApplicationResponse)
+            : Maybe<JobApplicationResponse>.None!;
     }
 }

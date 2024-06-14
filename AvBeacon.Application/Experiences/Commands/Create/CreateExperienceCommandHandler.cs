@@ -25,7 +25,7 @@ internal sealed class CreateExperienceCommandHandler : ICommandHandler<CreateExp
     /// <inheritdoc />
     public async Task<Result> Handle(CreateExperienceCommand request, CancellationToken cancellationToken)
     {
-        var maybeApplicant = await _dbContext.GetBydIdAsync<Applicant>(request.ApplicantId);
+        var maybeApplicant = await _dbContext.GetByIdAsync<Applicant>(request.ApplicantId);
 
         if (maybeApplicant.HasNoValue) return Result.Failure(DomainErrors.Applicant.NotFound);
 
@@ -37,11 +37,11 @@ internal sealed class CreateExperienceCommandHandler : ICommandHandler<CreateExp
         if (firstFailureOrSuccess.IsFailure) return Result.Failure(firstFailureOrSuccess.Error);
 
         var experience = Experience.Create(
-                                           request.ApplicantId,
-                                           titleResult.Value,
-                                           descriptionResult.Value,
-                                           request.Start,
-                                           request.End);
+            request.ApplicantId,
+            titleResult.Value,
+            descriptionResult.Value,
+            request.Start,
+            request.End);
 
         _dbContext.Insert(experience);
 

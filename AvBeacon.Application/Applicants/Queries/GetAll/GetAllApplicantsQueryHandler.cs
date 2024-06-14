@@ -21,15 +21,15 @@ internal sealed class GetAllApplicantsQueryHandler : IQueryHandler<GetAllApplica
         CancellationToken cancellationToken)
     {
         var applicants = await _dbContext.Set<Applicant>()
-                                         .Select(applicant => new UserResponse
-                                          {
-                                              Id = applicant.Id,
-                                              FirstName = applicant.FirstName.Value,
-                                              LastName = applicant.LastName.Value,
-                                              FullName = applicant.FullName,
-                                              Email = applicant.Email.Value
-                                          })
-                                         .ToListAsync(cancellationToken);
+            .Select(applicant => new UserResponse
+            {
+                Id = applicant.Id,
+                FirstName = applicant.FirstName.Value,
+                LastName = applicant.LastName.Value,
+                FullName = applicant.FullName,
+                Email = applicant.Email.Value
+            })
+            .ToListAsync(cancellationToken);
         return applicants;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AvBeacon.Domain.Entities;
 using AvBeacon.Domain.Enumerations;
+using AvBeacon.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,20 +13,22 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.EducationType)
-               .IsRequired()
-               .HasConversion(et => et.Value, etv => EducationType.FromValue(etv).Value);
+            .IsRequired()
+            .HasConversion(et => et.Value, etv => EducationType.FromValue(etv).Value);
+
 
         builder.Property(e => e.Title)
-               .IsRequired()
-               .HasMaxLength(100);
-
+            .HasConversion(t => t.Value, v => Title.Create(v).Value)
+            .HasMaxLength(100)
+            .IsRequired();
         builder.Property(e => e.Description)
-               .IsRequired(false)
-               .HasMaxLength(400);
+            .HasConversion(d => d.Value, v => Description.Create(v).Value)
+            .IsRequired(false)
+            .HasMaxLength(500);
 
         builder.HasOne(e => e.Applicant)
-               .WithMany(a => a.Educations)
-               .HasForeignKey(e => e.ApplicantId)
-               .OnDelete(DeleteBehavior.Cascade);
+            .WithMany(a => a.Educations)
+            .HasForeignKey(e => e.ApplicantId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

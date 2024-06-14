@@ -11,13 +11,13 @@ internal sealed class ProcessJobApplicationCommandValidator : AbstractValidator<
     public ProcessJobApplicationCommandValidator()
     {
         RuleFor(x => x.JobApplicationId)
-           .NotEmpty()
-           .WithError(ValidationErrors.ProcessJobApplication.JobApplicationIdIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.ProcessJobApplication.JobApplicationIdIsRequired);
 
         RuleFor(x => x.State)
-           .NotEmpty()
-           .WithError(ValidationErrors.ProcessJobApplication.StateIsRequired)
-           .Must(state => state is "Accepted" or "Rejected")
-           .WithError(ValidationErrors.ProcessJobApplication.InvalidState);
+            .NotEmpty()
+            .WithError(ValidationErrors.ProcessJobApplication.StateIsRequired)
+            .Must(state => state is "Accepted" or "Rejected")
+            .WithError(ValidationErrors.ProcessJobApplication.InvalidState);
     }
 }

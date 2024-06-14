@@ -2,7 +2,7 @@
 using AvBeacon.Application._Core.Abstractions.Data;
 using AvBeacon.Domain._Core.Primitives;
 using AvBeacon.Domain._Core.Primitives.Maybe;
-using AvBeacon.Domain.Entities;
+using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -11,25 +11,33 @@ namespace AvBeacon.Persistence;
 
 public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
 {
-    /// <summary> Initializes a new instance of the <see cref="AvBeaconDbContext" /> class. </summary>
-    /// <param name="options"> The database context options. </param>
-    public AvBeaconDbContext(DbContextOptions options) : base(options) { }
+    private readonly IMediator _mediator;
 
-    /// <summary>
-    ///     IMPORTANTE: Necesita su propio DbSet porque al representar una tabla intermedia de una relación many to many
-    ///     NO TIENE ID PROPIO (podría hacerse, pero no sería un enfoque óptimo)
-    /// </summary>
-    public DbSet<ApplicantSkill> ApplicantSkills { get; set; }
-
-    /// <inheritdoc />
-    public new DbSet<TEntity> Set<TEntity>() where TEntity : Entity { return base.Set<TEntity>(); }
-
-    /// <inheritdoc />
-    public async Task<Maybe<TEntity>> GetBydIdAsync<TEntity>(Guid id) where TEntity : Entity
+    /// <summary>Initializes a new instance of the <see cref="AvBeaconDbContext" /> class.</summary>
+    /// <param name="options">The database context options.</param>
+    /// <param name="mediator">The mediator.</param>
+    public AvBeaconDbContext(DbContextOptions options, IMediator mediator)
+        : base(options)
     {
-        return id == Guid.Empty
-                   ? Maybe<TEntity>.None!
-                   : Maybe<TEntity>.From((await Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id))!);
+        _mediator = mediator;
+    }
+
+    /// <inheritdoc />
+    public new DbSet<TEntity> Set<TEntity>()
+        where TEntity : Entity
+    {
+        return base.Set<TEntity>();
+    }
+
+    /// <inheritdoc />
+    public async Task<Maybe<TEntity>> GetByIdAsync<TEntity>(Guid id)
+        where TEntity : Entity
+    {
+        if (id == Guid.Empty)
+            return Maybe<TEntity>.None!;
+
+        var entity = await Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id);
+        return entity == null ? Maybe<TEntity>.None! : Maybe<TEntity>.From(entity);
     }
 
     /// <inheritdoc />
@@ -42,7 +50,11 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     }
 
     /// <inheritdoc />
-    public new void Remove<TEntity>(TEntity entity) where TEntity : Entity { Set<TEntity>().Remove(entity); }
+    public new void Remove<TEntity>(TEntity entity)
+        where TEntity : Entity
+    {
+        Set<TEntity>().Remove(entity);
+    }
 
     /// <inheritdoc />
     public Task<int> ExecuteSqlAsync(string sql, IEnumerable<SqlParameter> parameters,
@@ -51,9 +63,9 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
         return Database.ExecuteSqlRawAsync(sql, parameters, cancellationToken);
     }
 
-    /// <summary> Saves all pending changes in the unit of work. </summary>
-    /// <param name="cancellationToken"> The cancellation token. </param>
-    /// <returns> The number of entities that have been saved. </returns>
+    /// <summary>Saves all of the pending changes in the unit of work.</summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The number of entities that have been saved.</returns>
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return await base.SaveChangesAsync(cancellationToken);

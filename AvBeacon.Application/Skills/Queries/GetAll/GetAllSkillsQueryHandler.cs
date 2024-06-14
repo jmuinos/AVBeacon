@@ -19,8 +19,8 @@ internal sealed class GetAllSkillsQueryHandler : IQueryHandler<GetAllSkillsQuery
     public async Task<List<SkillResponse>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
     {
         var skills = await _dbContext.Set<Skill>()
-                                     .Select(s => new SkillResponse { Id = s.Id, Title = s.Title })
-                                     .ToListAsync(cancellationToken);
+            .Select(s => new SkillResponse { Id = s.Id, Title = s.Title })
+            .ToListAsync(cancellationToken);
 
         return skills;
     }

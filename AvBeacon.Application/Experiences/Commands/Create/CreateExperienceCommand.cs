@@ -9,4 +9,5 @@ public sealed record CreateExperienceCommand(
     string Title,
     string Description,
     DateTime? Start,
-    DateTime? End) : ICommand<Result>;
+    DateTime? End
+) : ICommand<Result>;

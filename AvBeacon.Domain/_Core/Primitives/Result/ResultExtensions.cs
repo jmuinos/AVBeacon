@@ -37,10 +37,7 @@ public static class ResultExtensions
     /// <typeparam name="TIn"> The result type. </typeparam>
     /// <param name="result"> The result. </param>
     /// <param name="func"> The bind function. </param>
-    /// <returns>
-    ///     The success result with the bound value if the current result is a success result, otherwise a failure
-    ///     result.
-    /// </returns>
+    /// <returns>The success result with the bound value if the current result is a success result, otherwise a failure result.</returns>
     public static async Task<Result> Bind<TIn>(this Result<TIn> result, Func<TIn, Task<Result>> func)
     {
         return result.IsSuccess ? await func(result.Value) : Result.Failure(result.Error);
@@ -51,10 +48,7 @@ public static class ResultExtensions
     /// <typeparam name="TOut"> The output result type. </typeparam>
     /// <param name="result"> The result. </param>
     /// <param name="func"> The bind function. </param>
-    /// <returns>
-    ///     The success result with the bound value if the current result is a success result, otherwise a failure
-    ///     result.
-    /// </returns>
+    /// <returns>The success result with the bound value if the current result is a success result, otherwise a failure result.</returns>
     public static async Task<Result<TOut>>
         Bind<TIn, TOut>(this Result<TIn> result, Func<TIn, Task<Result<TOut>>> func)
     {

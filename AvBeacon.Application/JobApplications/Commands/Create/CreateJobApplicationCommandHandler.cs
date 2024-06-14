@@ -27,8 +27,8 @@ internal sealed record CreateJobApplicationCommandHandler : ICommandHandler<Crea
     {
         var jobOffer = _jobOfferRepository.GetByIdAsync(request.JobOfferId).Result;
         var alreadyExists = _jobApplicationRepository
-                           .GetByApplicantIdAsync(request.ApplicantId, cancellationToken)
-                           .Result.Any(ja => ja.ApplicantId == request.ApplicantId);
+            .GetByApplicantIdAsync(request.ApplicantId, cancellationToken)
+            .Result.Any(ja => ja.ApplicantId == request.ApplicantId);
 
         if (jobOffer.HasNoValue)
             return Result.Failure(DomainErrors.JobOffer.NotFound);
@@ -36,7 +36,7 @@ internal sealed record CreateJobApplicationCommandHandler : ICommandHandler<Crea
         if (alreadyExists)
             return Result.Failure(DomainErrors.JobApplication.AlreadyExists);
 
-        var jobApplication = new JobApplication(request.ApplicantId, request.JobOfferId);
+        var jobApplication = JobApplication.Create(request.ApplicantId, request.JobOfferId);
 
         _jobApplicationRepository.Insert(jobApplication);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

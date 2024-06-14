@@ -9,5 +9,6 @@ public sealed record CreateUserCommand(
     string LastName,
     string Email,
     string Password,
-    string UserType)
+    string UserType
+)
     : ICommand<Result<TokenResponse>>;

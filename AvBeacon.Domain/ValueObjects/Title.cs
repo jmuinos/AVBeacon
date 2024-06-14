@@ -25,9 +25,9 @@ public class Title : ValueObject
     public static Result<Title> Create(string name)
     {
         return Result.Create(name, DomainErrors.Name.NullOrEmpty)
-                     .Ensure(n => !string.IsNullOrWhiteSpace(n), DomainErrors.Name.NullOrEmpty)
-                     .Ensure(n => n.Length <= MaxLength, DomainErrors.Name.LongerThanAllowed)
-                     .Map(f => new Title(f));
+            .Ensure(n => !string.IsNullOrWhiteSpace(n), DomainErrors.Name.NullOrEmpty)
+            .Ensure(n => n.Length <= MaxLength, DomainErrors.Name.LongerThanAllowed)
+            .Map(f => new Title(f));
     }
 
     /// <inheritdoc />

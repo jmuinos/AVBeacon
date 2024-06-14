@@ -20,12 +20,12 @@ internal sealed class GetSkillByIdQueryHandler : IQueryHandler<GetSkillByIdQuery
     public async Task<Maybe<SkillResponse>> Handle(GetSkillByIdQuery request, CancellationToken cancellationToken)
     {
         var skillResponse = await _dbContext.Set<Skill>()
-                                            .Where(s => s.Id == request.SkillId)
-                                            .Select(s => new SkillResponse { Id = s.Id, Title = s.Title })
-                                            .SingleOrDefaultAsync(cancellationToken);
+            .Where(s => s.Id == request.SkillId)
+            .Select(s => new SkillResponse { Id = s.Id, Title = s.Title })
+            .SingleOrDefaultAsync(cancellationToken);
 
         return skillResponse is not null
-                   ? Maybe<SkillResponse>.From(skillResponse)
-                   : Maybe<SkillResponse>.None!;
+            ? Maybe<SkillResponse>.From(skillResponse)
+            : Maybe<SkillResponse>.None!;
     }
 }

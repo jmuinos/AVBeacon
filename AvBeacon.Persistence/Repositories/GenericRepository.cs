@@ -1,6 +1,7 @@
 ﻿using AvBeacon.Application._Core.Abstractions.Data;
 using AvBeacon.Domain._Core.Primitives;
 using AvBeacon.Domain._Core.Primitives.Maybe;
+using AvBeacon.Domain.Repositories;
 using AvBeacon.Persistence.Specifications;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ namespace AvBeacon.Persistence.Repositories;
 
 /// <summary> Represents the generic repository with the most common repository methods. </summary>
 /// <typeparam name="TEntity"> The entity type. </typeparam>
-internal abstract class GenericRepository<TEntity>
+internal abstract class GenericRepository<TEntity> : IBaseRepository<TEntity>
     where TEntity : Entity
 {
     /// <summary> Initializes a new instance of the <see cref="GenericRepository{TEntity}" /> class. </summary>
@@ -21,7 +22,7 @@ internal abstract class GenericRepository<TEntity>
     /// <summary> Gets the entity with the specified identifier. </summary>
     /// <param name="id"> The entity identifier. </param>
     /// <returns> The maybe instance that may contain the entity with the specified identifier. </returns>
-    public async Task<Maybe<TEntity>> GetByIdAsync(Guid id) { return await Context.GetBydIdAsync<TEntity>(id); }
+    public async Task<Maybe<TEntity>> GetByIdAsync(Guid id) { return await Context.GetByIdAsync<TEntity>(id); }
 
     /// <summary> Inserts the specified entity into the database. </summary>
     /// <param name="entity"> The entity to be inserted into the database. </param>
@@ -39,6 +40,8 @@ internal abstract class GenericRepository<TEntity>
     /// <param name="entity"> The entity to be removed from the database. </param>
     public void Remove(TEntity entity) { Context.Remove(entity); }
 
+    public async Task<List<TEntity>> GetAllAsync() { return await Context.Set<TEntity>().ToListAsync(); }
+
     /// <summary> Checks if any entity meets the specified specification. </summary>
     /// <param name="specification"> The specification. </param>
     /// <returns> True if any entity meets the specified specification, otherwise false. </returns>
@@ -55,6 +58,4 @@ internal abstract class GenericRepository<TEntity>
         var entity = await Context.Set<TEntity>().FirstOrDefaultAsync(specification);
         return entity is not null ? Maybe<TEntity>.From(entity) : Maybe<TEntity>.None!;
     }
-
-    public async Task<List<TEntity>> GetAllAsync() { return await Context.Set<TEntity>().ToListAsync(); }
 }

@@ -12,14 +12,14 @@ internal sealed class ExperienceRepository(IDbContext context)
         CancellationToken cancellationToken)
     {
         return await Context.Set<Experience>()
-                            .Where(ja => ja.ApplicantId == applicantId)
-                            .ToListAsync(cancellationToken);
+            .Where(ja => ja.ApplicantId == applicantId)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<List<Experience>> GetByTitleAsync(string title, CancellationToken cancellationToken = default)
     {
         return await Context.Set<Experience>()
-                            .Where(e => EF.Functions.Like(e.Title.Value, $"%{title}%"))
-                            .ToListAsync(cancellationToken);
+            .Where(e => EF.Functions.Like(e.Title.Value, $"%{title}%"))
+            .ToListAsync(cancellationToken);
     }
 }

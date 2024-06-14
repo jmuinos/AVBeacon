@@ -44,12 +44,12 @@ internal sealed class JwtProvider : IJwtProvider
         var tokenExpirationTime = _dateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
 
         var token = new JwtSecurityToken(
-                                         _jwtSettings.Issuer,
-                                         _jwtSettings.Audience,
-                                         claims,
-                                         null,
-                                         tokenExpirationTime,
-                                         signingCredentials);
+            _jwtSettings.Issuer,
+            _jwtSettings.Audience,
+            claims,
+            null,
+            tokenExpirationTime,
+            signingCredentials);
 
         var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 

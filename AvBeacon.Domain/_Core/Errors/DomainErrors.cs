@@ -8,13 +8,15 @@ public static class DomainErrors
     {
         public static Error NotFound => new("User.NotFound", "The user with the specified identifier was not found.");
 
-        public static Error InvalidPermissions => new("User.InvalidPermissions",
-                                                      "The current user does not have the permissions to perform that operation.");
+        public static Error InvalidPermissions =>
+            new("User.InvalidPermissions",
+                "The current user does not have the permissions to perform that operation.");
 
         public static Error DuplicateEmail => new("User.DuplicateEmail", "The specified email is already in use.");
 
-        public static Error CannotChangePassword => new("User.CannotChangePassword",
-                                                        "The password cannot be changed to the specified password.");
+        public static Error CannotChangePassword =>
+            new("User.CannotChangePassword",
+                "The password cannot be changed to the specified password.");
     }
 
     public static class Applicant
@@ -45,8 +47,9 @@ public static class DomainErrors
         public static Error NotFound =>
             new("Experience.NotFound", "The experience with the specified identifier was not found.");
 
-        public static Error AlreadyExists => new("Experience.AlreadyExists",
-                                                 "The specified experience already exists for this user.");
+        public static Error AlreadyExists =>
+            new("Experience.AlreadyExists",
+                "The specified experience already exists for this user.");
     }
 
     public static class Education
@@ -63,11 +66,13 @@ public static class DomainErrors
 
     public static class JobApplication
     {
-        public static Error NotFound => new("JobApplication.NotFound",
-                                            "The job application with the specified identifier was not found.");
+        public static Error NotFound =>
+            new("JobApplication.NotFound",
+                "The job application with the specified identifier was not found.");
 
-        public static Error UserNotFound => new("JobApplication.UserNotFound",
-                                                "The user with the specified identifier was not found.");
+        public static Error UserNotFound =>
+            new("JobApplication.UserNotFound",
+                "The user with the specified identifier was not found.");
 
         public static Error AlreadyProcessed =>
             new("JobApplication.AlreadyProcessed", "The job application has already been processed.");
@@ -132,16 +137,19 @@ public static class DomainErrors
         public static Error NullOrEmpty => new("Password.NullOrEmpty", "The password is required.");
         public static Error TooShort => new("Password.TooShort", "The password is too short.");
 
-        public static Error MissingUppercaseLetter => new("Password.MissingUppercaseLetter",
-                                                          "The password requires at least one uppercase letter.");
+        public static Error MissingUppercaseLetter =>
+            new("Password.MissingUppercaseLetter",
+                "The password requires at least one uppercase letter.");
 
-        public static Error MissingLowercaseLetter => new("Password.MissingLowercaseLetter",
-                                                          "The password requires at least one lowercase letter.");
+        public static Error MissingLowercaseLetter =>
+            new("Password.MissingLowercaseLetter",
+                "The password requires at least one lowercase letter.");
 
         public static Error MissingDigit => new("Password.MissingDigit", "The password requires at least one digit.");
 
-        public static Error MissingNonAlphaNumeric => new("Password.MissingNonAlphaNumeric",
-                                                          "The password requires at least one non-alphanumeric.");
+        public static Error MissingNonAlphaNumeric =>
+            new("Password.MissingNonAlphaNumeric",
+                "The password requires at least one non-alphanumeric.");
     }
 
     /// <summary> Contains general errors. </summary>
@@ -156,7 +164,8 @@ public static class DomainErrors
     /// <summary> Contains the authentication errors. </summary>
     public static class Authentication
     {
-        public static Error InvalidEmailOrPassword => new("Authentication.InvalidEmailOrPassword",
-                                                          "The specified email or password are incorrect.");
+        public static Error InvalidEmailOrPassword =>
+            new("Authentication.InvalidEmailOrPassword",
+                "The specified email or password are incorrect.");
     }
 }

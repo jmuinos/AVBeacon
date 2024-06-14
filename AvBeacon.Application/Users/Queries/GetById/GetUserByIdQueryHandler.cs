@@ -21,16 +21,16 @@ internal sealed class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, 
     {
         if (request.UserId == Guid.Empty) return Maybe<UserResponse>.None!;
         var response = await _dbContext.Set<User>()
-                                       .Where(x => x.Id == request.UserId)
-                                       .Select(user => new UserResponse
-                                        {
-                                            Id = user.Id,
-                                            FirstName = user.FirstName.Value,
-                                            LastName = user.LastName.Value,
-                                            FullName = user.FullName,
-                                            Email = user.Email.Value
-                                        })
-                                       .SingleOrDefaultAsync(cancellationToken);
+            .Where(x => x.Id == request.UserId)
+            .Select(user => new UserResponse
+            {
+                Id = user.Id,
+                FirstName = user.FirstName.Value,
+                LastName = user.LastName.Value,
+                FullName = user.FullName,
+                Email = user.Email.Value
+            })
+            .SingleOrDefaultAsync(cancellationToken);
 
 
         if (response is null) return Maybe<UserResponse>.None!;

@@ -1,6 +1,5 @@
 ﻿using AvBeacon.Application._Core.Abstractions.Messaging;
 using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Errors;
 using AvBeacon.Domain._Core.Primitives.Maybe;
 
 namespace AvBeacon.Application.Applicants.Queries.GetAll;

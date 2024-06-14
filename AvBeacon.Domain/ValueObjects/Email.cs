@@ -32,10 +32,10 @@ public sealed class Email : ValueObject
     public static Result<Email> Create(string email)
     {
         return Result.Create(email, DomainErrors.Email.NullOrEmpty)
-                     .Ensure(e => !string.IsNullOrWhiteSpace(e), DomainErrors.Email.NullOrEmpty)
-                     .Ensure(e => e.Length <= MaxLength, DomainErrors.Email.LongerThanAllowed)
-                     .Ensure(e => EmailFormatRegex.Value.IsMatch(e), DomainErrors.Email.InvalidFormat)
-                     .Map(e => new Email(e));
+            .Ensure(e => !string.IsNullOrWhiteSpace(e), DomainErrors.Email.NullOrEmpty)
+            .Ensure(e => e.Length <= MaxLength, DomainErrors.Email.LongerThanAllowed)
+            .Ensure(e => EmailFormatRegex.Value.IsMatch(e), DomainErrors.Email.InvalidFormat)
+            .Map(e => new Email(e));
     }
 
     /// <inheritdoc />

@@ -11,16 +11,16 @@ internal sealed class CreateExperienceCommandValidator : AbstractValidator<Creat
     public CreateExperienceCommandValidator()
     {
         RuleFor(x => x.ApplicantId)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateExperience.ApplicantIdIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateExperience.ApplicantIdIsRequired);
 
         RuleFor(x => x.Title)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateExperience.TitleIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateExperience.TitleIsRequired);
 
         RuleFor(x => x.Start)
-           .LessThan(x => x.End)
-           .When(x => x.End.HasValue)
-           .WithError(ValidationErrors.CreateExperience.StartMustBeEarlierThanEnd);
+            .LessThan(x => x.End)
+            .When(x => x.End.HasValue)
+            .WithError(ValidationErrors.CreateExperience.StartMustBeEarlierThanEnd);
     }
 }

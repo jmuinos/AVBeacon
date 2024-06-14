@@ -11,19 +11,19 @@ internal sealed class CreateEducationCommandValidator : AbstractValidator<Create
     public CreateEducationCommandValidator()
     {
         RuleFor(x => x.EducationType)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateEducation.InvalidEducationType);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateEducation.InvalidEducationType);
 
         RuleFor(x => x.Title)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateEducation.TitleIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateEducation.TitleIsRequired);
 
         RuleFor(x => x.Description)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateEducation.DescriptionIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateEducation.DescriptionIsRequired);
 
         RuleFor(x => x.ApplicantId)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateEducation.ApplicantIdIsRequired);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateEducation.ApplicantIdIsRequired);
     }
 }

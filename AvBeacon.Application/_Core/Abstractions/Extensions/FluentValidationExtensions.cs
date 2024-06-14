@@ -13,10 +13,12 @@ public static class FluentValidationExtensions
     /// <param name="error"> El error a utilizar. </param>
     /// <remarks>
     ///     Este método utiliza FluentValidation para validar entradas. Para obtener más información sobre cómo especificar un
-    ///     código de error personalizado, consulte <see
-    ///                                                 cref="FluentValidation.DefaultValidatorOptions.WithErrorCode{T, TProperty}(FluentValidation.IRuleBuilderOptions{T, TProperty}, string)" />
-    ///     . <see
-    ///           cref="FluentValidation.DefaultValidatorOptions.WithMessage{T, TProperty}(FluentValidation.IRuleBuilderOptions{T, TProperty}, string)" />
+    ///     código de error personalizado, consulte
+    ///     <see
+    ///         cref="FluentValidation.DefaultValidatorOptions.WithErrorCode{T, TProperty}(FluentValidation.IRuleBuilderOptions{T, TProperty}, string)" />
+    ///     .
+    ///     <see
+    ///         cref="FluentValidation.DefaultValidatorOptions.WithMessage{T, TProperty}(FluentValidation.IRuleBuilderOptions{T, TProperty}, string)" />
     ///     .
     /// </remarks>
     /// <returns> El mismo constructor de reglas. </returns>

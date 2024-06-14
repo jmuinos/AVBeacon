@@ -7,7 +7,8 @@ public sealed class Recruiter : User
     public Recruiter(FirstName firstName, LastName lastName, Email email, string passwordHash)
         : base(firstName, lastName, email, passwordHash) { }
 
-    public List<JobOffer> JobOffers { get; } = new();
+// En Recruiter
+    public ICollection<JobOffer> JobOffers { get; private set; } = new List<JobOffer>();
 
     public static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
     {

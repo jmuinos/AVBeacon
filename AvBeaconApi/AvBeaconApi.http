@@ -1,4 +1,4 @@
-@AvBeaconApi_HostAddress = http://localhost:5172
+@AvBeaconApi_HostAddress = http://localhost:5135
 
 GET {{AvBeaconApi_HostAddress}}/weatherforecast/
 Accept: application/json

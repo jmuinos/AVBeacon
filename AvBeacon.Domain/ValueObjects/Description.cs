@@ -25,9 +25,9 @@ public sealed class Description : ValueObject
     public static Result<Description> Create(string description)
     {
         return Result.Create(description, DomainErrors.Description.NullOrEmpty)
-                     .Ensure(d => !string.IsNullOrWhiteSpace(d), DomainErrors.Description.NullOrEmpty)
-                     .Ensure(d => d.Length <= MaxLength, DomainErrors.Description.LongerThanAllowed)
-                     .Map(d => new Description(d));
+            .Ensure(d => !string.IsNullOrWhiteSpace(d), DomainErrors.Description.NullOrEmpty)
+            .Ensure(d => d.Length <= MaxLength, DomainErrors.Description.LongerThanAllowed)
+            .Map(d => new Description(d));
     }
 
     /// <inheritdoc />

@@ -25,9 +25,9 @@ public sealed class FirstName : ValueObject
     public static Result<FirstName> Create(string firstName)
     {
         return Result.Create(firstName, DomainErrors.FirstName.NullOrEmpty)
-                     .Ensure(f => !string.IsNullOrWhiteSpace(f), DomainErrors.FirstName.NullOrEmpty)
-                     .Ensure(f => f.Length <= MaxLength, DomainErrors.FirstName.LongerThanAllowed)
-                     .Map(f => new FirstName(f));
+            .Ensure(f => !string.IsNullOrWhiteSpace(f), DomainErrors.FirstName.NullOrEmpty)
+            .Ensure(f => f.Length <= MaxLength, DomainErrors.FirstName.LongerThanAllowed)
+            .Map(f => new FirstName(f));
     }
 
     /// <inheritdoc />

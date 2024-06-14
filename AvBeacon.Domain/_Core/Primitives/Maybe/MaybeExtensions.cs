@@ -8,10 +8,7 @@ public static class MaybeExtensions
     /// <typeparam name="TOut"> The output result type. </typeparam>
     /// <param name="maybe"> The result. </param>
     /// <param name="func"> The bind function. </param>
-    /// <returns>
-    ///     The success result with the bound value if the current result is a success result, otherwise a failure
-    ///     result.
-    /// </returns>
+    /// <returns>The success result with the bound value if the current result is a success result, otherwise a failure result.</returns>
     public static async Task<Maybe<TOut>> Bind<TIn, TOut>(this Maybe<TIn> maybe, Func<TIn, Task<Maybe<TOut>>> func)
     {
         return maybe.HasValue ? await func(maybe.Value) : Maybe<TOut>.None!;

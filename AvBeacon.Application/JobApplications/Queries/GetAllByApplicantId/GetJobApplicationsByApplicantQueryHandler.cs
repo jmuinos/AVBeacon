@@ -8,8 +8,9 @@ namespace AvBeacon.Application.JobApplications.Queries.GetAllByApplicantId;
 
 /// <summary> Representa el manejador de la consulta <see cref="GetJobApplicationsByApplicantQuery" />. </summary>
 internal sealed class
-    GetJobApplicationsByApplicantQueryHandler : IQueryHandler<GetJobApplicationsByApplicantQuery,
-    List<JobApplicationResponse>>
+    GetJobApplicationsByApplicantQueryHandler
+    : IQueryHandler<GetJobApplicationsByApplicantQuery,
+        List<JobApplicationResponse>>
 {
     private readonly IDbContext _dbContext;
 
@@ -22,17 +23,17 @@ internal sealed class
         CancellationToken cancellationToken)
     {
         var jobApplications = await _dbContext.Set<JobApplication>()
-                                              .Where(ja => ja.ApplicantId ==
-                                                           request.ApplicantId)
-                                              .Select(ja => new JobApplicationResponse
-                                               {
-                                                   Id = ja.Id,
-                                                   JobOfferId = ja.JobOfferId,
-                                                   ApplicantId = ja.ApplicantId,
-                                                   State = ja.State.Name,
-                                                   JobOfferTitle = ja.JobOffer.Title.Value
-                                               })
-                                              .ToListAsync(cancellationToken);
+            .Where(ja => ja.ApplicantId ==
+                         request.ApplicantId)
+            .Select(ja => new JobApplicationResponse
+            {
+                Id = ja.Id,
+                JobOfferId = ja.JobOfferId,
+                ApplicantId = ja.ApplicantId,
+                State = ja.State.Name,
+                JobOfferTitle = ja.JobOffer.Title.Value
+            })
+            .ToListAsync(cancellationToken);
 
         return jobApplications;
     }

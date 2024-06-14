@@ -7,11 +7,12 @@ public sealed class Applicant : User
     private Applicant(FirstName firstName, LastName lastName, Email email, string passwordHash)
         : base(firstName, lastName, email, passwordHash) { }
 
-    public List<JobApplication> JobApplications { get; } = new();
-    public List<Education> Educations { get; } = new();
-    public List<Experience> Experiences { get; } = new();
-    public List<Skill> Skills { get; } = new();
-    public List<ApplicantSkill> ApplicantSkills { get; } = new();
+    // En Applicant
+    public ICollection<JobApplication> JobApplications { get; private set; } = new List<JobApplication>();
+    public ICollection<Education> Educations { get; private set; } = new List<Education>();
+    public ICollection<Experience> Experiences { get; private set; } = new List<Experience>();
+    public ICollection<Skill> Skills { get; private set; } = new List<Skill>();
+
 
     public static Applicant Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
     {

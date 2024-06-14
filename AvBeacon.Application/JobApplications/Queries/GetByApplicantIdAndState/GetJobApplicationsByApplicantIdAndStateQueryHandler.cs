@@ -8,8 +8,9 @@ namespace AvBeacon.Application.JobApplications.Queries.GetByApplicantIdAndState;
 
 /// <summary> Representa el manejador de la consulta <see cref="GetJobApplicationsByApplicantIdAndStateQuery" />. </summary>
 internal sealed class
-    GetJobApplicationsByApplicantIdAndStateQueryHandler : IQueryHandler<GetJobApplicationsByApplicantIdAndStateQuery,
-    List<JobApplicationResponse>>
+    GetJobApplicationsByApplicantIdAndStateQueryHandler
+    : IQueryHandler<GetJobApplicationsByApplicantIdAndStateQuery,
+        List<JobApplicationResponse>>
 {
     private readonly IDbContext _dbContext;
 
@@ -25,17 +26,17 @@ internal sealed class
         CancellationToken cancellationToken)
     {
         var jobApplications = await _dbContext.Set<JobApplication>()
-                                              .Where(ja => ja.ApplicantId == request.ApplicantId &&
-                                                           ja.State == request.State)
-                                              .Select(ja => new JobApplicationResponse
-                                               {
-                                                   Id = ja.Id,
-                                                   JobOfferId = ja.JobOfferId,
-                                                   JobOfferTitle = ja.JobOffer.Title.Value,
-                                                   State = ja.State.Name,
-                                                   ApplicantId = ja.ApplicantId
-                                               })
-                                              .ToListAsync(cancellationToken);
+            .Where(ja => ja.ApplicantId == request.ApplicantId &&
+                         ja.State == request.State)
+            .Select(ja => new JobApplicationResponse
+            {
+                Id = ja.Id,
+                JobOfferId = ja.JobOfferId,
+                JobOfferTitle = ja.JobOffer.Title.Value,
+                State = ja.State.Name,
+                ApplicantId = ja.ApplicantId
+            })
+            .ToListAsync(cancellationToken);
 
         return jobApplications;
     }

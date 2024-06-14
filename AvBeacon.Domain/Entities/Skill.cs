@@ -8,6 +8,7 @@ public sealed class Skill : Entity
     public Skill(Title title) : base(Guid.NewGuid()) { Title = title; }
 
     public Title Title { get; set; }
-    public List<Applicant> Applicants { get; } = new();
-    public List<ApplicantSkill> ApplicantSkills { get; } = new();
+
+// En Skill
+    public ICollection<Applicant> Applicants { get; private set; } = new List<Applicant>();
 }

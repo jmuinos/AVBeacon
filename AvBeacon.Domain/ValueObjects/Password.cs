@@ -28,13 +28,13 @@ public sealed class Password : ValueObject
     public static Result<Password> Create(string password)
     {
         return Result.Create(password, DomainErrors.Password.NullOrEmpty)
-                     .Ensure(p => !string.IsNullOrWhiteSpace(p), DomainErrors.Password.NullOrEmpty)
-                     .Ensure(p => p.Length >= MinPasswordLength, DomainErrors.Password.TooShort)
-                     .Ensure(p => p.Any(IsLower), DomainErrors.Password.MissingLowercaseLetter)
-                     .Ensure(p => p.Any(IsUpper), DomainErrors.Password.MissingUppercaseLetter)
-                     .Ensure(p => p.Any(IsDigit), DomainErrors.Password.MissingDigit)
-                     .Ensure(p => p.Any(IsNonAlphaNumeric), DomainErrors.Password.MissingNonAlphaNumeric)
-                     .Map(p => new Password(p));
+            .Ensure(p => !string.IsNullOrWhiteSpace(p), DomainErrors.Password.NullOrEmpty)
+            .Ensure(p => p.Length >= MinPasswordLength, DomainErrors.Password.TooShort)
+            .Ensure(p => p.Any(IsLower), DomainErrors.Password.MissingLowercaseLetter)
+            .Ensure(p => p.Any(IsUpper), DomainErrors.Password.MissingUppercaseLetter)
+            .Ensure(p => p.Any(IsDigit), DomainErrors.Password.MissingDigit)
+            .Ensure(p => p.Any(IsNonAlphaNumeric), DomainErrors.Password.MissingNonAlphaNumeric)
+            .Map(p => new Password(p));
     }
 
     /// <inheritdoc />

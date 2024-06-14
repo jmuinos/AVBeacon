@@ -12,14 +12,14 @@ internal sealed class EducationRepository(IDbContext context)
         Guid applicantId, CancellationToken cancellationToken = default)
     {
         return await Context.Set<Education>()
-                            .Where(ja => ja.ApplicantId == applicantId)
-                            .ToListAsync(cancellationToken);
+            .Where(ja => ja.ApplicantId == applicantId)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<List<Education>> GetByTitleAsync(string title, CancellationToken cancellationToken = default)
     {
         return await Context.Set<Education>()
-                            .Where(e => EF.Functions.Like(e.Title.Value, $"%{title}%"))
-                            .ToListAsync(cancellationToken);
+            .Where(e => EF.Functions.Like(e.Title.Value, $"%{title}%"))
+            .ToListAsync(cancellationToken);
     }
 }

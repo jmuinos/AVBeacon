@@ -62,8 +62,8 @@ public class Result
     public static Result<TValue> Failure<TValue>(Error error) { return new Result<TValue>(default!, false, error); }
 
     /// <summary>
-    ///     Returns the first failure from the specified <paramref name="results" />. If there is no failure, a success
-    ///     is returned.
+    ///     Returns the first failure from the specified <paramref name="results" />. If there is no failure, a success is
+    ///     returned.
     /// </summary>
     /// <param name="results"> The results array. </param>
     /// <returns> The first failure from the specified <paramref name="results" /> array,or a success it does not exist. </returns>

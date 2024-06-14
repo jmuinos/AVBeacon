@@ -10,18 +10,14 @@ internal sealed class CreateJobOfferCommandValidator : AbstractValidator<CreateJ
     /// <summary> Inicializa una nueva instancia de la clase <see cref="CreateJobOfferCommandValidator" />. </summary>
     public CreateJobOfferCommandValidator()
     {
-        RuleFor(x => x.RecruiterId)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateJobOffer.RecruiterIdIsRequired);
-
         RuleFor(x => x.Title)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateJobOffer.TitleIsRequired)
-           .MaximumLength(200);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateJobOffer.TitleIsRequired)
+            .MaximumLength(200);
 
         RuleFor(x => x.Description)
-           .NotEmpty()
-           .WithError(ValidationErrors.CreateJobOffer.DescriptionIsRequired)
-           .MaximumLength(500);
+            .NotEmpty()
+            .WithError(ValidationErrors.CreateJobOffer.DescriptionIsRequired)
+            .MaximumLength(500);
     }
 }
