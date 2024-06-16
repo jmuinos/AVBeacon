@@ -2,11 +2,11 @@
 
 namespace AvBeacon.Application._Core.Abstractions.Authentication;
 
-/// <summary> Represents the JWT provider interface. </summary>
+/// <summary> Representa la interfaz del proveedor de JWT</summary>
 public interface IJwtProvider
 {
-    /// <summary> Creates the JWT for the specified user. </summary>
-    /// <param name="user"> The user. </param>
-    /// <returns> The JWT for the specified user. </returns>
+    /// <summary> Crea el JWT para el usuario. </summary>
+    /// <param name="user"> El usuario </param>
+    /// <returns> El JWT para el usuario. </returns>
     string Create(User user);
 }

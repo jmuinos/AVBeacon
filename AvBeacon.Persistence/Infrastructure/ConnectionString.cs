@@ -4,7 +4,7 @@
 public sealed class ConnectionString
 {
     /// <summary> The connection strings key. </summary>
-    public const string SettingsKey = "EventReminderDb";
+    public const string SettingsKey = "AvBeaconDb";
 
     /// <summary> Initializes a new instance of the <see cref="ConnectionString" /> class. </summary>
     /// <param name="value"> The connection string value. </param>

@@ -1,7 +1,7 @@
 ﻿namespace AvBeacon.Domain.Services;
 
 /// <summary> Represents the password hash checker interfaces. </summary>
-public interface IMyPasswordHashChecker
+public interface IPasswordHashChecker
 {
     /// <summary> Checks if the specified password hash and the provided password hash match. </summary>
     /// <param name="passwordHash"> The password hash. </param>

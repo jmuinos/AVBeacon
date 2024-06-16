@@ -17,23 +17,15 @@ internal sealed class CreateEducationCommandHandler : ICommandHandler<CreateEduc
     /// <summary> Inicializa una nueva instancia de la clase <see cref="CreateEducationCommandHandler" />. </summary>
     /// <param name="unitOfWork"> La unidad de trabajo. </param>
     /// <param name="dbContext"> El contexto de base de datos. </param>
-    public CreateEducationCommandHandler(IUnitOfWork unitOfWork, IDbContext dbContext)
-    {
-        _unitOfWork = unitOfWork;
-        _dbContext = dbContext;
-    }
+    public CreateEducationCommandHandler(IUnitOfWork unitOfWork, IDbContext dbContext){ _unitOfWork = unitOfWork; _dbContext = dbContext; }
 
     /// <inheritdoc />
     public async Task<Result> Handle(CreateEducationCommand request, CancellationToken cancellationToken)
     {
         var maybeApplicant = await _dbContext.GetByIdAsync<Applicant>(request.ApplicantId);
-
         if (maybeApplicant.HasNoValue) return Result.Failure(DomainErrors.Applicant.NotFound);
-
         var maybeEducationType = EducationType.FromValue(request.EducationType);
-
         if (maybeEducationType.HasNoValue) return Result.Failure(DomainErrors.Education.InvalidEducationType);
-
         var education = Education.Create(
             maybeEducationType.Value,
             Title.Create(request.Title).Value,
@@ -41,7 +33,6 @@ internal sealed class CreateEducationCommandHandler : ICommandHandler<CreateEduc
             request.ApplicantId);
 
         _dbContext.Set<Education>().Add(education);
-
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();

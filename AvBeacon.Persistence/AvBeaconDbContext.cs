@@ -12,10 +12,6 @@ namespace AvBeacon.Persistence;
 public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
 {
     private readonly IMediator _mediator;
-
-    /// <summary>Initializes a new instance of the <see cref="AvBeaconDbContext" /> class.</summary>
-    /// <param name="options">The database context options.</param>
-    /// <param name="mediator">The mediator.</param>
     public AvBeaconDbContext(DbContextOptions options, IMediator mediator)
         : base(options)
     {

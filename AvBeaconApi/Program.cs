@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using AvBeacon.Application;
 using AvBeacon.Application.Applicants.Queries.GetAll;
 using AvBeacon.Application.Authentication.Login.Commands;
@@ -11,77 +10,47 @@ using AvBeacon.Domain._Core.Primitives.Maybe;
 using AvBeacon.Domain._Core.Primitives.Result;
 using AvBeacon.Infrastructure;
 using AvBeacon.Persistence;
+using AvBeaconApi.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
 using Serilog;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
+
 // Configurar Serilog
 builder.Host.UseSerilog((context, loggerConfiguration) =>
-{
-    loggerConfiguration.ReadFrom.Configuration(context.Configuration);
-});
+    loggerConfiguration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddAuthorization();
-builder.Services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    options.SerializerOptions.WriteIndented = true;
-});
-// Añadir servicios de layers
+builder.Services.AddHttpContextAccessor(); // Añadir el acceso al contexto HTTP
+
+// Servicios de las capas de la aplicación
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddPersistence(builder.Configuration);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Autorización
+builder.Services.AddAuthorization();
 
-
-builder.Services.AddSwaggerGen(swaggerGenOptions =>
-{
-    swaggerGenOptions.SwaggerDoc("v1",
-        new OpenApiInfo
-        {
-            Title = "AvBeacon API",
-            Version = "v1"
-        });
-
-    swaggerGenOptions.AddSecurityDefinition("Bearer",
-        new OpenApiSecurityScheme
-        {
-            Description = "JWT Authorization header using the Bearer scheme.",
-            Name = "Authorization",
-            In = ParameterLocation.Header,
-            Type = SecuritySchemeType.ApiKey,
-            Scheme = "Bearer"
-        });
-
-    swaggerGenOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-            },
-            Array.Empty<string>()
-        }
-    });
-});
+// Swagger & OpenAPI
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(swaggerUiOptions => swaggerUiOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "AvBeacon API"));
 }
 
+app.UseCustomExceptionHandler();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -132,7 +101,7 @@ app.MapPut("/users/user/update{userId:guid}",
                 .Ensure(req => req.UserId == userId, DomainErrors.General.UnProcessableRequest)
                 .Map(req => new UpdateUserCommand(req.UserId, req.FirstName, req.LastName))
                 .Bind(command => mediator.Send(command))
-                .Match(success => Results.Ok(),
+                .Match(Results.Ok,
                     error => Results.BadRequest(new { error.Code, error.Message }));
         })
     .Produces(StatusCodes.Status200OK)
@@ -144,25 +113,6 @@ app.MapPut("/users/user/update{userId:guid}",
 #endregion
 
 #region Applicants
-
-// app.MapPost("/user/add-skill/{applicantId:guid}&{skillId:guid}",
-//         async (Guid applicantId, Guid skillId, AddApplicantSkillRequest request, IMediator mediator) =>
-//         {
-//             request.ApplicantId = applicantId;
-//             request.SkillId = skillId;
-//             return await Result.Create(request, DomainErrors.General.UnProcessableRequest)
-//                 .Ensure(req => applicantId != Guid.Empty, DomainErrors.General.UnProcessableRequest)
-//                 .Ensure(req => skillId != Guid.Empty, DomainErrors.General.UnProcessableRequest)
-//                 .Map(req => new AddApplicantSkillCommand(req.ApplicantId, req.SkillId))
-//                 .Bind(command => mediator.Send(command))
-//                 .Match(success => Results.Ok(success),
-//                     error => Results.BadRequest(new Error(error.Code, error.Message)));
-//         })
-//     .Produces(StatusCodes.Status200OK)
-//     .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-//     .WithName("AddApplicantSkill")
-//     .WithTags("ApplicantSkills")
-//     .WithOpenApi();
 
 app.MapGet("/applicants",
         async (IMediator mediator) =>
@@ -181,8 +131,3 @@ app.MapGet("/applicants",
 #endregion
 
 app.Run();
-
-// record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-// {
-//     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-// }

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text.Json.Serialization;
 using AvBeacon.Application._Core.Behaviours;
 using FluentValidation;
 using MediatR;
@@ -8,9 +9,9 @@ namespace AvBeacon.Application;
 
 public static class DependencyInjection
 {
-    /// <summary> Registers the necessary services with the DI framework. </summary>
-    /// <param name="services"> The service collection. </param>
-    /// <returns> The same service collection. </returns>
+    /// <summary> Registra los servicios necesarios mediante inyección de dependencias. </summary>
+    /// <param name="services"> La colección de servicios. </param>
+    /// <returns> La misma colección de servicios. </returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

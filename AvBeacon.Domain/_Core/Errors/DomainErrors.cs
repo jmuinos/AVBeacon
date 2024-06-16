@@ -164,8 +164,16 @@ public static class DomainErrors
     /// <summary> Contains the authentication errors. </summary>
     public static class Authentication
     {
-        public static Error InvalidEmailOrPassword =>
-            new("Authentication.InvalidEmailOrPassword",
-                "The specified email or password are incorrect.");
+        public static Error EmailNotFound =>
+            new("Authentication.EmailNotFound",
+                "No accounts were found for the specified email.");
+
+        public static Error InvalidPassword =>
+            new("Authentication.InvalidPassword",
+                "The specified password is incorrect.");
+
+        public static Error UserNotFound =>
+            new("Authentication.UserNotFound",
+                "The user with the specified email was not found.");
     }
 }

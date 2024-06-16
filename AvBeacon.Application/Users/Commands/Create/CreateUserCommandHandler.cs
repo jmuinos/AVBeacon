@@ -61,7 +61,6 @@ internal sealed class CreateUserCommandHandler : ICommandHandler<CreateUserComma
                 return Result.Failure<TokenResponse>(DomainErrors.User.InvalidPermissions);
         }
 
-        //TODO: Comprobar si así se discrimina por UserType. Si no lo hace, hay que inyectar los repos de cada tipo para poder insertar en el repo correspondiente
         _userRepository.Insert(user);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);

@@ -13,18 +13,18 @@ namespace AvBeacon.Application.Authentication.Login.Commands;
 internal sealed class LoginCommandHandler : ICommandHandler<LoginCommand, Result<TokenResponse>>
 {
     private readonly IJwtProvider _jwtProvider;
-    private readonly IMyPasswordHashChecker _myPasswordHashChecker;
+    private readonly IPasswordHashChecker _passwordHashChecker;
     private readonly IUserRepository _userRepository;
 
     /// <summary> Initializes a new instance of the <see cref="LoginCommandHandler" /> class. </summary>
     /// <param name="userRepository"> The user repository. </param>
-    /// <param name="myPasswordHashChecker"> The password hash checker. </param>
+    /// <param name="passwordHashChecker"> The password hash checker. </param>
     /// <param name="jwtProvider"> The JWT provider. </param>
-    public LoginCommandHandler(IUserRepository userRepository, IMyPasswordHashChecker myPasswordHashChecker,
+    public LoginCommandHandler(IUserRepository userRepository, IPasswordHashChecker passwordHashChecker,
         IJwtProvider jwtProvider)
     {
         _userRepository = userRepository;
-        _myPasswordHashChecker = myPasswordHashChecker;
+        _passwordHashChecker = passwordHashChecker;
         _jwtProvider = jwtProvider;
     }
 
@@ -35,18 +35,19 @@ internal sealed class LoginCommandHandler : ICommandHandler<LoginCommand, Result
         var emailResult = Email.Create(request.Email);
 
         if (emailResult.IsFailure)
-            return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidEmailOrPassword);
+            return Result.Failure<TokenResponse>(DomainErrors.Authentication.EmailNotFound);
 
         var maybeUser = await _userRepository.GetByEmailAsync(emailResult.Value);
 
         if (maybeUser.HasNoValue)
-            return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidEmailOrPassword);
+            return Result.Failure<TokenResponse>(DomainErrors.Authentication.UserNotFound);
 
         var user = maybeUser.Value;
 
-        var passwordValid = user.VerifyPasswordHash(request.Password, _myPasswordHashChecker);
+        var passwordValid = user.VerifyPasswordHash(request.Password, _passwordHashChecker);
 
-        if (!passwordValid) return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidEmailOrPassword);
+        if (!passwordValid) 
+            return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidPassword);
 
         var token = _jwtProvider.Create(user);
 

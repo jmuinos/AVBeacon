@@ -19,9 +19,3 @@ db:
     ACCEPT_EULA: "Y"
   ports:
     - "1433:1433"
-
-  avbeaconapi-1:
-    image: avbeaconapi-1
-    build:
-      context: .
-      dockerfile: AvBeaconApi/Dockerfile

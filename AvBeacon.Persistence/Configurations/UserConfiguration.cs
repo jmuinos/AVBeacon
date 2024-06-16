@@ -11,6 +11,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.HasKey(u => u.Id);
 
+        builder.HasDiscriminator<string>("UserType")
+            .HasValue<Recruiter>("Recruiter")
+            .HasValue<Applicant>("Applicant");
+
         builder.Property(u => u.FirstName)
             .HasConversion(f => f.Value, v => FirstName.Create(v).Value)
             .IsRequired();
@@ -25,8 +29,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Ignore(u => u.FullName);
 
-        builder.HasDiscriminator<string>("User_Type")
-            .HasValue<Recruiter>("Recruiter")
-            .HasValue<Applicant>("Applicant");
+        builder.Property<string>("_passwordHash")
+            .HasField("_passwordHash")
+            .HasColumnName("PasswordHash")
+            .IsRequired();
     }
 }

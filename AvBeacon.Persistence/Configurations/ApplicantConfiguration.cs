@@ -9,21 +9,7 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
 {
     public void Configure(EntityTypeBuilder<Applicant> builder)
     {
-        builder.HasKey(a => a.Id);
-
-        builder.Property(a => a.FirstName)
-            .HasConversion(f => f.Value, v => FirstName.Create(v).Value)
-            .IsRequired();
-
-        builder.Property(a => a.LastName)
-            .HasConversion(l => l.Value, v => LastName.Create(v).Value)
-            .IsRequired();
-
-        builder.Property(a => a.Email)
-            .HasConversion(e => e.Value, v => Email.Create(v).Value)
-            .IsRequired();
-
-        builder.Ignore(a => a.FullName);
+        builder.HasBaseType<User>();
 
         // Relación muchos a muchos con Skill
         builder.HasMany(a => a.Skills)
@@ -46,10 +32,5 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
             .WithOne(e => e.Applicant)
             .HasForeignKey(e => e.ApplicantId)
             .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasDiscriminator<string>("User_Type")
-            .HasValue<User>("User")
-            .HasValue<Recruiter>("Recruiter")
-            .HasValue<Applicant>("Applicant");
     }
 }

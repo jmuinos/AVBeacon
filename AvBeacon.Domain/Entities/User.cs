@@ -38,10 +38,8 @@ public abstract class User : Entity
     /// <summary>Obtiene el nombre completo del usuario.</summary>
     public string FullName => $"{FirstName} {LastName}";
 
-    public bool VerifyPasswordHash(string password, IMyPasswordHashChecker myPasswordHashChecker)
-    {
-        return !string.IsNullOrWhiteSpace(password) && myPasswordHashChecker.HashesMatch(_passwordHash, password);
-    }
+    public bool VerifyPasswordHash(string password, IPasswordHashChecker passwordHashChecker) =>
+        !string.IsNullOrWhiteSpace(password) && passwordHashChecker.HashesMatch(_passwordHash, password);
 
     public Result ChangePassword(string passwordHash)
     {
