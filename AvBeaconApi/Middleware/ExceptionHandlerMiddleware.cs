@@ -46,7 +46,7 @@ internal class ExceptionHandlerMiddleware
     /// <returns>The HTTP response that is modified based on the exception.</returns>
     private static async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
     {
-        (var httpStatusCode, var errors) = GetHttpStatusCodeAndErrors(exception);
+        var (httpStatusCode, errors) = GetHttpStatusCodeAndErrors(exception);
 
         httpContext.Response.ContentType = "application/json";
 

@@ -12,6 +12,7 @@ using AvBeacon.Infrastructure;
 using AvBeacon.Persistence;
 using AvBeaconApi.Identity;
 using AvBeaconApi.Middleware;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -24,8 +25,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, loggerConfiguration) =>
     loggerConfiguration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddHttpContextAccessor(); // Add HTTP context accessor
+builder.Services
+    .AddHttpContextAccessor(); // Add HTTP context accessor
 
+builder.Services
+    .AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters();
 // Application layers services
 builder.Services
     .AddApplication()
