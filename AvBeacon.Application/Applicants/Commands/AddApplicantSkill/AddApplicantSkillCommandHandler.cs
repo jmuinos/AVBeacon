@@ -4,7 +4,7 @@ using AvBeacon.Domain._Core.Errors;
 using AvBeacon.Domain._Core.Primitives.Result;
 using AvBeacon.Domain.Repositories;
 
-namespace AvBeacon.Application.Applicants.Commands.CreateApplicantSkill;
+namespace AvBeacon.Application.Applicants.Commands.AddApplicantSkill;
 
 /// <summary> Handler para el comando <see cref="AddApplicantSkillCommand" />. </summary>
 internal sealed class AddApplicantSkillCommandHandler : ICommandHandler<AddApplicantSkillCommand, Result>
@@ -34,17 +34,16 @@ internal sealed class AddApplicantSkillCommandHandler : ICommandHandler<AddAppli
     public async Task<Result> Handle(AddApplicantSkillCommand request, CancellationToken cancellationToken)
     {
         var skillResult = await _skillRepository.GetByIdAsync(request.SkillId);
-        var applicantResult = await _applicantRepository.GetByIdAsync(request.ApplicantId);
-
         if (skillResult.HasNoValue)
             return Result.Failure(DomainErrors.Skill.NotFound);
 
+        var applicantResult = await _applicantRepository.GetByIdAsync(request.ApplicantId);
         if (applicantResult.HasNoValue)
             return Result.Failure(DomainErrors.Applicant.NotFound);
 
         var skill = skillResult.Value;
         var applicant = applicantResult.Value;
-
+        
         if (applicant.Skills.Any(s => s.Id == skill.Id))
             return Result.Failure(DomainErrors.Skill.AlreadyInSkillList);
 
@@ -53,6 +52,6 @@ internal sealed class AddApplicantSkillCommandHandler : ICommandHandler<AddAppli
         _applicantRepository.Update(applicant);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return Result.Success();
+        return Result.Success(applicantResult);
     }
 }

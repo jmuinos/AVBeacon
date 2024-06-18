@@ -9,6 +9,7 @@ internal sealed class UserIdentifierProvider : IUserIdentifierProvider
 {
     /// <summary> Initializes a new instance of the <see cref="UserIdentifierProvider" /> class. </summary>
     /// <param name="httpContextAccessor"> The HTTP context accessor. </param>
+    /// <exception cref="ArgumentException"></exception>
     public UserIdentifierProvider(IHttpContextAccessor httpContextAccessor)
     {
         var userIdClaim = httpContextAccessor.HttpContext?.User.FindFirstValue("userId")

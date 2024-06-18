@@ -9,7 +9,11 @@ public class ConfigureSwaggerOptions
 {
     public void Configure(SwaggerGenOptions options)
     {
-        options.SwaggerDoc("v1", new OpenApiInfo { Title = "AvBeacon API", Version = "v1" });
+        options.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Title = "AvBeacon API", 
+            Version = "v1"
+        });
 
         options.AddSecurityDefinition("Bearer",
             new OpenApiSecurityScheme

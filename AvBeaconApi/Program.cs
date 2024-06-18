@@ -10,6 +10,7 @@ using AvBeacon.Domain._Core.Primitives.Maybe;
 using AvBeacon.Domain._Core.Primitives.Result;
 using AvBeacon.Infrastructure;
 using AvBeacon.Persistence;
+using AvBeaconApi.Identity;
 using AvBeaconApi.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,20 +20,33 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar Serilog
+// Configure Serilog
 builder.Host.UseSerilog((context, loggerConfiguration) =>
     loggerConfiguration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddHttpContextAccessor(); // Añadir el acceso al contexto HTTP
+builder.Services.AddHttpContextAccessor(); // Add HTTP context accessor
 
-// Servicios de las capas de la aplicación
+// Application layers services
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddPersistence(builder.Configuration);
 
-// Autorización
-builder.Services.AddAuthorization();
+// Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(IdentityData.AdminUserPolicyName,
+        policy => policy.RequireClaim(IdentityData.AdminUserClaimName, "true"));
+
+    options.AddPolicy(IdentityData.GeneralUserPolicyName,
+        policy => policy.RequireClaim(IdentityData.GeneralUserClaimName, "true"));
+
+    options.AddPolicy(IdentityData.RecruiterUserPolicyName,
+        policy => policy.RequireClaim(IdentityData.RecruiterUserClaimName, "true"));
+
+    options.AddPolicy(IdentityData.ApplicantUserPolicyName,
+        policy => policy.RequireClaim(IdentityData.ApplicantUserClaimName, "true"));
+});
 
 // Swagger & OpenAPI
 builder.Services
@@ -42,7 +56,7 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -64,8 +78,7 @@ app.MapPost("/login",
             return await Result.Create(loginUserRequest, DomainErrors.General.UnProcessableRequest)
                 .Map(request => new LoginCommand(request.Email, request.Password))
                 .Bind(command => mediator.Send(command))
-                .Match(success => Results.Ok(success),
-                    error => Results.BadRequest(new { error.Code, error.Message }));
+                .Match(Results.Ok, error => Results.BadRequest(new { error.Code, error.Message }));
         })
     .Produces<TokenResponse>()
     .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
@@ -82,8 +95,7 @@ app.MapPost("/register",
                     request.Password,
                     request.UserType))
                 .Bind(command => mediator.Send(command))
-                .Match(success => Results.Ok(success),
-                    error => Results.BadRequest(new { error.Code, error.Message }));
+                .Match(Results.Ok, error => Results.BadRequest(new { error.Code, error.Message }));
         })
     .Produces<TokenResponse>()
     .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
@@ -94,15 +106,17 @@ app.MapPost("/register",
 
 #region User Endpoints
 
-app.MapPut("/users/user/update{userId:guid}",
-        async (Guid userId, UpdateUserRequest request, IMediator mediator) =>
+app.MapPut("/users/user/update/{userId:guid}",
+        async (Guid userId, UpdateUserRequest updateUserRequest, IMediator mediator) =>
         {
-            return await Result.Create(request, DomainErrors.General.UnProcessableRequest)
-                .Ensure(req => req.UserId == userId, DomainErrors.General.UnProcessableRequest)
-                .Map(req => new UpdateUserCommand(req.UserId, req.FirstName, req.LastName))
-                .Bind(command => mediator.Send(command))
-                .Match(Results.Ok,
-                    error => Results.BadRequest(new { error.Code, error.Message }));
+            return await Result.Create(updateUserRequest, DomainErrors.General.UnProcessableRequest)
+                .Ensure(request => request.UserId == userId, DomainErrors.General.UnProcessableRequest)
+                .Map(request => new UpdateUserCommand(request.UserId, request.FirstName, request.LastName))
+                .Bind<UpdateUserCommand, Result>(async command => await mediator.Send(command))
+                .Match<Result, IResult>(
+                    onSuccess: success => Results.Ok(),
+                    onFailure: error => Results.BadRequest(new { error.Code, error.Message })
+                );
         })
     .Produces(StatusCodes.Status200OK)
     .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
@@ -112,14 +126,14 @@ app.MapPut("/users/user/update{userId:guid}",
 
 #endregion
 
-#region Applicants
+#region Applicant Endpoints
 
 app.MapGet("/applicants",
         async (IMediator mediator) =>
         {
             var result = await Maybe<GetAllApplicantsQuery>.From(new GetAllApplicantsQuery())
                 .Bind(query => mediator.Send(query))
-                .Match(success => Results.Ok(success), () => Results.NotFound());
+                .Match(Results.Ok, () => Results.NotFound());
             return result;
         })
     .Produces<List<Maybe<UserResponse>>>()

@@ -1,9 +1,23 @@
-﻿namespace AvBeacon.Contracts.Requests;
-
-/// <summary> Representa la solicitud de actualización de usuario. </summary>
-public sealed record UpdateUserRequest
+﻿namespace AvBeacon.Contracts.Requests
 {
-    public Guid UserId { get; set; }
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
+    /// <summary>
+    /// Represents the update user request.
+    /// </summary>
+    public sealed class UpdateUserRequest
+    {
+        /// <summary>
+        /// Gets or sets the user identifier.
+        /// </summary>
+        public Guid UserId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the first name.
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last name.
+        /// </summary>
+        public string LastName { get; set; }
+    }
 }

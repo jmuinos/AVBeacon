@@ -3,7 +3,7 @@ using AvBeacon.Application._Core.Errors;
 using AvBeacon.Application.Authentication.Update;
 using FluentValidation;
 
-namespace AvBeacon.Application.Applicants.Commands.CreateApplicantSkill;
+namespace AvBeacon.Application.Applicants.Commands.AddApplicantSkill;
 
 /// <summary> Represents the <see cref="UpdateUserCommand" /> validator. </summary>
 internal sealed class AddApplicantSkillCommandValidator : AbstractValidator<UpdateUserCommand>

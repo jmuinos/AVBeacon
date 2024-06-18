@@ -29,22 +29,18 @@ internal sealed class LoginCommandHandler : ICommandHandler<LoginCommand, Result
     }
 
     /// <inheritdoc />
-    public async Task<Result<TokenResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<TokenResponse>> Handle(LoginCommand command, CancellationToken cancellationToken)
     {
-        //TODO: Comprobar que funcione buscar user de forma dinámica o si hay que inyectar repos específicos y configurar la búsqueda (SI HAY QUE HACERLO, CHUNGO)
-        var emailResult = Email.Create(request.Email);
-
+        var emailResult = Email.Create(command.Email);
         if (emailResult.IsFailure)
             return Result.Failure<TokenResponse>(DomainErrors.Authentication.EmailNotFound);
 
         var maybeUser = await _userRepository.GetByEmailAsync(emailResult.Value);
-
         if (maybeUser.HasNoValue)
             return Result.Failure<TokenResponse>(DomainErrors.Authentication.UserNotFound);
 
         var user = maybeUser.Value;
-
-        var passwordValid = user.VerifyPasswordHash(request.Password, _passwordHashChecker);
+        var passwordValid = user.VerifyPasswordHash(command.Password, _passwordHashChecker);
 
         if (!passwordValid) 
             return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidPassword);
