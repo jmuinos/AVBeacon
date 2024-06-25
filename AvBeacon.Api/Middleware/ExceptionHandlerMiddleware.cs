@@ -1,12 +1,12 @@
 ﻿using System.Net;
 using System.Text.Json;
+using AvBeacon.Api.Contracts;
 using AvBeacon.Application._Core.Exceptions;
 using AvBeacon.Domain._Core.Errors;
 using AvBeacon.Domain._Core.Exceptions;
 using AvBeacon.Domain._Core.Primitives;
-using AvBeaconApi.Contracts;
 
-namespace AvBeaconApi.Middleware;
+namespace AvBeacon.Api.Middleware;
 
 /// <summary>Represents the exception handler middleware.</summary>
 internal class ExceptionHandlerMiddleware

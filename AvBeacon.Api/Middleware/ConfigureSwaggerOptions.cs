@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AvBeaconApi.Middleware;
+namespace AvBeacon.Api.Middleware;
 
 public class ConfigureSwaggerOptions
     : IConfigureOptions<SwaggerGenOptions>

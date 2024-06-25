@@ -1,4 +1,4 @@
-﻿namespace AvBeaconApi.Identity;
+﻿namespace AvBeacon.Api.Identity;
 
 public class IdentityData
 {

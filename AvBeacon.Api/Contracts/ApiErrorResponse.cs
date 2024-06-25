@@ -1,6 +1,6 @@
 ﻿using AvBeacon.Domain._Core.Primitives;
 
-namespace AvBeaconApi.Contracts;
+namespace AvBeacon.Api.Contracts;
 
 /// <summary>Represents API an error response.</summary>
 public class ApiErrorResponse
