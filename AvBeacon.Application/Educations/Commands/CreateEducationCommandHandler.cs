@@ -1,9 +1,8 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Primitives.Result;
-using AvBeacon.Domain.Entities;
-using AvBeacon.Domain.Enumerations;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Primitives.Result;
 using AvBeacon.Domain.ValueObjects;
 
 namespace AvBeacon.Application.Educations.Commands;
@@ -17,7 +16,11 @@ internal sealed class CreateEducationCommandHandler : ICommandHandler<CreateEduc
     /// <summary> Inicializa una nueva instancia de la clase <see cref="CreateEducationCommandHandler" />. </summary>
     /// <param name="unitOfWork"> La unidad de trabajo. </param>
     /// <param name="dbContext"> El contexto de base de datos. </param>
-    public CreateEducationCommandHandler(IUnitOfWork unitOfWork, IDbContext dbContext){ _unitOfWork = unitOfWork; _dbContext = dbContext; }
+    public CreateEducationCommandHandler(IUnitOfWork unitOfWork, IDbContext dbContext)
+    {
+        _unitOfWork = unitOfWork;
+        _dbContext = dbContext;
+    }
 
     /// <inheritdoc />
     public async Task<Result> Handle(CreateEducationCommand request, CancellationToken cancellationToken)

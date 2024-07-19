@@ -1,4 +1,4 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
+﻿using AvBeacon.Application.Abstractions.Data;
 using AvBeacon.Domain.Repositories;
 using AvBeacon.Persistence.Infrastructure;
 using AvBeacon.Persistence.Repositories;

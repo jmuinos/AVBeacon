@@ -1,5 +1,5 @@
-﻿using AvBeacon.Domain.Entities;
-using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

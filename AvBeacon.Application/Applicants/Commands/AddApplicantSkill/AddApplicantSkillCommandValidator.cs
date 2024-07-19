@@ -1,6 +1,6 @@
-﻿using AvBeacon.Application._Core.Abstractions.Extensions;
-using AvBeacon.Application._Core.Errors;
-using AvBeacon.Application.Authentication.Update;
+﻿using AvBeacon.Application.Authentication.Update;
+using AvBeacon.Application.Core.Errors;
+using AvBeacon.Application.Core.Extensions;
 using FluentValidation;
 
 namespace AvBeacon.Application.Applicants.Commands.AddApplicantSkill;

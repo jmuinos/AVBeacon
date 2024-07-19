@@ -1,5 +1,5 @@
-﻿using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
+﻿using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.Educations;
 
 namespace AvBeacon.Application.Educations.Queries.GetByApplicantId;
 

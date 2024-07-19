@@ -1,4 +1,4 @@
-﻿using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Domain.Recruiters;
 
 namespace AvBeacon.Domain.Repositories;
 

@@ -1,24 +1,27 @@
 ﻿using System.Security.Claims;
-using AvBeacon.Application._Core.Abstractions.Authentication;
+using AvBeacon.Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace AvBeacon.Infrastructure.Authentication;
-
-/// <summary> Represents the user identifier provider. </summary>
-internal sealed class UserIdentifierProvider : IUserIdentifierProvider
+namespace AvBeacon.Infrastructure.Authentication
 {
-    /// <summary> Initializes a new instance of the <see cref="UserIdentifierProvider" /> class. </summary>
-    /// <param name="httpContextAccessor"> The HTTP context accessor. </param>
-    /// <exception cref="ArgumentException"></exception>
-    public UserIdentifierProvider(IHttpContextAccessor httpContextAccessor)
+    /// <summary>
+    /// Represents the user identifier provider.
+    /// </summary>
+    internal sealed class UserIdentifierProvider : IUserIdentifierProvider
     {
-        var userIdClaim = httpContextAccessor.HttpContext?.User.FindFirstValue("userId")
-                          ?? throw new ArgumentException("The user identifier claim is required.",
-                              nameof(httpContextAccessor));
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserIdentifierProvider"/> class.
+        /// </summary>
+        /// <param name="httpContextAccessor">The HTTP context accessor.</param>
+        public UserIdentifierProvider(IHttpContextAccessor httpContextAccessor)
+        {
+            var userIdClaim = httpContextAccessor.HttpContext?.User?.FindFirstValue("userId")
+                              ?? throw new ArgumentException("The user identifier claim is required.", nameof(httpContextAccessor));
 
-        UserId = new Guid(userIdClaim);
+            UserId = new Guid(userIdClaim);
+        }
+
+        /// <inheritdoc />
+        public Guid UserId { get; }
     }
-
-    /// <inheritdoc />
-    public Guid UserId { get; }
 }

@@ -3,15 +3,15 @@ using AvBeacon.Application.Applicants.Queries.GetAll;
 using AvBeacon.Application.Authentication.Login.Commands;
 using AvBeacon.Application.Authentication.Update;
 using AvBeacon.Application.Users.Commands.Create;
-using AvBeacon.Contracts.Requests;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Primitives.Maybe;
-using AvBeacon.Domain._Core.Primitives.Result;
 using AvBeacon.Infrastructure;
 using AvBeacon.Persistence;
 using AvBeacon.Api.Identity;
 using AvBeacon.Api.Middleware;
+using AvBeacon.Contracts.Authentication;
+using AvBeacon.Contracts.Users;
+using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Primitives.Maybe;
+using AvBeacon.Domain.Core.Primitives.Result;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -78,7 +78,7 @@ app.UseRouting();
 #region Authentication Endpoints
 
 app.MapPost("/login",
-        async (LoginUserRequest loginUserRequest, IMediator mediator) =>
+        async (LoginRequest loginUserRequest, IMediator mediator) =>
         {
             return await Result.Create(loginUserRequest, DomainErrors.General.UnProcessableRequest)
                 .Map(request => new LoginCommand(request.Email, request.Password))
@@ -91,7 +91,7 @@ app.MapPost("/login",
     .WithOpenApi();
 
 app.MapPost("/register",
-        async (RegisterUserRequest registerRequest, IMediator mediator) =>
+        async (RegisterRequest registerRequest, IMediator mediator) =>
         {
             return await Result.Create(registerRequest, DomainErrors.General.UnProcessableRequest)
                 .Map(request => new CreateUserCommand(request.FirstName,

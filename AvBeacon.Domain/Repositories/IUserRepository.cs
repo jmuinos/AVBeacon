@@ -1,6 +1,5 @@
-using AvBeacon.Domain._Core.Primitives.Maybe;
-using AvBeacon.Domain.Entities;
-using AvBeacon.Domain.ValueObjects;
+using AvBeacon.Domain.Core.Primitives.Maybe;
+using AvBeacon.Domain.Users;
 
 namespace AvBeacon.Domain.Repositories;
 

@@ -1,6 +1,5 @@
-﻿using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Domain._Core.Primitives.Result;
-using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Domain.Core.Primitives.Result;
 
 namespace AvBeacon.Application.Authentication.Update;
 

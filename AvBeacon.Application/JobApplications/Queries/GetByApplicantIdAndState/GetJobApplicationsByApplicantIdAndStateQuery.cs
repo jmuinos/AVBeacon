@@ -1,6 +1,6 @@
-﻿using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain.Enumerations;
+﻿using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.JobApplications;
+using AvBeacon.Domain.Applicants;
 
 namespace AvBeacon.Application.JobApplications.Queries.GetByApplicantIdAndState;
 

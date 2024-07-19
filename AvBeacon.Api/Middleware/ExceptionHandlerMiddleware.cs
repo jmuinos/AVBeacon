@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Text.Json;
 using AvBeacon.Api.Contracts;
-using AvBeacon.Application._Core.Exceptions;
-using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Exceptions;
-using AvBeacon.Domain._Core.Primitives;
+using AvBeacon.Application.Core.Exceptions;
+using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Exceptions;
+using AvBeacon.Domain.Core.Primitives;
 
 namespace AvBeacon.Api.Middleware;
 

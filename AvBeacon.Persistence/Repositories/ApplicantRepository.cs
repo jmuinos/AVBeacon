@@ -1,8 +1,8 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Domain._Core.Primitives.Maybe;
-using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.Core.Primitives.Maybe;
 using AvBeacon.Domain.Repositories;
-using AvBeacon.Domain.ValueObjects;
+using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;

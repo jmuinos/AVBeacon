@@ -1,26 +1,29 @@
 ﻿using System.Reflection;
-using AvBeacon.Application._Core.Behaviours;
+using AvBeacon.Application.Core.Behaviors;
 using FluentValidation;
-using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AvBeacon.Application;
 
 public static class DependencyInjection
 {
-    /// <summary> Registra los servicios necesarios mediante inyección de dependencias. </summary>
-    /// <param name="services"> La colección de servicios. </param>
-    /// <returns> La misma colección de servicios. </returns>
+    /// <summary>
+    /// Registers the necessary services with the DI framework.
+    /// </summary>
+    /// <param name="services">The service collection.</param>
+    /// <returns>The same service collection.</returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
 
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>));
+            cfg.AddOpenBehavior(typeof(TransactionBehaviour<,>));
+        });
 
         return services;
     }

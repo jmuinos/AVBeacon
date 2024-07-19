@@ -1,13 +1,14 @@
-﻿using AvBeacon.Application._Core.Abstractions.Authentication;
-using AvBeacon.Application._Core.Abstractions.Cryptography;
-using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Primitives.Result;
-using AvBeacon.Domain.Entities;
-using AvBeacon.Domain.Repositories;
-using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Application.Abstractions.Authentication;
+using AvBeacon.Application.Abstractions.Cryptography;
+using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.Authentication;
+using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Primitives.Result;
+using AvBeacon.Domain.Recruiters;
+using AvBeacon.Domain.Users;
+using IUserRepository = AvBeacon.Domain.Repositories.IUserRepository;
 
 namespace AvBeacon.Application.Users.Commands.Create;
 

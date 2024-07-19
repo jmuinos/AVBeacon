@@ -1,9 +1,14 @@
-﻿using AvBeacon.Application._Core.Abstractions.Common;
+﻿
+using AvBeacon.Application.Abstractions.Common;
 
-namespace AvBeacon.Infrastructure.Common;
-
-internal sealed class MachineDateTime : IDateTime
+namespace AvBeacon.Infrastructure.Common
 {
-    /// <inheritdoc />
-    public DateTime UtcNow => DateTime.UtcNow;
+    /// <summary>
+    /// Represents the machine date time service.
+    /// </summary>
+    internal sealed class MachineDateTime : IDateTime
+    {
+        /// <inheritdoc />
+        public DateTime UtcNow => DateTime.UtcNow;
+    }
 }

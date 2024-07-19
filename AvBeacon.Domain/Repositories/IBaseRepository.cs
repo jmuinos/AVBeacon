@@ -1,5 +1,5 @@
-﻿using AvBeacon.Domain._Core.Primitives;
-using AvBeacon.Domain._Core.Primitives.Maybe;
+﻿using AvBeacon.Domain.Core.Primitives;
+using AvBeacon.Domain.Core.Primitives.Maybe;
 
 namespace AvBeacon.Domain.Repositories;
 

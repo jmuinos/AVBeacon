@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Contracts", "AvBea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Infrastructure", "AvBeacon.Infrastructure\AvBeacon.Infrastructure.csproj", "{84CF24B8-F93B-43BB-8840-34CFB5B0942F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{143B3636-642A-4FC5-A95F-AAE95E92A0BE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-compose", "docker-compose", "{143B3636-642A-4FC5-A95F-AAE95E92A0BE}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection

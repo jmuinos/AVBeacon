@@ -1,7 +1,7 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Primitives.Result;
-using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Contracts.Authentication;
+using AvBeacon.Domain.Core.Primitives.Result;
+using AvBeacon.Domain.Recruiters;
 using AvBeacon.Domain.Repositories;
 using AvBeacon.Domain.ValueObjects;
 using MediatR;

@@ -1,6 +1,6 @@
-﻿using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Primitives.Result;
+﻿using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.Authentication;
+using AvBeacon.Domain.Core.Primitives.Result;
 
 namespace AvBeacon.Application.Authentication.Login.Commands;
 

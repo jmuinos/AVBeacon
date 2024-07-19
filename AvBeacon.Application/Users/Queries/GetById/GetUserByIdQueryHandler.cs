@@ -1,13 +1,13 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Primitives.Maybe;
-using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.Users;
+using AvBeacon.Domain.Core.Primitives.Maybe;
+using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Application.Users.Queries.GetById;
 
-/// <summary> Representa el manejador de la consulta <see cref="GetUserByIdQuery" />. </summary>
+/// <summary> Representa el hadler de la consulta <see cref="GetUserByIdQuery" />. </summary>
 internal sealed class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, Maybe<UserResponse>>
 {
     private readonly IDbContext _dbContext;

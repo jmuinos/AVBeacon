@@ -1,5 +1,5 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Domain.Recruiters;
 using AvBeacon.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 

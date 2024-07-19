@@ -1,8 +1,8 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Primitives.Maybe;
-using AvBeacon.Domain.Entities;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.JobOffers;
+using AvBeacon.Domain.Core.Primitives.Maybe;
+using AvBeacon.Domain.Recruiters;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Application.JobOffers.Queries.GetById;

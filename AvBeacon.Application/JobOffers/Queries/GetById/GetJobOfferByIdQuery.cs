@@ -1,6 +1,6 @@
-﻿using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Primitives.Maybe;
+﻿using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.JobOffers;
+using AvBeacon.Domain.Core.Primitives.Maybe;
 
 namespace AvBeacon.Application.JobOffers.Queries.GetById;
 

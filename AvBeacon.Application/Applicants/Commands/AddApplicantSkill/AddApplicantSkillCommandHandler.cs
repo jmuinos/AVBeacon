@@ -1,7 +1,7 @@
-﻿using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Primitives.Result;
+﻿using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Primitives.Result;
 using AvBeacon.Domain.Repositories;
 
 namespace AvBeacon.Application.Applicants.Commands.AddApplicantSkill;
@@ -43,7 +43,7 @@ internal sealed class AddApplicantSkillCommandHandler : ICommandHandler<AddAppli
 
         var skill = skillResult.Value;
         var applicant = applicantResult.Value;
-        
+
         if (applicant.Skills.Any(s => s.Id == skill.Id))
             return Result.Failure(DomainErrors.Skill.AlreadyInSkillList);
 

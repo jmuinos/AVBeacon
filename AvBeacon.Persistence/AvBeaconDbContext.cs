@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using AvBeacon.Application._Core.Abstractions.Data;
-using AvBeacon.Domain._Core.Primitives;
-using AvBeacon.Domain._Core.Primitives.Maybe;
+using AvBeacon.Application.Abstractions.Data;
+using AvBeacon.Domain.Core.Primitives;
+using AvBeacon.Domain.Core.Primitives.Maybe;
 using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Primitives;
-using AvBeacon.Domain._Core.Primitives.Result;
+﻿using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Primitives;
+using AvBeacon.Domain.Core.Primitives.Result;
 
 namespace AvBeacon.Domain.ValueObjects;
 

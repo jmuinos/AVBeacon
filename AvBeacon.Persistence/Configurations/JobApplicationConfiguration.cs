@@ -1,5 +1,4 @@
-﻿using AvBeacon.Domain.Entities;
-using AvBeacon.Domain.Enumerations;
+﻿using AvBeacon.Domain.Applicants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AvBeacon.Domain\AvBeacon.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

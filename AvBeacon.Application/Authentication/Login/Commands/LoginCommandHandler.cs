@@ -1,11 +1,9 @@
-﻿using AvBeacon.Application._Core.Abstractions.Authentication;
-using AvBeacon.Application._Core.Abstractions.Messaging;
-using AvBeacon.Contracts.Responses;
-using AvBeacon.Domain._Core.Errors;
-using AvBeacon.Domain._Core.Primitives.Result;
-using AvBeacon.Domain.Repositories;
-using AvBeacon.Domain.Services;
-using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Application.Abstractions.Authentication;
+using AvBeacon.Application.Abstractions.Messaging;
+using AvBeacon.Contracts.Authentication;
+using AvBeacon.Domain.Core.Errors;
+using AvBeacon.Domain.Core.Primitives.Result;
+using AvBeacon.Domain.Users;
 
 namespace AvBeacon.Application.Authentication.Login.Commands;
 
@@ -42,7 +40,7 @@ internal sealed class LoginCommandHandler : ICommandHandler<LoginCommand, Result
         var user = maybeUser.Value;
         var passwordValid = user.VerifyPasswordHash(command.Password, _passwordHashChecker);
 
-        if (!passwordValid) 
+        if (!passwordValid)
             return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidPassword);
 
         var token = _jwtProvider.Create(user);

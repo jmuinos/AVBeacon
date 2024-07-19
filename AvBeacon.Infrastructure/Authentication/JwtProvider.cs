@@ -1,58 +1,63 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using AvBeacon.Application._Core.Abstractions.Authentication;
-using AvBeacon.Application._Core.Abstractions.Common;
-using AvBeacon.Domain.Entities;
+using AvBeacon.Application.Abstractions.Authentication;
+using AvBeacon.Application.Abstractions.Common;
+using AvBeacon.Domain.Users;
 using AvBeacon.Infrastructure.Authentication.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace AvBeacon.Infrastructure.Authentication;
-
-/// <summary> Represents the JWT provider. </summary>
-internal sealed class JwtProvider : IJwtProvider
+namespace AvBeacon.Infrastructure.Authentication
 {
-    private readonly IDateTime _dateTime;
-    private readonly JwtSettings _jwtSettings;
-
-    /// <summary> Initializes a new instance of the <see cref="JwtProvider" /> class. </summary>
-    /// <param name="jwtOptions"> The JWT options. </param>
-    /// <param name="dateTime"> The current date and time. </param>
-    public JwtProvider(
-        IOptions<JwtSettings> jwtOptions,
-        IDateTime dateTime)
+    /// <summary>
+    /// Represents the JWT provider.
+    /// </summary>
+    internal sealed class JwtProvider : IJwtProvider
     {
-        _jwtSettings = jwtOptions.Value;
-        _dateTime = dateTime;
-    }
+        private readonly JwtSettings _jwtSettings;
+        private readonly IDateTime _dateTime;
 
-    /// <inheritdoc />
-    public string Create(User user)
-    {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
-
-        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        Claim[] claims =
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JwtProvider"/> class.
+        /// </summary>
+        /// <param name="jwtOptions">The JWT options.</param>
+        /// <param name="dateTime">The current date and time.</param>
+        public JwtProvider(
+            IOptions<JwtSettings> jwtOptions,
+            IDateTime dateTime)
         {
-            new("userId", user.Id.ToString()),
-            new("email", user.Email),
-            new("name", user.FullName)
-        };
+            _jwtSettings = jwtOptions.Value;
+            _dateTime = dateTime;
+        }
 
-        var tokenExpirationTime = _dateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
+        /// <inheritdoc />
+        public string Create(User user)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
 
-        var token = new JwtSecurityToken(
-            _jwtSettings.Issuer,
-            _jwtSettings.Audience,
-            claims,
-            null,
-            tokenExpirationTime,
-            signingCredentials);
+            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-        var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+            Claim[] claims = 
+            {
+                new Claim("userId", user.Id.ToString()),
+                new Claim("email", user.Email),
+                new Claim("name", user.FullName)
+            };
 
-        return tokenValue;
+            DateTime tokenExpirationTime = _dateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
+
+            var token = new JwtSecurityToken(
+                _jwtSettings.Issuer,
+                _jwtSettings.Audience,
+                claims,
+                null,
+                tokenExpirationTime,
+                signingCredentials);
+
+            string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return tokenValue;
+        }
     }
 }

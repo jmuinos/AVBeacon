@@ -1,4 +1,4 @@
-﻿namespace AvBeacon.Application.Skills.Queries.GetByApplicantId;
+﻿namespace AvBeacon.Application.Skills.Queries.GetSkillById;
 
 // /// <summary> Representa el manejador de la consulta <see cref="GetSkillsByApplicantIdQuery" /> </summary>
 // internal sealed class
