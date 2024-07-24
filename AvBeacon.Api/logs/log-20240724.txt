@@ -1,0 +1,170 @@
+2024-07-24 19:20:56.207 +02:00 [ERR] An exception occurred: Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Program.<>c.<<Main>$>b__0_12(Error error) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 80
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 90
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 77
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+2024-07-24 19:25:24.076 +02:00 [ERR] An exception occurred: Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Program.<>c.<<Main>$>b__0_12(Error error) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 80
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 90
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 77
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+2024-07-24 19:40:27.330 +02:00 [ERR] An exception occurred: The user identifier claim is required. (Parameter 'httpContextAccessor')
+System.ArgumentException: The user identifier claim is required. (Parameter 'httpContextAccessor')
+   at AvBeacon.Infrastructure.Authentication.UserIdentifierProvider..ctor(IHttpContextAccessor httpContextAccessor) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Infrastructure\Authentication\UserIdentifierProvider.cs:line 18
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 36
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 46
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 47
+   at AvBeacon.Application.Core.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\ValidationBehaviour.cs:line 47
+   at Program.<>c__DisplayClass0_2.<<<Main>$>b__18>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 114
+--- End of stack trace from previous location ---
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Bind[TIn,TOut](Result`1 result, Func`2 func) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 54
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 88
+   at Program.<>c.<<<Main>$>b__0_8>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 111
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+2024-07-24 19:43:26.749 +02:00 [ERR] An exception occurred: The user identifier claim is required. (Parameter 'httpContextAccessor')
+System.ArgumentException: The user identifier claim is required. (Parameter 'httpContextAccessor')
+   at AvBeacon.Infrastructure.Authentication.UserIdentifierProvider..ctor(IHttpContextAccessor httpContextAccessor) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Infrastructure\Authentication\UserIdentifierProvider.cs:line 18
+   at InvokeStub_UserIdentifierProvider..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 36
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 46
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 47
+   at AvBeacon.Application.Core.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\ValidationBehaviour.cs:line 47
+   at Program.<>c__DisplayClass0_2.<<<Main>$>b__18>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 114
+--- End of stack trace from previous location ---
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Bind[TIn,TOut](Result`1 result, Func`2 func) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 54
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 88
+   at Program.<>c.<<<Main>$>b__0_8>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 111
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+2024-07-24 19:50:58.350 +02:00 [ERR] An exception occurred: The user identifier claim is required. (Parameter 'httpContextAccessor')
+System.ArgumentException: The user identifier claim is required. (Parameter 'httpContextAccessor')
+   at AvBeacon.Infrastructure.Authentication.UserIdentifierProvider..ctor(IHttpContextAccessor httpContextAccessor) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Infrastructure\Authentication\UserIdentifierProvider.cs:line 18
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 36
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 46
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 47
+   at AvBeacon.Application.Core.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\ValidationBehaviour.cs:line 47
+   at Program.<>c__DisplayClass0_2.<<<Main>$>b__18>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 114
+--- End of stack trace from previous location ---
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Bind[TIn,TOut](Result`1 result, Func`2 func) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 54
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 88
+   at Program.<>c.<<<Main>$>b__0_8>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 111
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+2024-07-24 19:58:16.103 +02:00 [ERR] An exception occurred: The user identifier claim is required. (Parameter 'httpContextAccessor')
+System.ArgumentException: The user identifier claim is required. (Parameter 'httpContextAccessor')
+   at AvBeacon.Infrastructure.Authentication.UserIdentifierProvider..ctor(IHttpContextAccessor httpContextAccessor) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Infrastructure\Authentication\UserIdentifierProvider.cs:line 18
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 36
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 46
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 47
+   at AvBeacon.Application.Core.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\ValidationBehaviour.cs:line 47
+   at Program.<>c__DisplayClass0_2.<<<Main>$>b__17>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 113
+--- End of stack trace from previous location ---
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Bind[TIn,TOut](Result`1 result, Func`2 func) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 54
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 88
+   at Program.<>c.<<<Main>$>b__0_8>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 111
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33

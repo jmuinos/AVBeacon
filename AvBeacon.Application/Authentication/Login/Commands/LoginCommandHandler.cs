@@ -3,6 +3,7 @@ using AvBeacon.Application.Abstractions.Messaging;
 using AvBeacon.Contracts.Authentication;
 using AvBeacon.Domain.Core.Errors;
 using AvBeacon.Domain.Core.Primitives.Result;
+using AvBeacon.Domain.Repositories;
 using AvBeacon.Domain.Users;
 
 namespace AvBeacon.Application.Authentication.Login.Commands;

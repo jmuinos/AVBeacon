@@ -19,6 +19,7 @@ public static class DependencyInjection
         services.AddScoped<IDbContext>(serviceProvider => serviceProvider.GetRequiredService<AvBeaconDbContext>());
         services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<AvBeaconDbContext>());
 
+        services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IApplicantRepository, ApplicantRepository>();
         services.AddScoped<IEducationRepository, EducationRepository>();
         services.AddScoped<IExperienceRepository, ExperienceRepository>();

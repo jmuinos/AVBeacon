@@ -7,16 +7,12 @@ using AvBeacon.Domain.Users.DomainEvents;
 
 namespace AvBeacon.Domain.Users;
 
-/// <summary>
-/// Represents the user entity.
-/// </summary>
+/// <summary>Represents the user entity.</summary>
 public class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
 {
     private string _passwordHash;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="User"/> class.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="User" /> class.</summary>
     /// <param name="firstName">The user first name.</param>
     /// <param name="lastName">The user last name.</param>
     /// <param name="email">The user email instance.</param>
@@ -35,32 +31,20 @@ public class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
         _passwordHash = passwordHash;
     }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="User"/> class.
-    /// </summary>
-    /// <remarks>
-    /// Required by EF Core.
-    /// </remarks>
+    /// <summary>Initializes a new instance of the <see cref="User" /> class.</summary>
+    /// <remarks>Required by EF Core.</remarks>
     private User() { }
 
-    /// <summary>
-    /// Gets the user first name.
-    /// </summary>
+    /// <summary>Gets the user first name.</summary>
     public FirstName FirstName { get; private set; }
 
-    /// <summary>
-    /// Gets the user last name.
-    /// </summary>
+    /// <summary>Gets the user last name.</summary>
     public LastName LastName { get; private set; }
 
-    /// <summary>
-    /// Gets the user full name.
-    /// </summary>
+    /// <summary>Gets the user full name.</summary>
     public string FullName => $"{FirstName} {LastName}";
 
-    /// <summary>
-    /// Gets the user email.
-    /// </summary>
+    /// <summary>Gets the user email.</summary>
     public Email Email { get; private set; }
 
     /// <inheritdoc />
@@ -75,9 +59,7 @@ public class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
     /// <inheritdoc />
     public bool Deleted { get; }
 
-    /// <summary>
-    /// Creates a new user with the specified first name, last name, email and password hash.
-    /// </summary>
+    /// <summary>Creates a new user with the specified first name, last name, email and password hash.</summary>
     /// <param name="firstName">The first name.</param>
     /// <param name="lastName">The last name.</param>
     /// <param name="email">The email.</param>
@@ -92,26 +74,21 @@ public class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
         return user;
     }
 
-    /// <summary>
-    /// Verifies that the provided password hash matches the password hash.
-    /// </summary>
+    /// <summary>Verifies that the provided password hash matches the password hash.</summary>
     /// <param name="password">The password to be checked against the user password hash.</param>
     /// <param name="passwordHashChecker">The password hash checker.</param>
     /// <returns>True if the password hashes match, otherwise false.</returns>
-    public bool VerifyPasswordHash(string password, IPasswordHashChecker passwordHashChecker) =>
-        !string.IsNullOrWhiteSpace(password) && passwordHashChecker.HashesMatch(_passwordHash, password);
+    public bool VerifyPasswordHash(string password, IPasswordHashChecker passwordHashChecker)
+    {
+        return !string.IsNullOrWhiteSpace(password) && passwordHashChecker.HashesMatch(_passwordHash, password);
+    }
 
-    /// <summary>
-    /// Changes the users password.
-    /// </summary>
+    /// <summary>Changes the users password.</summary>
     /// <param name="passwordHash">The password hash of the new password.</param>
     /// <returns>The success result or an error.</returns>
     public Result ChangePassword(string passwordHash)
     {
-        if (passwordHash == _passwordHash)
-        {
-            return Result.Failure(DomainErrors.User.CannotChangePassword);
-        }
+        if (passwordHash == _passwordHash) return Result.Failure(DomainErrors.User.CannotChangePassword);
 
         _passwordHash = passwordHash;
 
@@ -120,9 +97,7 @@ public class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
         return Result.Success();
     }
 
-    /// <summary>
-    /// Changes the users first and last name.
-    /// </summary>
+    /// <summary>Changes the users first and last name.</summary>
     /// <param name="firstName">The new first name.</param>
     /// <param name="lastName">The new last name.</param>
     public void ChangeName(FirstName firstName, LastName lastName)

@@ -9,7 +9,7 @@ public sealed class Recruiter : User
 
     public ICollection<JobOffer> JobOffers { get; private set; } = new List<JobOffer>();
 
-    public static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+    public new static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
     {
         return new Recruiter(firstName, lastName, email, passwordHash);
     }

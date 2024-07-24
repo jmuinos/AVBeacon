@@ -1,3 +1,4 @@
+using AvBeacon.Api.Identity;
 using AvBeacon.Application;
 using AvBeacon.Application.Applicants.Queries.GetAll;
 using AvBeacon.Application.Authentication.Login.Commands;
@@ -5,7 +6,6 @@ using AvBeacon.Application.Authentication.Update;
 using AvBeacon.Application.Users.Commands.Create;
 using AvBeacon.Infrastructure;
 using AvBeacon.Persistence;
-using AvBeacon.Api.Identity;
 using AvBeacon.Api.Middleware;
 using AvBeacon.Contracts.Authentication;
 using AvBeacon.Contracts.Users;
@@ -37,21 +37,15 @@ builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddPersistence(builder.Configuration);
 
+// // Authorization
+// builder.Services.AddAuthorization();
+
 // Authorization
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy(IdentityData.AdminUserPolicyName,
-        policy => policy.RequireClaim(IdentityData.AdminUserClaimName, "true"));
-
-    options.AddPolicy(IdentityData.GeneralUserPolicyName,
-        policy => policy.RequireClaim(IdentityData.GeneralUserClaimName, "true"));
-
-    options.AddPolicy(IdentityData.RecruiterUserPolicyName,
-        policy => policy.RequireClaim(IdentityData.RecruiterUserClaimName, "true"));
-
-    options.AddPolicy(IdentityData.ApplicantUserPolicyName,
-        policy => policy.RequireClaim(IdentityData.ApplicantUserClaimName, "true"));
-});
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy(IdentityData.AdminUserPolicyName, policy => policy.RequireClaim(IdentityData.AdminUserClaimName, "true"))
+    .AddPolicy(IdentityData.GeneralUserPolicyName, policy => policy.RequireClaim(IdentityData.GeneralUserClaimName, "true"))
+    .AddPolicy(IdentityData.RecruiterUserPolicyName, policy => policy.RequireClaim(IdentityData.RecruiterUserClaimName, "true"))
+    .AddPolicy(IdentityData.ApplicantUserPolicyName, policy => policy.RequireClaim(IdentityData.ApplicantUserClaimName, "true"));
 
 // Swagger & OpenAPI
 builder.Services

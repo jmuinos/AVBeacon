@@ -13,7 +13,7 @@ public sealed class Applicant : User
     public ICollection<Skill> Skills { get; private set; } = new List<Skill>();
 
 
-    public static Applicant Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+    public new static Applicant Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
     {
         return new Applicant(firstName, lastName, email, passwordHash);
     }
