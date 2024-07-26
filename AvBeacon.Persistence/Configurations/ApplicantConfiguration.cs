@@ -3,11 +3,11 @@ using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations;
-
-public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
+namespace AvBeacon.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<Applicant> builder)
+    public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
+    {
+        public void Configure(EntityTypeBuilder<Applicant> builder)
     {
         builder.HasBaseType<User>();
 
@@ -32,5 +32,6 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
             .WithOne(e => e.Applicant)
             .HasForeignKey(e => e.ApplicantId)
             .OnDelete(DeleteBehavior.Cascade);
+    }
     }
 }

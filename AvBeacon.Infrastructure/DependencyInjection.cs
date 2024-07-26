@@ -42,7 +42,7 @@ namespace AvBeacon.Infrastructure
                     ValidIssuer = configuration["Jwt:Issuer"],
                     ValidAudience = configuration["Jwt:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(configuration["Jwt:SecurityKey"]))
+                            Encoding.UTF8.GetBytes(configuration["Jwt:SecurityKey"]!))
                 });
 
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SettingsKey));

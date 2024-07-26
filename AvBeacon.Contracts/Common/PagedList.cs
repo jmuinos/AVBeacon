@@ -1,5 +1,5 @@
-﻿namespace AvBeacon.Contracts.Common;
-
+﻿namespace AvBeacon.Contracts.Common
+{
     /// <summary>
     /// Represents the generic paged list.
     /// </summary>
@@ -44,3 +44,4 @@
         /// </summary>
         public IReadOnlyCollection<T> Items { get; }
     }
+}

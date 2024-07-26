@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations;
-
-public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplication>
+namespace AvBeacon.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<JobApplication> builder)
+    public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplication>
+    {
+        public void Configure(EntityTypeBuilder<JobApplication> builder)
     {
         builder.HasKey(ja => ja.Id);
 
@@ -25,5 +25,6 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
             .WithMany(jo => jo.JobApplications)
             .HasForeignKey(ja => ja.JobOfferId)
             .OnDelete(DeleteBehavior.Restrict);
+    }
     }
 }

@@ -3,11 +3,11 @@ using AvBeacon.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations;
-
-public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
+namespace AvBeacon.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<Experience> builder)
+    public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
+    {
+        public void Configure(EntityTypeBuilder<Experience> builder)
     {
         builder.HasKey(e => e.Id);
 
@@ -37,5 +37,6 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
             .WithMany(a => a.Experiences)
             .HasForeignKey(e => e.ApplicantId)
             .OnDelete(DeleteBehavior.Cascade);
+    }
     }
 }

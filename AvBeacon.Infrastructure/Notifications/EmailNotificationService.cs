@@ -22,8 +22,8 @@ namespace AvBeacon.Infrastructure.Notifications
         {
             var mailRequest = new MailRequest(
                 welcomeEmail.EmailTo,
-                "Welcome to Event Reminder! 🎉",
-                $"Welcome to Event Reminder {welcomeEmail.Name}," +
+                "Welcome to AvBeacon! 🎉",
+                $"Welcome to AvBeacon {welcomeEmail.Name}," +
                 Environment.NewLine +
                 Environment.NewLine +
                 $"You have registered with the email {welcomeEmail.EmailTo}.");
@@ -52,9 +52,5 @@ namespace AvBeacon.Infrastructure.Notifications
 
             await _emailService.SendEmailAsync(mailRequest);
         }
-        
-        public Task SendFriendshipRequestSentEmail(JobApplicationCreatedEmail jobApplicationCreatedEmail) { throw new NotImplementedException(); }
-        public Task SendFriendshipRequestAcceptedEmail(JobApplicationProcessedEmail jobApplicationProcessedEmail) { throw new NotImplementedException(); }
-        public Task SendFriendshipRequestAcceptedEmail(JobOfferCreatedEmail jobOfferCreatedEmail) { throw new NotImplementedException(); }
     }
 }

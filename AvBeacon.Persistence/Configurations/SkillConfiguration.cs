@@ -3,11 +3,11 @@ using AvBeacon.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations;
-
-public class SkillConfiguration : IEntityTypeConfiguration<Skill>
+namespace AvBeacon.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<Skill> builder)
+    public class SkillConfiguration : IEntityTypeConfiguration<Skill>
+    {
+        public void Configure(EntityTypeBuilder<Skill> builder)
     {
         builder.HasKey(s => s.Id);
 
@@ -18,5 +18,6 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
         // Relación muchos a muchos con Applicant
         builder.HasMany(s => s.Applicants)
             .WithMany(a => a.Skills);
+    }
     }
 }

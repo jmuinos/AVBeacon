@@ -4,21 +4,21 @@ using AvBeacon.Contracts.Educations;
 using AvBeacon.Domain.Applicants;
 using Microsoft.EntityFrameworkCore;
 
-namespace AvBeacon.Application.Educations.Queries.GetByApplicantId;
-
-/// <summary> Representa el handler de la consulta <see cref="GetEducationsByApplicantIdQuery" />. </summary>
-internal sealed class GetEducationsByApplicantIdQueryHandler
-    : IQueryHandler<GetEducationsByApplicantIdQuery, List<EducationResponse>>
+namespace AvBeacon.Application.Educations.Queries.GetByApplicantId
 {
-    private readonly IDbContext _dbContext;
+    /// <summary> Representa el handler de la consulta <see cref="GetEducationsByApplicantIdQuery" />. </summary>
+    internal sealed class GetEducationsByApplicantIdQueryHandler
+        : IQueryHandler<GetEducationsByApplicantIdQuery, List<EducationResponse>>
+    {
+        private readonly IDbContext _dbContext;
 
-    /// <summary> Inicializa una nueva instancia de la clase <see cref="GetEducationsByApplicantIdQueryHandler" />. </summary>
-    /// <param name="dbContext"> El contexto de base de datos. </param>
-    public GetEducationsByApplicantIdQueryHandler(IDbContext dbContext) { _dbContext = dbContext; }
+        /// <summary> Inicializa una nueva instancia de la clase <see cref="GetEducationsByApplicantIdQueryHandler" />. </summary>
+        /// <param name="dbContext"> El contexto de base de datos. </param>
+        public GetEducationsByApplicantIdQueryHandler(IDbContext dbContext) { _dbContext = dbContext; }
 
-    /// <inheritdoc />
-    public async Task<List<EducationResponse>> Handle(GetEducationsByApplicantIdQuery request,
-        CancellationToken cancellationToken)
+        /// <inheritdoc />
+        public async Task<List<EducationResponse>> Handle(GetEducationsByApplicantIdQuery request,
+            CancellationToken cancellationToken)
     {
         var educations = await _dbContext.Set<Education>()
             .Where(e => e.ApplicantId == request.ApplicantId)
@@ -32,5 +32,6 @@ internal sealed class GetEducationsByApplicantIdQueryHandler
             })
             .ToListAsync(cancellationToken);
         return educations;
+    }
     }
 }

@@ -15,27 +15,6 @@ namespace AvBeacon.Application.Abstractions.Notifications
         Task SendWelcomeEmail(WelcomeEmail welcomeEmail);
 
         /// <summary>
-        /// Sends the job application sent email.
-        /// </summary>
-        /// <param name="jobApplicationCreatedEmail">The job application sent email.</param>
-        /// <returns>The completed task.</returns>
-        Task SendFriendshipRequestSentEmail(JobApplicationCreatedEmail jobApplicationCreatedEmail);
-
-        /// <summary>
-        /// Sends the job application accepted email.
-        /// </summary>
-        /// <param name="jobApplicationProcessedEmail">The job application accepted email.</param>
-        /// <returns>The completed task.</returns>
-        Task SendFriendshipRequestAcceptedEmail(JobApplicationProcessedEmail jobApplicationProcessedEmail);
-        
-        /// <summary>
-        /// Sends the job offer published email.
-        /// </summary>
-        /// <param name="jobOfferCreatedEmail">The job offer published email.</param>
-        /// <returns>The completed task.</returns>
-        Task SendFriendshipRequestAcceptedEmail(JobOfferCreatedEmail jobOfferCreatedEmail);
-
-        /// <summary>
         /// Sends the password changed email.
         /// </summary>
         /// <param name="passwordChangedEmail">The password changed email.</param>

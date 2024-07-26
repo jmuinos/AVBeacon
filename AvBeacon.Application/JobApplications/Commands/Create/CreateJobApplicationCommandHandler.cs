@@ -5,43 +5,44 @@ using AvBeacon.Domain.Core.Errors;
 using AvBeacon.Domain.Core.Primitives.Result;
 using AvBeacon.Domain.Repositories;
 
-namespace AvBeacon.Application.JobApplications.Commands.Create;
-
-/// <summary> Handler para el comando <see cref="CreateJobApplicationCommand" /> </summary>
-internal sealed record CreateJobApplicationCommandHandler : ICommandHandler<CreateJobApplicationCommand, Result>
+namespace AvBeacon.Application.JobApplications.Commands.Create
 {
-    private readonly IJobApplicationRepository _jobApplicationRepository;
-    private readonly IJobOfferRepository _jobOfferRepository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository,
-        IJobOfferRepository jobOfferRepository, IUnitOfWork unitOfWork)
+    /// <summary> Handler para el comando <see cref="CreateJobApplicationCommand" /> </summary>
+    internal sealed record CreateJobApplicationCommandHandler : ICommandHandler<CreateJobApplicationCommand, Result>
     {
-        _jobApplicationRepository = jobApplicationRepository;
-        _jobOfferRepository = jobOfferRepository;
-        _unitOfWork = unitOfWork;
-    }
+        private readonly IJobApplicationRepository _jobApplicationRepository;
+        private readonly IJobOfferRepository _jobOfferRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-    /// <inheritdoc />
-    public async Task<Result> Handle(CreateJobApplicationCommand request, CancellationToken cancellationToken)
-    {
-        var jobOffer = _jobOfferRepository.GetByIdAsync(request.JobOfferId).Result;
-        var alreadyExists = _jobApplicationRepository
-            .GetByApplicantIdAsync(request.ApplicantId, cancellationToken)
-            .Result.Any(ja => ja.ApplicantId == request.ApplicantId);
+        public CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository,
+            IJobOfferRepository jobOfferRepository, IUnitOfWork unitOfWork)
+        {
+            _jobApplicationRepository = jobApplicationRepository;
+            _jobOfferRepository = jobOfferRepository;
+            _unitOfWork = unitOfWork;
+        }
 
-        if (jobOffer.HasNoValue)
-            return Result.Failure(DomainErrors.JobOffer.NotFound);
+        /// <inheritdoc />
+        public async Task<Result> Handle(CreateJobApplicationCommand request, CancellationToken cancellationToken)
+        {
+            var jobOffer = _jobOfferRepository.GetByIdAsync(request.JobOfferId).Result;
+            var alreadyExists = _jobApplicationRepository
+                .GetByApplicantIdAsync(request.ApplicantId, cancellationToken)
+                .Result.Any(ja => ja.ApplicantId == request.ApplicantId);
 
-        if (alreadyExists)
-            return Result.Failure(DomainErrors.JobApplication.AlreadyExists);
+            if (jobOffer.HasNoValue)
+                return Result.Failure(DomainErrors.JobOffer.NotFound);
 
-        var jobApplication = JobApplication.Create(request.ApplicantId, request.JobOfferId);
+            if (alreadyExists)
+                return Result.Failure(DomainErrors.JobApplication.AlreadyExists);
 
-        _jobApplicationRepository.Insert(jobApplication);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+            var jobApplication = JobApplication.Create(request.ApplicantId, request.JobOfferId);
 
-        //TODO: Devolver id o no?
-        return Result.Success(jobApplication.Id);
+            _jobApplicationRepository.Insert(jobApplication);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            //TODO: Devolver id o no?
+            return Result.Success(jobApplication.Id);
+        }
     }
 }

@@ -1,7 +1,8 @@
-﻿namespace AvBeacon.Contracts.Users;
-
-/// <summary> Representa la solicitud para obtener un usuario por ID. </summary>
-public sealed record GetUserByIdRequest
+﻿namespace AvBeacon.Contracts.Users
 {
-    public Guid UserId { get; set; }
+    /// <summary> Representa la solicitud para obtener un usuario por ID. </summary>
+    public sealed record GetUserByIdRequest
+    {
+        public Guid UserId { get; set; }
+    }
 }

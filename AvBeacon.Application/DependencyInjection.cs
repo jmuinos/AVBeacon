@@ -3,16 +3,16 @@ using AvBeacon.Application.Core.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Application;
-
-public static class DependencyInjection
+namespace AvBeacon.Application
 {
-    /// <summary>
-    /// Registers the necessary services with the DI framework.
-    /// </summary>
-    /// <param name="services">The service collection.</param>
-    /// <returns>The same service collection.</returns>
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static class DependencyInjection
+    {
+        /// <summary>
+        /// Registers the necessary services with the DI framework.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
+        /// <returns>The same service collection.</returns>
+        public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
@@ -26,5 +26,6 @@ public static class DependencyInjection
         });
 
         return services;
+    }
     }
 }

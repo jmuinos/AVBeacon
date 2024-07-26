@@ -5,24 +5,24 @@ using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Core.Primitives.Maybe;
 using Microsoft.EntityFrameworkCore;
 
-namespace AvBeacon.Application.JobApplications.Queries.GetById;
-
-/// <summary> Representa el manejador de consultas para <see cref="GetJobApplicationByIdQuery" />. </summary>
-internal sealed class
-    GetJobApplicationByIdQueryHandler
-    : IQueryHandler<GetJobApplicationByIdQuery,
-        Maybe<JobApplicationResponse>>
+namespace AvBeacon.Application.JobApplications.Queries.GetById
 {
-    private readonly IDbContext _dbContext;
+    /// <summary> Representa el manejador de consultas para <see cref="GetJobApplicationByIdQuery" />. </summary>
+    internal sealed class
+        GetJobApplicationByIdQueryHandler
+        : IQueryHandler<GetJobApplicationByIdQuery,
+            Maybe<JobApplicationResponse>>
+    {
+        private readonly IDbContext _dbContext;
 
-    /// <summary> Inicializa una nueva instancia de la clase <see cref="GetJobApplicationByIdQueryHandler" />. </summary>
-    /// <param name="dbContext"> El contexto de la base de datos. </param>
-    public GetJobApplicationByIdQueryHandler(IDbContext dbContext) { _dbContext = dbContext; }
+        /// <summary> Inicializa una nueva instancia de la clase <see cref="GetJobApplicationByIdQueryHandler" />. </summary>
+        /// <param name="dbContext"> El contexto de la base de datos. </param>
+        public GetJobApplicationByIdQueryHandler(IDbContext dbContext) { _dbContext = dbContext; }
 
-    /// <inheritdoc />
-    public async Task<Maybe<JobApplicationResponse>> Handle(
-        GetJobApplicationByIdQuery request,
-        CancellationToken cancellationToken)
+        /// <inheritdoc />
+        public async Task<Maybe<JobApplicationResponse>> Handle(
+            GetJobApplicationByIdQuery request,
+            CancellationToken cancellationToken)
     {
         var jobApplicationResponse = await _dbContext.Set<JobApplication>()
             .Where(ja => ja.Id == request.JobApplicationId)
@@ -39,5 +39,6 @@ internal sealed class
         return jobApplicationResponse is not null
             ? Maybe<JobApplicationResponse>.From(jobApplicationResponse)
             : Maybe<JobApplicationResponse>.None!;
+    }
     }
 }

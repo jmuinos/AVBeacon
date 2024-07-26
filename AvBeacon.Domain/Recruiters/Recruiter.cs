@@ -1,16 +1,17 @@
 ﻿using AvBeacon.Domain.Users;
 
-namespace AvBeacon.Domain.Recruiters;
-
-public sealed class Recruiter : User
+namespace AvBeacon.Domain.Recruiters
 {
-    private Recruiter(FirstName firstName, LastName lastName, Email email, string passwordHash)
-        : base(firstName, lastName, email, passwordHash) { }
-
-    public ICollection<JobOffer> JobOffers { get; private set; } = new List<JobOffer>();
-
-    public new static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+    public sealed class Recruiter : User
     {
-        return new Recruiter(firstName, lastName, email, passwordHash);
+        private Recruiter(FirstName firstName, LastName lastName, Email email, string passwordHash)
+            : base(firstName, lastName, email, passwordHash) { }
+
+        public ICollection<JobOffer> JobOffers { get; private set; } = new List<JobOffer>();
+
+        public new static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+        {
+            return new Recruiter(firstName, lastName, email, passwordHash);
+        }
     }
 }

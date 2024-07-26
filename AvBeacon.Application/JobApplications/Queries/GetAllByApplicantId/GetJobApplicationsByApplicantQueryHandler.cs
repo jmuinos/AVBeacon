@@ -4,23 +4,23 @@ using AvBeacon.Contracts.JobApplications;
 using AvBeacon.Domain.Applicants;
 using Microsoft.EntityFrameworkCore;
 
-namespace AvBeacon.Application.JobApplications.Queries.GetAllByApplicantId;
-
-/// <summary> Representa el manejador de la consulta <see cref="GetJobApplicationsByApplicantQuery" />. </summary>
-internal sealed class
-    GetJobApplicationsByApplicantQueryHandler
-    : IQueryHandler<GetJobApplicationsByApplicantQuery,
-        List<JobApplicationResponse>>
+namespace AvBeacon.Application.JobApplications.Queries.GetAllByApplicantId
 {
-    private readonly IDbContext _dbContext;
+    /// <summary> Representa el manejador de la consulta <see cref="GetJobApplicationsByApplicantQuery" />. </summary>
+    internal sealed class
+        GetJobApplicationsByApplicantQueryHandler
+        : IQueryHandler<GetJobApplicationsByApplicantQuery,
+            List<JobApplicationResponse>>
+    {
+        private readonly IDbContext _dbContext;
 
-    /// <summary> Inicializa una nueva instancia de la clase <see cref="GetJobApplicationsByApplicantQueryHandler" />. </summary>
-    /// <param name="dbContext"> El contexto de base de datos. </param>
-    public GetJobApplicationsByApplicantQueryHandler(IDbContext dbContext) { _dbContext = dbContext; }
+        /// <summary> Inicializa una nueva instancia de la clase <see cref="GetJobApplicationsByApplicantQueryHandler" />. </summary>
+        /// <param name="dbContext"> El contexto de base de datos. </param>
+        public GetJobApplicationsByApplicantQueryHandler(IDbContext dbContext) { _dbContext = dbContext; }
 
-    /// <inheritdoc />
-    public async Task<List<JobApplicationResponse>> Handle(GetJobApplicationsByApplicantQuery request,
-        CancellationToken cancellationToken)
+        /// <inheritdoc />
+        public async Task<List<JobApplicationResponse>> Handle(GetJobApplicationsByApplicantQuery request,
+            CancellationToken cancellationToken)
     {
         var jobApplications = await _dbContext.Set<JobApplication>()
             .Where(ja => ja.ApplicantId ==
@@ -36,5 +36,6 @@ internal sealed class
             .ToListAsync(cancellationToken);
 
         return jobApplications;
+    }
     }
 }

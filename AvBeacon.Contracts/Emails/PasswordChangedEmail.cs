@@ -1,28 +1,29 @@
-﻿namespace AvBeacon.Contracts.Emails;
-
-/// <summary>
-/// Represents the password changed email.
-/// </summary>
-public sealed class PasswordChangedEmail
+﻿namespace AvBeacon.Contracts.Emails
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="PasswordChangedEmail"/> class.
+    /// Represents the password changed email.
     /// </summary>
-    /// <param name="emailTo">The email receiver.</param>
-    /// <param name="name">The name.</param>
-    public PasswordChangedEmail(string emailTo, string name)
+    public sealed class PasswordChangedEmail
     {
-        EmailTo = emailTo;
-        Name = name;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PasswordChangedEmail"/> class.
+        /// </summary>
+        /// <param name="emailTo">The email receiver.</param>
+        /// <param name="name">The name.</param>
+        public PasswordChangedEmail(string emailTo, string name)
+        {
+            EmailTo = emailTo;
+            Name = name;
+        }
+
+        /// <summary>
+        /// Gets the email receiver.
+        /// </summary>
+        public string EmailTo { get; }
+
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        public string Name { get; }
     }
-
-    /// <summary>
-    /// Gets the email receiver.
-    /// </summary>
-    public string EmailTo { get; }
-
-    /// <summary>
-    /// Gets the name.
-    /// </summary>
-    public string Name { get; }
 }

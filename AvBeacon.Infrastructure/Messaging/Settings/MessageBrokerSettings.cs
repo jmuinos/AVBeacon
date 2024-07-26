@@ -10,7 +10,7 @@
         /// <summary>
         /// Gets or sets the host name.
         /// </summary>
-        public string HostName { get; set; }
+        public required string HostName { get; init; }
 
         /// <summary>
         /// Gets or sets the port.
@@ -18,18 +18,18 @@
         public int Port { get; set; }
 
         /// <summary>
-        /// Gets or sets the user name.
+        /// Gets or sets the username.
         /// </summary>
-        public string UserName { get; set; }
+        public required string UserName { get; init; }
 
         /// <summary>
         /// Gets or sets the password.
         /// </summary>
-        public string Password { get; set; }
+        public required string Password { get; init; }
 
         /// <summary>
         /// Gets or sets the queue name.
         /// </summary>
-        public string QueueName { get; set; }
+        public required string QueueName { get; init; }
     }
 }

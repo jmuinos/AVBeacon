@@ -3,11 +3,11 @@ using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations;
-
-public class RecruiterConfiguration : IEntityTypeConfiguration<Recruiter>
+namespace AvBeacon.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<Recruiter> builder)
+    public class RecruiterConfiguration : IEntityTypeConfiguration<Recruiter>
+    {
+        public void Configure(EntityTypeBuilder<Recruiter> builder)
     {
         builder.HasBaseType<User>();
 
@@ -16,5 +16,6 @@ public class RecruiterConfiguration : IEntityTypeConfiguration<Recruiter>
             .WithOne(jo => jo.Recruiter)
             .HasForeignKey(jo => jo.RecruiterId)
             .OnDelete(DeleteBehavior.Cascade);
+    }
     }
 }

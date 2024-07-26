@@ -3,139 +3,140 @@ using AvBeacon.Application.Abstractions.Cryptography;
 using AvBeacon.Domain.Users;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace AvBeacon.Infrastructure.Cryptography;
-
-/// <summary>
-/// Represents the password hasher, used for hashing passwords and verifying hashed passwords.
-/// </summary>
-internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, IDisposable
+namespace AvBeacon.Infrastructure.Cryptography
 {
-    private const KeyDerivationPrf Prf = KeyDerivationPrf.HMACSHA256;
-    private const int IterationCount = 10000;
-    private const int NumberOfBytesRequested = 256 / 8;
-    private const int SaltSize = 128 / 8;
-    private readonly RandomNumberGenerator _rng;
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="PasswordHasher"/> class.
+    /// Represents the password hasher, used for hashing passwords and verifying hashed passwords.
     /// </summary>
-    public PasswordHasher() => _rng = RandomNumberGenerator.Create();
-
-    /// <inheritdoc />
-    public string HashPassword(Password password)
+    internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, IDisposable
     {
-        ArgumentNullException.ThrowIfNull(password);
-        var hashedPassword = Convert.ToBase64String(HashPasswordInternal(password));
+        private const KeyDerivationPrf Prf = KeyDerivationPrf.HMACSHA256;
+        private const int IterationCount = 10000;
+        private const int NumberOfBytesRequested = 256 / 8;
+        private const int SaltSize = 128 / 8;
+        private readonly RandomNumberGenerator _rng;
 
-        return hashedPassword;
-    }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PasswordHasher"/> class.
+        /// </summary>
+        public PasswordHasher() => _rng = RandomNumberGenerator.Create();
 
-    /// <inheritdoc />
-    public bool HashesMatch(string passwordHash, string providedPassword)
-    {
-        ArgumentNullException.ThrowIfNull(passwordHash);
-        ArgumentNullException.ThrowIfNull(providedPassword);
+        /// <inheritdoc />
+        public string HashPassword(Password password)
+        {
+            ArgumentNullException.ThrowIfNull(password);
+            var hashedPassword = Convert.ToBase64String(HashPasswordInternal(password));
 
-        var decodedHashedPassword = Convert.FromBase64String(passwordHash);
-        return decodedHashedPassword.Length != 0 && VerifyPasswordHashInternal(decodedHashedPassword, providedPassword);
-    }
+            return hashedPassword;
+        }
 
-    /// <inheritdoc />
-    public void Dispose() => _rng.Dispose();
+        /// <inheritdoc />
+        public bool HashesMatch(string passwordHash, string providedPassword)
+        {
+            ArgumentNullException.ThrowIfNull(passwordHash);
+            ArgumentNullException.ThrowIfNull(providedPassword);
 
-    /// <summary>
-    /// Returns the bytes of the hash for the specified password.
-    /// </summary>
-    /// <param name="password">The password to be hashed.</param>
-    /// <returns>The bytes of the hash for the specified password.</returns>
-    private byte[] HashPasswordInternal(string password)
-    {
-        byte[] salt = GetRandomSalt();
+            var decodedHashedPassword = Convert.FromBase64String(passwordHash);
+            return decodedHashedPassword.Length != 0 && VerifyPasswordHashInternal(decodedHashedPassword, providedPassword);
+        }
 
-        byte[] subKey = KeyDerivation.Pbkdf2(password, salt, Prf, IterationCount, NumberOfBytesRequested);
+        /// <inheritdoc />
+        public void Dispose() => _rng.Dispose();
 
-        byte[] outputBytes = new byte[salt.Length + subKey.Length];
+        /// <summary>
+        /// Returns the bytes of the hash for the specified password.
+        /// </summary>
+        /// <param name="password">The password to be hashed.</param>
+        /// <returns>The bytes of the hash for the specified password.</returns>
+        private byte[] HashPasswordInternal(string password)
+        {
+            byte[] salt = GetRandomSalt();
 
-        Buffer.BlockCopy(salt, 0, outputBytes, 0, salt.Length);
+            byte[] subKey = KeyDerivation.Pbkdf2(password, salt, Prf, IterationCount, NumberOfBytesRequested);
 
-        Buffer.BlockCopy(subKey, 0, outputBytes, salt.Length, subKey.Length);
+            byte[] outputBytes = new byte[salt.Length + subKey.Length];
 
-        return outputBytes;
-    }
+            Buffer.BlockCopy(salt, 0, outputBytes, 0, salt.Length);
 
-    /// <summary>
-    /// Gets a randomly generated salt.
-    /// </summary>
-    /// <returns>The randomly generated salt.</returns>
-    private byte[] GetRandomSalt()
-    {
-        byte[] salt = new byte[SaltSize];
+            Buffer.BlockCopy(subKey, 0, outputBytes, salt.Length, subKey.Length);
 
-        _rng.GetBytes(salt);
+            return outputBytes;
+        }
 
-        return salt;
-    }
-
-    /// <summary>
-    /// Verifies the bytes of the hashed password with the specified password.
-    /// </summary>
-    /// <param name="hashedPassword">The bytes of the hashed password.</param>
-    /// <param name="password">The password to verify with.</param>
-    /// <returns>True if the hashes match, otherwise false.</returns>
-    private static bool VerifyPasswordHashInternal(byte[] hashedPassword, string password)
-    {
-        try
+        /// <summary>
+        /// Gets a randomly generated salt.
+        /// </summary>
+        /// <returns>The randomly generated salt.</returns>
+        private byte[] GetRandomSalt()
         {
             byte[] salt = new byte[SaltSize];
 
-            Buffer.BlockCopy(hashedPassword, 0, salt, 0, salt.Length);
+            _rng.GetBytes(salt);
 
-            int subKeyLength = hashedPassword.Length - salt.Length;
+            return salt;
+        }
 
-            if (subKeyLength < SaltSize)
+        /// <summary>
+        /// Verifies the bytes of the hashed password with the specified password.
+        /// </summary>
+        /// <param name="hashedPassword">The bytes of the hashed password.</param>
+        /// <param name="password">The password to verify with.</param>
+        /// <returns>True if the hashes match, otherwise false.</returns>
+        private static bool VerifyPasswordHashInternal(byte[] hashedPassword, string password)
+        {
+            try
+            {
+                byte[] salt = new byte[SaltSize];
+
+                Buffer.BlockCopy(hashedPassword, 0, salt, 0, salt.Length);
+
+                int subKeyLength = hashedPassword.Length - salt.Length;
+
+                if (subKeyLength < SaltSize)
+                {
+                    return false;
+                }
+
+                byte[] expectedSubKey = new byte[subKeyLength];
+
+                Buffer.BlockCopy(hashedPassword, salt.Length, expectedSubKey, 0, expectedSubKey.Length);
+
+                byte[] actualSubKey = KeyDerivation.Pbkdf2(password, salt, Prf, IterationCount, subKeyLength);
+
+                return ByteArraysEqual(actualSubKey, expectedSubKey);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns true if the specified byte arrays are equal, otherwise false.
+        /// </summary>
+        /// <param name="a">The first byte array.</param>
+        /// <param name="b">The second byte array.</param>
+        /// <returns>True if the arrays are equal, otherwise false.</returns>
+        private static bool ByteArraysEqual(byte[] a, byte[] b)
+        {
+            if (a == null && b == null)
+            {
+                return true;
+            }
+
+            if (a == null || b == null || a.Length != b.Length)
             {
                 return false;
             }
 
-            byte[] expectedSubKey = new byte[subKeyLength];
+            bool areSame = true;
 
-            Buffer.BlockCopy(hashedPassword, salt.Length, expectedSubKey, 0, expectedSubKey.Length);
+            for (int i = 0; i < a.Length; i++)
+            {
+                areSame &= a[i] == b[i];
+            }
 
-            byte[] actualSubKey = KeyDerivation.Pbkdf2(password, salt, Prf, IterationCount, subKeyLength);
-
-            return ByteArraysEqual(actualSubKey, expectedSubKey);
+            return areSame;
         }
-        catch
-        {
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// Returns true if the specified byte arrays are equal, otherwise false.
-    /// </summary>
-    /// <param name="a">The first byte array.</param>
-    /// <param name="b">The second byte array.</param>
-    /// <returns>True if the arrays are equal, otherwise false.</returns>
-    private static bool ByteArraysEqual(byte[] a, byte[] b)
-    {
-        if (a == null && b == null)
-        {
-            return true;
-        }
-
-        if (a == null || b == null || a.Length != b.Length)
-        {
-            return false;
-        }
-
-        bool areSame = true;
-
-        for (int i = 0; i < a.Length; i++)
-        {
-            areSame &= a[i] == b[i];
-        }
-
-        return areSame;
     }
 }

@@ -4,19 +4,19 @@ using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Core.Errors;
 using AvBeacon.Domain.Core.Primitives.Result;
 
-namespace AvBeacon.Application.JobApplications.Commands.Process;
-
-/// <summary> Representa el handler de comandos para <see cref="ProcessJobApplicationCommand" />. </summary>
-internal sealed class ProcessJobApplicationCommandHandler : ICommandHandler<ProcessJobApplicationCommand, Result>
+namespace AvBeacon.Application.JobApplications.Commands.Process
 {
-    private readonly IDbContext _dbContext;
+    /// <summary> Representa el handler de comandos para <see cref="ProcessJobApplicationCommand" />. </summary>
+    internal sealed class ProcessJobApplicationCommandHandler : ICommandHandler<ProcessJobApplicationCommand, Result>
+    {
+        private readonly IDbContext _dbContext;
 
-    /// <summary> Inicializa una nueva instancia de la clase <see cref="ProcessJobApplicationCommandHandler" />. </summary>
-    /// <param name="dbContext"> El contexto de base de datos. </param>
-    public ProcessJobApplicationCommandHandler(IDbContext dbContext) { _dbContext = dbContext; }
+        /// <summary> Inicializa una nueva instancia de la clase <see cref="ProcessJobApplicationCommandHandler" />. </summary>
+        /// <param name="dbContext"> El contexto de base de datos. </param>
+        public ProcessJobApplicationCommandHandler(IDbContext dbContext) { _dbContext = dbContext; }
 
-    /// <inheritdoc />
-    public async Task<Result> Handle(ProcessJobApplicationCommand request, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        public async Task<Result> Handle(ProcessJobApplicationCommand request, CancellationToken cancellationToken)
     {
         var maybeJobApplication = await _dbContext.GetByIdAsync<JobApplication>(request.JobApplicationId);
 
@@ -31,5 +31,6 @@ internal sealed class ProcessJobApplicationCommandHandler : ICommandHandler<Proc
         jobApplication.State = request.State == "Accepted" ? JobApplicationState.Accepted : JobApplicationState.Denied;
 
         return Result.Success();
+    }
     }
 }

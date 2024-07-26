@@ -2,13 +2,13 @@
 using AvBeacon.Application.Core.Extensions;
 using FluentValidation;
 
-namespace AvBeacon.Application.JobOffers.Commands.Create;
-
-/// <summary> Validador para el comando <see cref="CreateJobOfferCommand" />. </summary>
-internal sealed class CreateJobOfferCommandValidator : AbstractValidator<CreateJobOfferCommand>
+namespace AvBeacon.Application.JobOffers.Commands.Create
 {
-    /// <summary> Inicializa una nueva instancia de la clase <see cref="CreateJobOfferCommandValidator" />. </summary>
-    public CreateJobOfferCommandValidator()
+    /// <summary> Validador para el comando <see cref="CreateJobOfferCommand" />. </summary>
+    internal sealed class CreateJobOfferCommandValidator : AbstractValidator<CreateJobOfferCommand>
+    {
+        /// <summary> Inicializa una nueva instancia de la clase <see cref="CreateJobOfferCommandValidator" />. </summary>
+        public CreateJobOfferCommandValidator()
     {
         RuleFor(x => x.Title)
             .NotEmpty()
@@ -19,5 +19,6 @@ internal sealed class CreateJobOfferCommandValidator : AbstractValidator<CreateJ
             .NotEmpty()
             .WithError(ValidationErrors.CreateJobOffer.DescriptionIsRequired)
             .MaximumLength(500);
+    }
     }
 }

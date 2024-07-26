@@ -4,60 +4,61 @@ using AvBeacon.Application.Abstractions.Data;
 using AvBeacon.Application.Abstractions.Messaging;
 using AvBeacon.Domain.Core.Errors;
 using AvBeacon.Domain.Core.Primitives.Result;
+using AvBeacon.Domain.Repositories;
 using AvBeacon.Domain.Users;
-using IUserRepository = AvBeacon.Domain.Repositories.IUserRepository;
 
-namespace AvBeacon.Application.Authentication.ChangePassword;
-
-/// <summary> Represents the <see cref="ChangePasswordCommand" /> handler. </summary>
-internal sealed class ChangePasswordCommandHandler : ICommandHandler<ChangePasswordCommand, Result>
+namespace AvBeacon.Application.Authentication.ChangePassword
 {
-    private readonly IPasswordHasher _passwordHasher;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IUserIdentifierProvider _userIdentifierProvider;
-    private readonly IUserRepository _userRepository;
-
-    /// <summary> Initializes a new instance of the <see cref="ChangePasswordCommandHandler" /> class. </summary>
-    /// <param name="userIdentifierProvider"> The user identifier provider. </param>
-    /// <param name="userRepository"> The user repository. </param>
-    /// <param name="unitOfWork"> The unit of work. </param>
-    /// <param name="passwordHasher"> The password hasher. </param>
-    public ChangePasswordCommandHandler(
-        IUserIdentifierProvider userIdentifierProvider,
-        IUserRepository userRepository,
-        IUnitOfWork unitOfWork,
-        IPasswordHasher passwordHasher)
+    /// <summary> Represents the <see cref="ChangePasswordCommand" /> handler. </summary>
+    internal sealed class ChangePasswordCommandHandler : ICommandHandler<ChangePasswordCommand, Result>
     {
-        _userIdentifierProvider = userIdentifierProvider;
-        _userRepository = userRepository;
-        _unitOfWork = unitOfWork;
-        _passwordHasher = passwordHasher;
-    }
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserIdentifierProvider _userIdentifierProvider;
+        private readonly IUserRepository _userRepository;
 
-    /// <inheritdoc />
-    public async Task<Result> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
-    {
-        if (request.UserId != _userIdentifierProvider.UserId)
-            return Result.Failure(DomainErrors.User.InvalidPermissions);
+        /// <summary> Initializes a new instance of the <see cref="ChangePasswordCommandHandler" /> class. </summary>
+        /// <param name="userIdentifierProvider"> The user identifier provider. </param>
+        /// <param name="userRepository"> The user repository. </param>
+        /// <param name="unitOfWork"> The unit of work. </param>
+        /// <param name="passwordHasher"> The password hasher. </param>
+        public ChangePasswordCommandHandler(
+            IUserIdentifierProvider userIdentifierProvider,
+            IUserRepository userRepository,
+            IUnitOfWork unitOfWork,
+            IPasswordHasher passwordHasher)
+        {
+            _userIdentifierProvider = userIdentifierProvider;
+            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
+            _passwordHasher = passwordHasher;
+        }
 
-        var passwordResult = Password.Create(request.Password);
+        /// <inheritdoc />
+        public async Task<Result> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
+        {
+            if (request.UserId != _userIdentifierProvider.UserId)
+                return Result.Failure(DomainErrors.User.InvalidPermissions);
 
-        if (passwordResult.IsFailure) return Result.Failure(passwordResult.Error);
+            var passwordResult = Password.Create(request.Password);
 
-        var maybeApplicant = await _userRepository.GetByIdAsync(request.UserId);
+            if (passwordResult.IsFailure) return Result.Failure(passwordResult.Error);
 
-        if (maybeApplicant.HasNoValue) return Result.Failure(DomainErrors.Applicant.NotFound);
+            var maybeApplicant = await _userRepository.GetByIdAsync(request.UserId);
 
-        var user = maybeApplicant.Value;
+            if (maybeApplicant.HasNoValue) return Result.Failure(DomainErrors.Applicant.NotFound);
 
-        var passwordHash = _passwordHasher.HashPassword(passwordResult.Value);
+            var user = maybeApplicant.Value;
 
-        var result = user.ChangePassword(passwordHash);
+            var passwordHash = _passwordHasher.HashPassword(passwordResult.Value);
 
-        if (result.IsFailure) return Result.Failure(result.Error);
+            var result = user.ChangePassword(passwordHash);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+            if (result.IsFailure) return Result.Failure(result.Error);
 
-        return Result.Success();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return Result.Success();
+        }
     }
 }

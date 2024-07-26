@@ -1,23 +1,23 @@
 ﻿using AvBeacon.Domain.Core.Primitives;
 using FluentValidation;
 
-namespace AvBeacon.Application.Core.Extensions;
-
-/// <summary>
-/// Contains extension methods for fluent validations.
-/// </summary>
-public static class FluentValidationExtensions
+namespace AvBeacon.Application.Core.Extensions
 {
     /// <summary>
-    /// Specifies a custom error to use if validation fails.
+    /// Contains extension methods for fluent validations.
     /// </summary>
-    /// <typeparam name="T">The type being validated.</typeparam>
-    /// <typeparam name="TProperty">The property being validated.</typeparam>
-    /// <param name="rule">The current rule.</param>
-    /// <param name="error">The error to use.</param>
-    /// <returns>The same rule builder.</returns>
-    public static IRuleBuilderOptions<T, TProperty> WithError<T, TProperty>(
-        this IRuleBuilderOptions<T, TProperty> rule, Error error)
+    public static class FluentValidationExtensions
+    {
+        /// <summary>
+        /// Specifies a custom error to use if validation fails.
+        /// </summary>
+        /// <typeparam name="T">The type being validated.</typeparam>
+        /// <typeparam name="TProperty">The property being validated.</typeparam>
+        /// <param name="rule">The current rule.</param>
+        /// <param name="error">The error to use.</param>
+        /// <returns>The same rule builder.</returns>
+        public static IRuleBuilderOptions<T, TProperty> WithError<T, TProperty>(
+            this IRuleBuilderOptions<T, TProperty> rule, Error error)
     {
         if (error is null)
         {
@@ -25,5 +25,6 @@ public static class FluentValidationExtensions
         }
 
         return rule.WithErrorCode(error.Code).WithMessage(error.Message);
+    }
     }
 }

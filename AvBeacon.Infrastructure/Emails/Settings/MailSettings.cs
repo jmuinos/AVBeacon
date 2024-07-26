@@ -10,26 +10,26 @@
         /// <summary>
         /// Gets or sets the email sender display name.
         /// </summary>
-        public string SenderDisplayName { get; set; }
+        public required string SenderDisplayName { get; init; }
 
         /// <summary>
         /// Gets or sets the email sender.
         /// </summary>
-        public string SenderEmail { get; set; }
+        public required string SenderEmail { get; init; }
 
         /// <summary>
         /// Gets or sets the SMTP password.
         /// </summary>
-        public string SmtpPassword { get; set; }
+        public required string SmtpPassword { get; init; }
 
         /// <summary>
         /// Gets or sets the SMTP server.
         /// </summary>
-        public string SmtpServer { get; set; }
+        public required string SmtpServer { get; init; }
 
         /// <summary>
         /// Gets or sets the SMTP port.
         /// </summary>
-        public int SmtpPort { get; set; }
+        public int SmtpPort { get; init; }
     }
 }

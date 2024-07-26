@@ -4,11 +4,11 @@ using AvBeacon.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations;
-
-public class UserConfiguration : IEntityTypeConfiguration<User>
+namespace AvBeacon.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public class UserConfiguration : IEntityTypeConfiguration<User>
+    {
+        public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(u => u.Id);
 
@@ -34,5 +34,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasField("_passwordHash")
             .HasColumnName("PasswordHash")
             .IsRequired();
+    }
     }
 }

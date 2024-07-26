@@ -3,26 +3,26 @@ using AvBeacon.Application.Abstractions.Messaging;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace AvBeacon.Application.Core.Behaviors;
-
-/// <summary>
-/// Represents the transaction behaviour middleware.
-/// </summary>
-/// <typeparam name="TRequest">The request type.</typeparam>
-/// <typeparam name="TResponse">The response type.</typeparam>
-internal sealed class TransactionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : class, IRequest<TResponse>
-    where TResponse : class
+namespace AvBeacon.Application.Core.Behaviors
 {
-    private readonly IUnitOfWork _unitOfWork;
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="TransactionBehaviour{TRequest,TResponse}"/> class.
+    /// Represents the transaction behaviour middleware.
     /// </summary>
-    /// <param name="unitOfWork">The unit of work.</param>
-    public TransactionBehaviour(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+    /// <typeparam name="TRequest">The request type.</typeparam>
+    /// <typeparam name="TResponse">The response type.</typeparam>
+    internal sealed class TransactionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : class, IRequest<TResponse>
+        where TResponse : class
+    {
+        private readonly IUnitOfWork _unitOfWork;
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionBehaviour{TRequest,TResponse}"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
+        public TransactionBehaviour(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
             if (request is IQuery<TResponse>)
             {
@@ -46,4 +46,5 @@ internal sealed class TransactionBehaviour<TRequest, TResponse> : IPipelineBehav
                 throw;
             }
         }
+    }
 }

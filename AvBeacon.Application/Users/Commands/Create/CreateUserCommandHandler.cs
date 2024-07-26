@@ -7,25 +7,25 @@ using AvBeacon.Domain.Applicants;
 using AvBeacon.Domain.Core.Errors;
 using AvBeacon.Domain.Core.Primitives.Result;
 using AvBeacon.Domain.Recruiters;
+using AvBeacon.Domain.Repositories;
 using AvBeacon.Domain.Users;
-using IUserRepository = AvBeacon.Domain.Repositories.IUserRepository;
 
-namespace AvBeacon.Application.Users.Commands.Create;
-
-internal sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Result<TokenResponse>>
+namespace AvBeacon.Application.Users.Commands.Create
 {
-    private readonly IJwtProvider _jwtProvider;
-    private readonly IPasswordHasher _passwordHasher;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IUserRepository _userRepository;
+    internal sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Result<TokenResponse>>
+    {
+        private readonly IJwtProvider _jwtProvider;
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserRepository _userRepository;
 
-    /// <summary> Initializes a new instance of the <see cref="CreateUserCommand" /> class. </summary>
-    /// <param name="userRepository"> The user repository. </param>
-    /// <param name="passwordHasher"> The password hasher. </param>
-    /// <param name="unitOfWork"> The unit of work. </param>
-    /// <param name="jwtProvider"> The JWT provider. </param>
-    public CreateUserCommandHandler(IUserRepository userRepository, IPasswordHasher passwordHasher,
-        IUnitOfWork unitOfWork, IJwtProvider jwtProvider)
+        /// <summary> Initializes a new instance of the <see cref="CreateUserCommand" /> class. </summary>
+        /// <param name="userRepository"> The user repository. </param>
+        /// <param name="passwordHasher"> The password hasher. </param>
+        /// <param name="unitOfWork"> The unit of work. </param>
+        /// <param name="jwtProvider"> The JWT provider. </param>
+        public CreateUserCommandHandler(IUserRepository userRepository, IPasswordHasher passwordHasher,
+            IUnitOfWork unitOfWork, IJwtProvider jwtProvider)
     {
         _userRepository = userRepository;
         _passwordHasher = passwordHasher;
@@ -33,7 +33,7 @@ internal sealed class CreateUserCommandHandler : ICommandHandler<CreateUserComma
         _jwtProvider = jwtProvider;
     }
 
-    public async Task<Result<TokenResponse>> Handle(CreateUserCommand command, CancellationToken cancellationToken)
+        public async Task<Result<TokenResponse>> Handle(CreateUserCommand command, CancellationToken cancellationToken)
     {
         var firstNameResult = FirstName.Create(command.FirstName);
         var lastNameResult = LastName.Create(command.LastName);
@@ -69,5 +69,6 @@ internal sealed class CreateUserCommandHandler : ICommandHandler<CreateUserComma
         var token = _jwtProvider.Create(user);
 
         return Result.Success(new TokenResponse(token));
+    }
     }
 }

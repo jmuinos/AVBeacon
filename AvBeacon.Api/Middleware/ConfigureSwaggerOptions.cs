@@ -2,43 +2,44 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AvBeacon.Api.Middleware;
-
-public class ConfigureSwaggerOptions
-    : IConfigureOptions<SwaggerGenOptions>
+namespace AvBeacon.Api.Middleware
 {
-    public void Configure(SwaggerGenOptions options)
+    public class ConfigureSwaggerOptions
+        : IConfigureOptions<SwaggerGenOptions>
     {
-        options.SwaggerDoc("v1", new OpenApiInfo
+        public void Configure(SwaggerGenOptions options)
         {
-            Title = "AvBeacon API", 
-            Version = "v1"
-        });
-
-        options.AddSecurityDefinition("Bearer",
-            new OpenApiSecurityScheme
+            options.SwaggerDoc("v1", new OpenApiInfo
             {
-                Description = "JWT Authorization header using the Bearer scheme.",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.ApiKey,
-                Scheme = "Bearer"
+                Title = "AvBeacon API", 
+                Version = "v1"
             });
 
-        options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+            options.AddSecurityDefinition("Bearer",
+                new OpenApiSecurityScheme
                 {
-                    new OpenApiSecurityScheme
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
                     {
-                        Reference = new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    Array.Empty<string>()
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
                 }
-            }
-        );
+            );
+        }
     }
 }

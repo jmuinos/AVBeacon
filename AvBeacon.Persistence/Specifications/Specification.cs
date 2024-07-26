@@ -1,24 +1,25 @@
 ﻿using System.Linq.Expressions;
 using AvBeacon.Domain.Core.Primitives;
 
-namespace AvBeacon.Persistence.Specifications;
-
-/// <summary> Represents the abstract base class for specifications. </summary>
-/// <typeparam name="TEntity"> The entity type. </typeparam>
-internal abstract class Specification<TEntity>
-    where TEntity : Entity
+namespace AvBeacon.Persistence.Specifications
 {
-    /// <summary> Converts the specification to an expression predicate. </summary>
-    /// <returns> The expression predicate. </returns>
-    internal abstract Expression<Func<TEntity, bool>> ToExpression();
-
-    /// <summary> Checks if the specified entity satisfies this specification. </summary>
-    /// <param name="entity"> The entity. </param>
-    /// <returns> True if the entity satisfies the specification, otherwise false. </returns>
-    internal bool IsSatisfiedBy(TEntity entity) { return ToExpression().Compile()(entity); }
-
-    public static implicit operator Expression<Func<TEntity, bool>>(Specification<TEntity> specification)
+    /// <summary> Represents the abstract base class for specifications. </summary>
+    /// <typeparam name="TEntity"> The entity type. </typeparam>
+    internal abstract class Specification<TEntity>
+        where TEntity : Entity
     {
-        return specification.ToExpression();
+        /// <summary> Converts the specification to an expression predicate. </summary>
+        /// <returns> The expression predicate. </returns>
+        internal abstract Expression<Func<TEntity, bool>> ToExpression();
+
+        /// <summary> Checks if the specified entity satisfies this specification. </summary>
+        /// <param name="entity"> The entity. </param>
+        /// <returns> True if the entity satisfies the specification, otherwise false. </returns>
+        internal bool IsSatisfiedBy(TEntity entity) { return ToExpression().Compile()(entity); }
+
+        public static implicit operator Expression<Func<TEntity, bool>>(Specification<TEntity> specification)
+        {
+            return specification.ToExpression();
+        }
     }
 }

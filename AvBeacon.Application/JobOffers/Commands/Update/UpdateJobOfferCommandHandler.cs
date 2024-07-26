@@ -6,12 +6,12 @@ using AvBeacon.Domain.Repositories;
 using AvBeacon.Domain.ValueObjects;
 using MediatR;
 
-namespace AvBeacon.Application.JobOffers.Commands.Update;
-
-internal sealed class UpdateJobOfferCommandHandler(IJobOfferRepository jobOfferRepository, IUnitOfWork unitOfWork)
-    : IRequestHandler<UpdateJobOfferCommand, Result>
+namespace AvBeacon.Application.JobOffers.Commands.Update
 {
-    public async Task<Result> Handle(UpdateJobOfferCommand request, CancellationToken cancellationToken)
+    internal sealed class UpdateJobOfferCommandHandler(IJobOfferRepository jobOfferRepository, IUnitOfWork unitOfWork)
+        : IRequestHandler<UpdateJobOfferCommand, Result>
+    {
+        public async Task<Result> Handle(UpdateJobOfferCommand request, CancellationToken cancellationToken)
     {
         var titleResult = Title.Create(request.Title);
         var descriptionResult = Description.Create(request.Description);
@@ -33,5 +33,6 @@ internal sealed class UpdateJobOfferCommandHandler(IJobOfferRepository jobOfferR
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
+    }
     }
 }

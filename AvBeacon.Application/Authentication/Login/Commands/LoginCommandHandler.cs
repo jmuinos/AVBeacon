@@ -6,46 +6,47 @@ using AvBeacon.Domain.Core.Primitives.Result;
 using AvBeacon.Domain.Repositories;
 using AvBeacon.Domain.Users;
 
-namespace AvBeacon.Application.Authentication.Login.Commands;
-
-/// <summary> Represents the <see cref="LoginCommand" /> handler. </summary>
-internal sealed class LoginCommandHandler : ICommandHandler<LoginCommand, Result<TokenResponse>>
+namespace AvBeacon.Application.Authentication.Login.Commands
 {
-    private readonly IJwtProvider _jwtProvider;
-    private readonly IPasswordHashChecker _passwordHashChecker;
-    private readonly IUserRepository _userRepository;
-
-    /// <summary> Initializes a new instance of the <see cref="LoginCommandHandler" /> class. </summary>
-    /// <param name="userRepository"> The user repository. </param>
-    /// <param name="passwordHashChecker"> The password hash checker. </param>
-    /// <param name="jwtProvider"> The JWT provider. </param>
-    public LoginCommandHandler(IUserRepository userRepository, IPasswordHashChecker passwordHashChecker,
-        IJwtProvider jwtProvider)
+    /// <summary> Represents the <see cref="LoginCommand" /> handler. </summary>
+    internal sealed class LoginCommandHandler : ICommandHandler<LoginCommand, Result<TokenResponse>>
     {
-        _userRepository = userRepository;
-        _passwordHashChecker = passwordHashChecker;
-        _jwtProvider = jwtProvider;
-    }
+        private readonly IJwtProvider _jwtProvider;
+        private readonly IPasswordHashChecker _passwordHashChecker;
+        private readonly IUserRepository _userRepository;
 
-    /// <inheritdoc />
-    public async Task<Result<TokenResponse>> Handle(LoginCommand command, CancellationToken cancellationToken)
-    {
-        var emailResult = Email.Create(command.Email);
-        if (emailResult.IsFailure)
-            return Result.Failure<TokenResponse>(DomainErrors.Authentication.EmailNotFound);
+        /// <summary> Initializes a new instance of the <see cref="LoginCommandHandler" /> class. </summary>
+        /// <param name="userRepository"> The user repository. </param>
+        /// <param name="passwordHashChecker"> The password hash checker. </param>
+        /// <param name="jwtProvider"> The JWT provider. </param>
+        public LoginCommandHandler(IUserRepository userRepository, IPasswordHashChecker passwordHashChecker,
+            IJwtProvider jwtProvider)
+        {
+            _userRepository = userRepository;
+            _passwordHashChecker = passwordHashChecker;
+            _jwtProvider = jwtProvider;
+        }
 
-        var maybeUser = await _userRepository.GetByEmailAsync(emailResult.Value);
-        if (maybeUser.HasNoValue)
-            return Result.Failure<TokenResponse>(DomainErrors.Authentication.UserNotFound);
+        /// <inheritdoc />
+        public async Task<Result<TokenResponse>> Handle(LoginCommand command, CancellationToken cancellationToken)
+        {
+            var emailResult = Email.Create(command.Email);
+            if (emailResult.IsFailure)
+                return Result.Failure<TokenResponse>(DomainErrors.Authentication.EmailNotFound);
 
-        var user = maybeUser.Value;
-        var passwordValid = user.VerifyPasswordHash(command.Password, _passwordHashChecker);
+            var maybeUser = await _userRepository.GetByEmailAsync(emailResult.Value);
+            if (maybeUser.HasNoValue)
+                return Result.Failure<TokenResponse>(DomainErrors.Authentication.UserNotFound);
 
-        if (!passwordValid)
-            return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidPassword);
+            var user = maybeUser.Value;
+            var passwordValid = user.VerifyPasswordHash(command.Password, _passwordHashChecker);
 
-        var token = _jwtProvider.Create(user);
+            if (!passwordValid)
+                return Result.Failure<TokenResponse>(DomainErrors.Authentication.InvalidPassword);
 
-        return Result.Success(new TokenResponse(token));
+            var token = _jwtProvider.Create(user);
+
+            return Result.Success(new TokenResponse(token));
+        }
     }
 }

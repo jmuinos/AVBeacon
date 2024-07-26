@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Persistence;
-
-public static class DependencyInjection
+namespace AvBeacon.Persistence
 {
-    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+    public static class DependencyInjection
+    {
+        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(ConnectionString.SettingsKey);
         services.AddSingleton(new ConnectionString(connectionString!));
@@ -30,5 +30,6 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
+    }
     }
 }

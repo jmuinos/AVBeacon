@@ -4,27 +4,27 @@ using FluentValidation.Results;
 using MediatR;
 using ValidationException = AvBeacon.Application.Core.Exceptions.ValidationException;
 
-namespace AvBeacon.Application.Core.Behaviors;
-
-/// <summary>
-/// Represents the validation behaviour middleware.
-/// </summary>
-/// <typeparam name="TRequest">The request type.</typeparam>
-/// <typeparam name="TResponse">The response type.</typeparam>
-internal sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : class, IRequest<TResponse>
-    where TResponse : class
+namespace AvBeacon.Application.Core.Behaviors
 {
-    private readonly IEnumerable<IValidator<TRequest>> _validators;
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="ValidationBehaviour{TRequest,TResponse}"/> class.
+    /// Represents the validation behaviour middleware.
     /// </summary>
-    /// <param name="validators">The validator for the current request type.</param>
-    public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators) => _validators = validators;
+    /// <typeparam name="TRequest">The request type.</typeparam>
+    /// <typeparam name="TResponse">The response type.</typeparam>
+    internal sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : class, IRequest<TResponse>
+        where TResponse : class
+    {
+        private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-    /// <inheritdoc />
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidationBehaviour{TRequest,TResponse}"/> class.
+        /// </summary>
+        /// <param name="validators">The validator for the current request type.</param>
+        public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators) => _validators = validators;
+
+        /// <inheritdoc />
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
             if (request is IQuery<TResponse>)
             {
@@ -46,4 +46,5 @@ internal sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavi
 
             return await next();
         }
+    }
 }
