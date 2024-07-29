@@ -1,0 +1,162 @@
+2024-07-26 09:25:12.861 +02:00 [ERR] Failed executing DbCommand (74ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedOnUtc], [u].[Deleted], [u].[DeletedOnUtc], [u].[Email], [u].[FirstName], [u].[LastName], [u].[ModifiedOnUtc], [u].[UserType], [u].[PasswordHash]
+FROM [User] AS [u]
+WHERE [u].[Email] = @__email_0
+2024-07-26 09:25:12.945 +02:00 [ERR] An exception occurred while iterating over the results of a query for context type 'AvBeacon.Persistence.AvBeaconDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:36912d33-2da2-4300-b858-49d2d9460402
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:36912d33-2da2-4300-b858-49d2d9460402
+Error Number:207,State:1,Class:16
+2024-07-26 09:25:12.994 +02:00 [ERR] An exception occurred: El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+Microsoft.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at AvBeacon.Persistence.Repositories.UserRepository.GetByEmailAsync(Email email) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Persistence\Repositories\UserRepository.cs:line 14
+   at AvBeacon.Application.Authentication.Login.Commands.LoginCommandHandler.Handle(LoginCommand command, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Authentication\Login\Commands\LoginCommandHandler.cs:line 37
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 36
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 46
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 47
+   at AvBeacon.Application.Core.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\ValidationBehaviour.cs:line 47
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Bind[TIn,TOut](Result`1 result, Func`2 func) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 68
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 110
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 77
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+ClientConnectionId:36912d33-2da2-4300-b858-49d2d9460402
+Error Number:207,State:1,Class:16
+2024-07-26 09:25:49.164 +02:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedOnUtc], [u].[Deleted], [u].[DeletedOnUtc], [u].[Email], [u].[FirstName], [u].[LastName], [u].[ModifiedOnUtc], [u].[UserType], [u].[PasswordHash]
+FROM [User] AS [u]
+WHERE [u].[Email] = @__email_0
+2024-07-26 09:25:49.167 +02:00 [ERR] An exception occurred while iterating over the results of a query for context type 'AvBeacon.Persistence.AvBeaconDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:36912d33-2da2-4300-b858-49d2d9460402
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:36912d33-2da2-4300-b858-49d2d9460402
+Error Number:207,State:1,Class:16
+2024-07-26 09:25:49.172 +02:00 [ERR] An exception occurred: El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+Microsoft.Data.SqlClient.SqlException (0x80131904): El nombre de columna 'CreatedOnUtc' no es válido.
+El nombre de columna 'Deleted' no es válido.
+El nombre de columna 'DeletedOnUtc' no es válido.
+El nombre de columna 'ModifiedOnUtc' no es válido.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at AvBeacon.Persistence.Repositories.UserRepository.GetByEmailAsync(Email email) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Persistence\Repositories\UserRepository.cs:line 14
+   at AvBeacon.Application.Authentication.Login.Commands.LoginCommandHandler.Handle(LoginCommand command, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Authentication\Login\Commands\LoginCommandHandler.cs:line 37
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 36
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 46
+   at AvBeacon.Application.Core.Behaviors.TransactionBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\TransactionBehaviour.cs:line 47
+   at AvBeacon.Application.Core.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Application\Core\Behaviors\ValidationBehaviour.cs:line 47
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Bind[TIn,TOut](Result`1 result, Func`2 func) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 68
+   at AvBeacon.Domain.Core.Primitives.Result.ResultExtensions.Match[TIn,TOut](Task`1 resultTask, Func`2 onSuccess, Func`2 onFailure) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Domain\Core\Primitives\Result\ResultExtensions.cs:line 110
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Program.cs:line 77
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AvBeacon.Api.Middleware.ExceptionHandlerMiddleware.Invoke(HttpContext httpContext) in C:\Users\josem\RiderProjects\AvBeacon\AvBeacon.Api\Middleware\ExceptionHandlerMiddleware.cs:line 33
+ClientConnectionId:36912d33-2da2-4300-b858-49d2d9460402
+Error Number:207,State:1,Class:16

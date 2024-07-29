@@ -27,11 +27,6 @@ namespace AvBeacon.Persistence.Configurations
         builder.Property(e => e.End)
             .IsRequired(false);
 
-        builder.HasOne(e => e.Applicant)
-            .WithMany(a => a.Experiences)
-            .HasForeignKey(e => e.ApplicantId)
-            .OnDelete(DeleteBehavior.Cascade);
-
         // Relación uno a muchos con Applicant
         builder.HasOne(e => e.Applicant)
             .WithMany(a => a.Experiences)

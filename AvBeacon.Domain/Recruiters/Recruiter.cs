@@ -9,7 +9,7 @@ namespace AvBeacon.Domain.Recruiters
 
         public ICollection<JobOffer> JobOffers { get; private set; } = new List<JobOffer>();
 
-        public new static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+        public static Recruiter Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
         {
             return new Recruiter(firstName, lastName, email, passwordHash);
         }

@@ -8,7 +8,7 @@ using AvBeacon.Domain.Users.DomainEvents;
 namespace AvBeacon.Domain.Users
 {
     /// <summary>Represents the user entity.</summary>
-    public class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
+    public abstract class User : AggregateRoot, IAuditableEntity, ISoftDeletableEntity
     {
         private string _passwordHash;
 
@@ -55,20 +55,7 @@ namespace AvBeacon.Domain.Users
         /// <inheritdoc />
         public bool Deleted { get; init; }
 
-        /// <summary>Creates a new user with the specified first name, last name, email and password hash.</summary>
-        /// <param name="firstName">The first name.</param>
-        /// <param name="lastName">The last name.</param>
-        /// <param name="email">The email.</param>
-        /// <param name="passwordHash">The password hash.</param>
-        /// <returns>The newly created user instance.</returns>
-        public static User Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
-        {
-            var user = new User(firstName, lastName, email, passwordHash);
 
-            user.AddDomainEvent(new UserPasswordChangedDomainEvent(user));
-
-            return user;
-        }
 
         /// <summary>Verifies that the provided password hash matches the password hash.</summary>
         /// <param name="password">The password to be checked against the user password hash.</param>
@@ -102,7 +89,6 @@ namespace AvBeacon.Domain.Users
             Ensure.NotEmpty(lastName, "The last name is required.", nameof(lastName));
 
             FirstName = firstName;
-
             LastName = lastName;
 
             AddDomainEvent(new UserNameChangedDomainEvent(this));

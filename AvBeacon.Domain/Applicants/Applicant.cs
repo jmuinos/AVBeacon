@@ -13,7 +13,7 @@ namespace AvBeacon.Domain.Applicants
         public ICollection<Skill> Skills { get; private set; } = new List<Skill>();
 
 
-        public new static Applicant Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
+        public static Applicant Create(FirstName firstName, LastName lastName, Email email, string passwordHash)
         {
             return new Applicant(firstName, lastName, email, passwordHash);
         }
