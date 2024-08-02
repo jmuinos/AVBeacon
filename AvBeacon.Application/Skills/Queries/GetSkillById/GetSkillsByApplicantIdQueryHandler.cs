@@ -1,12 +1,14 @@
-﻿namespace AvBeacon.Application.Skills.Queries.GetSkillById { }
+﻿namespace AvBeacon.Application.Skills.Queries.GetSkillById;
 
-// /// <summary> Representa el manejador de la consulta <see cref="GetSkillsByApplicantIdQuery" /> </summary>
+// /// <summary> 
+///Representa el manejador de la consulta <see cref="GetSkillsByApplicantIdQuery" /> </summary>
 // internal sealed class
 //     GetSkillsByApplicantIdQueryHandler : IQueryHandler<GetSkillsByApplicantIdQuery, List<SkillResponse>>
 // {
 //     private readonly IApplicantRepository _applicantRepository;
 //
-//     /// <summary> Inicializa una nueva instancia de la clase <see cref="GetSkillsByApplicantIdQueryHandler" />. </summary>
+//     /// <summary> 
+///Inicializa una nueva instancia de la clase <see cref="GetSkillsByApplicantIdQueryHandler" />. </summary>
 //     /// <param name="applicantRepository"> El repositorio de solicitantes. </param>
 //     public GetSkillsByApplicantIdQueryHandler(IApplicantRepository applicantRepository)
 //     {

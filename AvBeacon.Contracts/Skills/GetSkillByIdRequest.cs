@@ -1,8 +1,9 @@
-namespace AvBeacon.Contracts.Skills
+namespace AvBeacon.Contracts.Skills;
+
+/// <summary>
+///     Representa la solicitud para obtener una habilidad por su identificador.
+/// </summary>
+public sealed record GetSkillByIdRequest
 {
-    /// <summary> Representa la solicitud para obtener una habilidad por su identificador. </summary>
-    public sealed record GetSkillByIdRequest
-    {
-        public Guid SkillId { get; init; }
-    }
+    public Guid SkillId { get; init; }
 }

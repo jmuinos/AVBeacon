@@ -1,60 +1,92 @@
-﻿namespace AvBeacon.Domain.Core.Primitives.Maybe
+﻿namespace AvBeacon.Domain.Core.Primitives.Maybe;
+
+/// <summary>
+///     Represents a wrapper around a value that may or may not be null.
+/// </summary>
+/// <typeparam name="T"> The value type. </typeparam>
+public sealed class Maybe<T> : IEquatable<Maybe<T>>
 {
-    /// <summary>Represents a wrapper around a value that may or may not be null.</summary>
-    /// <typeparam name="T">The value type.</typeparam>
-    public sealed class Maybe<T> : IEquatable<Maybe<T>>
+    private readonly T _value;
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Maybe{T}" /> class.
+    /// </summary>
+    /// <param name="value"> The value. </param>
+    private Maybe(T value)
     {
-        private readonly T? _value;
+        _value = value;
+    }
 
-        /// <summary>Initializes a new instance of the <see cref="Maybe{T}" /> class.</summary>
-        /// <param name="value">The value.</param>
-        private Maybe(T? value)
+    /// <summary>
+    ///     Gets a value indicating whether or not the value exists.
+    /// </summary>
+    public bool HasValue => !HasNoValue;
+
+    /// <summary>
+    ///     Gets a value indicating whether or not the value does not exist.
+    /// </summary>
+    public bool HasNoValue => _value is null;
+
+    /// <summary>
+    ///     Gets the value.
+    /// </summary>
+    public T Value =>
+        HasValue
+            ? _value
+            : throw new InvalidOperationException("The value can not be accessed because it does not exist.");
+
+    /// <summary>
+    ///     Gets the default empty instance.
+    /// </summary>
+    public static Maybe<T> None => new(default);
+
+    /// <inheritdoc />
+    public bool Equals(Maybe<T> other)
+    {
+        if (other is null) return false;
+
+        if (HasNoValue && other.HasNoValue) return true;
+
+        if (HasNoValue || other.HasNoValue) return false;
+
+        return Value.Equals(other.Value);
+    }
+
+    /// <summary>
+    ///     Creates a new <see cref="Maybe{T}" /> instance based on the specified value.
+    /// </summary>
+    /// <param name="value"> The value. </param>
+    /// <returns> The new <see cref="Maybe{T}" /> instance. </returns>
+    public static Maybe<T> From(T value)
+    {
+        return new Maybe<T>(value);
+    }
+
+    public static implicit operator Maybe<T>(T value)
+    {
+        return From(value);
+    }
+
+    public static implicit operator T(Maybe<T> maybe)
+    {
+        return maybe.Value;
+    }
+
+    /// <inheritdoc />
+    public override bool Equals(object obj)
+    {
+        return obj switch
         {
-            _value = value;
-        }
+            null           => false,
+            T value        => Equals(new Maybe<T>(value)),
+            Maybe<T> maybe => Equals(maybe),
+            _              => false
+        };
+    }
 
-        /// <summary>Gets a value indicating whether the value exists or not.</summary>
-        public bool HasValue => !HasNoValue;
-
-        /// <summary>Gets a value indicating whether the value exists or not.</summary>
-        public bool HasNoValue => _value is null;
-
-        /// <summary>Gets the value.</summary>
-        public T Value =>
-            HasValue
-                ? _value!
-                : throw new InvalidOperationException("The value cannot be accessed because it does not exist.");
-
-        /// <summary>Gets the default empty instance.</summary>
-        public static Maybe<T> None => new Maybe<T>(default);
-
-        /// <inheritdoc />
-        public bool Equals(Maybe<T>? other)
-        {
-            if (other is null) return false;
-
-            if (HasNoValue && other.HasNoValue) return true;
-
-            if (HasNoValue || other.HasNoValue) return false;
-
-            return EqualityComparer<T>.Default.Equals(_value, other._value);
-        }
-
-        /// <summary>Creates a new <see cref="Maybe{T}" /> instance based on the specified value.</summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The new <see cref="Maybe{T}" /> instance.</returns>
-        public static Maybe<T> From(T value) => new Maybe<T>(value);
-
-        public static implicit operator Maybe<T>(T value) => From(value);
-
-        public static implicit operator T(Maybe<T> maybe) => maybe.Value;
-
-        /// <inheritdoc />
-        public override bool Equals(object? obj) =>
-            obj is Maybe<T> maybe && Equals(maybe) ||
-            obj is T value && Equals(new Maybe<T>(value));
-
-        /// <inheritdoc />
-        public override int GetHashCode() => HasValue ? _value!.GetHashCode() : 0;
+    /// <inheritdoc />
+    public override int GetHashCode()
+    {
+        return HasValue ? Value.GetHashCode() : 0;
     }
 }

@@ -1,39 +1,66 @@
 ﻿using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Recruiters;
 using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Recruiters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations
+namespace AvBeacon.Persistence.Configurations;
+
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
-    {
-        public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(u => u.Id);
 
-        builder.HasDiscriminator<string>("UserType")
-            .HasValue<Recruiter>("Recruiter")
-            .HasValue<Applicant>("Applicant");
+        builder.HasDiscriminator(u => u.UserType)
+               .HasValue<Recruiter>(UserType.Recruiter)
+               .HasValue<Applicant>(UserType.Applicant);
 
-        builder.Property(u => u.FirstName)
-            .HasConversion(f => f.Value, v => FirstName.Create(v).Value)
-            .IsRequired();
+        builder.OwnsOne(user => user.FirstName, firstNameBuilder =>
+        {
+            firstNameBuilder.WithOwner();
 
-        builder.Property(u => u.LastName)
-            .HasConversion(l => l.Value, v => LastName.Create(v).Value)
-            .IsRequired();
+            firstNameBuilder.Property(firstName => firstName.Value)
+                            .HasColumnName(nameof(User.FirstName))
+                            .HasMaxLength(FirstName.MaxLength)
+                            .IsRequired();
+        });
 
-        builder.Property(u => u.Email)
-            .HasConversion(e => e.Value, v => Email.Create(v).Value)
-            .IsRequired();
+        builder.OwnsOne(user => user.LastName, lastNameBuilder =>
+        {
+            lastNameBuilder.WithOwner();
 
-        builder.Ignore(u => u.FullName);
+            lastNameBuilder.Property(lastName => lastName.Value)
+                           .HasColumnName(nameof(User.LastName))
+                           .HasMaxLength(LastName.MaxLength)
+                           .IsRequired();
+        });
+
+        builder.OwnsOne(user => user.Email, emailBuilder =>
+        {
+            emailBuilder.WithOwner();
+
+            emailBuilder.Property(email => email.Value)
+                        .HasColumnName(nameof(User.Email))
+                        .HasMaxLength(Email.MaxLength)
+                        .IsRequired();
+        });
 
         builder.Property<string>("_passwordHash")
-            .HasField("_passwordHash")
-            .HasColumnName("PasswordHash")
-            .IsRequired();
-    }
+               .HasField("_passwordHash")
+               .HasColumnName("PasswordHash")
+               .IsRequired();
+
+        builder.Property(user => user.CreatedOnUtc).IsRequired();
+
+        builder.Property(user => user.ModifiedOnUtc);
+
+        builder.Property(user => user.DeletedOnUtc);
+
+        builder.Property(user => user.Deleted).HasDefaultValue(false);
+
+        builder.HasQueryFilter(user => !user.Deleted);
+
+        builder.Ignore(user => user.FullName);
     }
 }

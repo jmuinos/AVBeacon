@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Application", "AvBeacon.Application\AvBeacon.Application.csproj", "{856D73BF-A3F7-4751-A5E5-68347733ED8B}"
 EndProject
@@ -12,12 +12,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Contracts", "AvBea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Infrastructure", "AvBeacon.Infrastructure\AvBeacon.Infrastructure.csproj", "{84CF24B8-F93B-43BB-8840-34CFB5B0942F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-compose", "docker-compose", "{143B3636-642A-4FC5-A95F-AAE95E92A0BE}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Services.Api", "AvBeacon.Services.Api\AvBeacon.Services.Api.csproj", "{1A551D67-ED15-4349-8E74-D67B00796608}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Api", "AvBeacon.Api\AvBeacon.Api.csproj", "{1A551D67-ED15-4349-8E74-D67B00796608}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notifications", "notifications", "{0112C209-4C4F-4509-B16C-C01CB3B73B4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.BackgroundTasks", "AvBeacon.BackgroundTasks\AvBeacon.BackgroundTasks.csproj", "{B9FBF991-0B7D-4014-BBF7-FC027106660A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvBeacon.Services.Notifications", "AvBeacon.Services.Notifications\AvBeacon.Services.Notifications.csproj", "{9389C020-3DA7-40ED-A7D0-E37C557BE83B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{509FA9B7-D0CF-45FF-A06D-54F97E9DC88D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,7 +33,10 @@ Global
 		{4B98E7BD-AD53-4458-8F89-D2C753D24F5C} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
 		{4C856C45-D4C3-4F4A-AA19-97F0E715965C} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
 		{84CF24B8-F93B-43BB-8840-34CFB5B0942F} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
-		{1A551D67-ED15-4349-8E74-D67B00796608} = {0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2}
+		{B9FBF991-0B7D-4014-BBF7-FC027106660A} = {0112C209-4C4F-4509-B16C-C01CB3B73B4A}
+		{9389C020-3DA7-40ED-A7D0-E37C557BE83B} = {0112C209-4C4F-4509-B16C-C01CB3B73B4A}
+		{0037F7DE-B62B-492F-86CB-D1AB9B3BDCF2} = {509FA9B7-D0CF-45FF-A06D-54F97E9DC88D}
+		{1A551D67-ED15-4349-8E74-D67B00796608} = {509FA9B7-D0CF-45FF-A06D-54F97E9DC88D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{856D73BF-A3F7-4751-A5E5-68347733ED8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -57,5 +63,13 @@ Global
 		{1A551D67-ED15-4349-8E74-D67B00796608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A551D67-ED15-4349-8E74-D67B00796608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A551D67-ED15-4349-8E74-D67B00796608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FBF991-0B7D-4014-BBF7-FC027106660A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FBF991-0B7D-4014-BBF7-FC027106660A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FBF991-0B7D-4014-BBF7-FC027106660A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FBF991-0B7D-4014-BBF7-FC027106660A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9389C020-3DA7-40ED-A7D0-E37C557BE83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9389C020-3DA7-40ED-A7D0-E37C557BE83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9389C020-3DA7-40ED-A7D0-E37C557BE83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9389C020-3DA7-40ED-A7D0-E37C557BE83B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

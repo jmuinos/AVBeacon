@@ -8,56 +8,55 @@ using AvBeacon.Infrastructure.Authentication.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace AvBeacon.Infrastructure.Authentication
+namespace AvBeacon.Infrastructure.Authentication;
+
+/// <summary>
+///     Represents the JWT provider.
+/// </summary>
+internal sealed class JwtProvider : IJwtProvider
 {
+    private readonly IDateTime _dateTime;
+    private readonly JwtSettings _jwtSettings;
+
     /// <summary>
-    /// Represents the JWT provider.
+    ///     Initializes a new instance of the <see cref="JwtProvider" /> class.
     /// </summary>
-    internal sealed class JwtProvider : IJwtProvider
+    /// <param name="jwtOptions"> The JWT options. </param>
+    /// <param name="dateTime"> The current date and time. </param>
+    public JwtProvider(
+        IOptions<JwtSettings> jwtOptions,
+        IDateTime dateTime)
     {
-        private readonly JwtSettings _jwtSettings;
-        private readonly IDateTime _dateTime;
+        _jwtSettings = jwtOptions.Value;
+        _dateTime    = dateTime;
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JwtProvider"/> class.
-        /// </summary>
-        /// <param name="jwtOptions">The JWT options.</param>
-        /// <param name="dateTime">The current date and time.</param>
-        public JwtProvider(
-            IOptions<JwtSettings> jwtOptions,
-            IDateTime dateTime)
+    /// <inheritdoc />
+    public string Create(User user)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
+
+        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+        Claim[] claims =
         {
-            _jwtSettings = jwtOptions.Value;
-            _dateTime = dateTime;
-        }
+            new("userId", user.Id.ToString()),
+            new("email", user.Email),
+            new("name", user.FullName)
+        };
 
-        /// <inheritdoc />
-        public string Create(User user)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
+        var tokenExpirationTime = _dateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
 
-            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var token = new JwtSecurityToken(
+            _jwtSettings.Issuer,
+            _jwtSettings.Audience,
+            claims,
+            null,
+            tokenExpirationTime,
+            signingCredentials);
 
-            Claim[] claims = 
-            {
-                new Claim("userId", user.Id.ToString()),
-                new Claim("email", user.Email),
-                new Claim("name", user.FullName)
-            };
+        var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
-            DateTime tokenExpirationTime = _dateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
-
-            var token = new JwtSecurityToken(
-                _jwtSettings.Issuer,
-                _jwtSettings.Audience,
-                claims,
-                null,
-                tokenExpirationTime,
-                signingCredentials);
-
-            string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return tokenValue;
-        }
+        return tokenValue;
     }
 }

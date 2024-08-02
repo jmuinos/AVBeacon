@@ -1,9 +1,10 @@
-﻿namespace AvBeacon.Contracts.Users
+﻿namespace AvBeacon.Contracts.Users;
+
+/// <summary>
+///     Representa la solicitud de cambio de contraseña.
+/// </summary>
+public sealed record ChangePasswordRequest
 {
-    /// <summary> Representa la solicitud de cambio de contraseña. </summary>
-    public sealed record ChangePasswordRequest
-    {
-        public required Guid UserId { get; set; }
-        public string? Password { get; set; }
-    }
+    public required Guid UserId { get; set; }
+    public string? Password { get; set; }
 }

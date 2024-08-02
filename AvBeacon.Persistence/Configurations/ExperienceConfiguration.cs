@@ -1,37 +1,45 @@
 ﻿using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.ValueObjects;
+using AvBeacon.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations
+namespace AvBeacon.Persistence.Configurations;
+
+public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
 {
-    public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
-    {
-        public void Configure(EntityTypeBuilder<Experience> builder)
+    public void Configure(EntityTypeBuilder<Experience> builder)
     {
         builder.HasKey(e => e.Id);
 
-        builder.Property(e => e.Title)
-            .HasConversion(t => t.Value, v => Title.Create(v).Value)
-            .HasMaxLength(100)
-            .IsRequired();
+        builder.OwnsOne(e => e.Title, titleBuilder =>
+        {
+            titleBuilder.WithOwner();
 
-        builder.Property(e => e.Description)
-            .HasConversion(d => d.Value, v => Description.Create(v).Value)
-            .HasMaxLength(500)
-            .IsRequired();
+            titleBuilder.Property(title => title.Value)
+                        .HasColumnName(nameof(Experience.Title))
+                        .HasMaxLength(Title.MaxLength)
+                        .IsRequired();
+        });
 
+        builder.OwnsOne(e => e.Description, descriptionBuilder =>
+        {
+            descriptionBuilder.WithOwner();
+
+            descriptionBuilder.Property(description => description.Value)
+                              .HasColumnName(nameof(Experience.Description))
+                              .HasMaxLength(Title.MaxLength)
+                              .IsRequired();
+        });
         builder.Property(e => e.Start)
-            .IsRequired(false);
+               .IsRequired(false);
 
         builder.Property(e => e.End)
-            .IsRequired(false);
+               .IsRequired(false);
 
         // Relación uno a muchos con Applicant
-        builder.HasOne(e => e.Applicant)
-            .WithMany(a => a.Experiences)
-            .HasForeignKey(e => e.ApplicantId)
-            .OnDelete(DeleteBehavior.Cascade);
-    }
+        builder.HasOne<Applicant>()
+               .WithMany()
+               .HasForeignKey(e => e.ApplicantId)
+               .OnDelete(DeleteBehavior.Cascade);
     }
 }

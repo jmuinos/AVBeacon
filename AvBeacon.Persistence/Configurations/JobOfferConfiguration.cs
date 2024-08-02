@@ -1,31 +1,53 @@
-﻿using AvBeacon.Domain.Recruiters;
-using AvBeacon.Domain.ValueObjects;
+﻿using AvBeacon.Domain.Common;
+using AvBeacon.Domain.JobOffers;
+using AvBeacon.Domain.Users.Recruiters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations
+namespace AvBeacon.Persistence.Configurations;
+
+public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
 {
-    public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
-    {
-        public void Configure(EntityTypeBuilder<JobOffer> builder)
+    public void Configure(EntityTypeBuilder<JobOffer> builder)
     {
         builder.HasKey(jo => jo.Id);
 
-        builder.Property(jo => jo.Title)
-            .HasConversion(t => t.Value, v => Title.Create(v).Value)
-            .HasMaxLength(100)
-            .IsRequired();
-
-        builder.Property(jo => jo.Description)
-            .HasConversion(d => d.Value, v => Description.Create(v).Value)
-            .HasMaxLength(800)
-            .IsRequired();
-
         // Relación uno a muchos con Recruiter
-        builder.HasOne(jo => jo.Recruiter)
-            .WithMany(r => r.JobOffers)
-            .HasForeignKey(jo => jo.RecruiterId)
-            .OnDelete(DeleteBehavior.Cascade);
-    }
+        builder.HasOne<Recruiter>()
+               .WithMany()
+               .HasForeignKey(jo => jo.RecruiterId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+        builder.OwnsOne(jo => jo.Title, titleBuilder =>
+        {
+            titleBuilder.WithOwner();
+
+            titleBuilder.Property(title => title.Value)
+                        .HasColumnName(nameof(JobOffer.Title))
+                        .HasMaxLength(Title.MaxLength)
+                        .IsRequired();
+        });
+
+        builder.OwnsOne(jo => jo.Description, descriptionBuilder =>
+        {
+            descriptionBuilder.WithOwner();
+
+            descriptionBuilder.Property(description => description.Value)
+                              .HasColumnName(nameof(JobOffer.Description))
+                              .HasMaxLength(Title.MaxLength)
+                              .IsRequired();
+        });
+
+        builder.Property(jo => jo.DateTimeUtc).IsRequired();
+
+        builder.Property(jo => jo.CreatedOnUtc).IsRequired();
+
+        builder.Property(jo => jo.ModifiedOnUtc);
+
+        builder.Property(jo => jo.DeletedOnUtc);
+
+        builder.Property(jo => jo.Deleted).HasDefaultValue(false);
+
+        builder.HasQueryFilter(jo => !jo.Deleted);
     }
 }

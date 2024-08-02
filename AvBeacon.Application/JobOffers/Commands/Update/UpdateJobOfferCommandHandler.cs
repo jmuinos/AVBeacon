@@ -1,17 +1,17 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
 using AvBeacon.Contracts.Authentication;
+using AvBeacon.Domain.Common;
 using AvBeacon.Domain.Core.Errors;
 using AvBeacon.Domain.Core.Primitives.Result;
-using AvBeacon.Domain.Repositories;
-using AvBeacon.Domain.ValueObjects;
+using AvBeacon.Domain.JobOffers;
 using MediatR;
 
-namespace AvBeacon.Application.JobOffers.Commands.Update
+namespace AvBeacon.Application.JobOffers.Commands.Update;
+
+internal sealed class UpdateJobOfferCommandHandler(IJobOfferRepository jobOfferRepository, IUnitOfWork unitOfWork)
+    : IRequestHandler<UpdateJobOfferCommand, Result>
 {
-    internal sealed class UpdateJobOfferCommandHandler(IJobOfferRepository jobOfferRepository, IUnitOfWork unitOfWork)
-        : IRequestHandler<UpdateJobOfferCommand, Result>
-    {
-        public async Task<Result> Handle(UpdateJobOfferCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateJobOfferCommand request, CancellationToken cancellationToken)
     {
         var titleResult = Title.Create(request.Title);
         var descriptionResult = Description.Create(request.Description);
@@ -24,15 +24,14 @@ namespace AvBeacon.Application.JobOffers.Commands.Update
 
         var jobOffer = await jobOfferRepository.GetByIdAsync(request.Id);
         if (jobOffer.HasNoValue)
-            return Result.Failure(DomainErrors.JobOffer.NotFound);
+            return Result.Failure(DomainErrors.JobOffers.NotFound);
 
-        jobOffer.Value.Title = titleResult.Value;
+        jobOffer.Value.Title       = titleResult.Value;
         jobOffer.Value.Description = descriptionResult.Value;
 
         jobOfferRepository.Update(jobOffer);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
-    }
     }
 }

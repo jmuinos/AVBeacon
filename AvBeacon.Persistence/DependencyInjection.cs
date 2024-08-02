@@ -1,16 +1,20 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Repositories;
+using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.JobOffers;
+using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Recruiters;
 using AvBeacon.Persistence.Infrastructure;
 using AvBeacon.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvBeacon.Persistence
+namespace AvBeacon.Persistence;
+
+public static class DependencyInjection
 {
-    public static class DependencyInjection
-    {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(ConnectionString.SettingsKey);
         services.AddSingleton(new ConnectionString(connectionString!));
@@ -30,6 +34,5 @@ namespace AvBeacon.Persistence
         services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
-    }
     }
 }

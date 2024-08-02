@@ -1,19 +1,21 @@
-﻿namespace AvBeacon.Contracts.Authentication
+﻿namespace AvBeacon.Contracts.Authentication;
+
+/// <summary>
+///     Represents the token response.
+/// </summary>
+public sealed class TokenResponse
 {
     /// <summary>
-    /// Represents the token response.
+    ///     Initializes a new instance of the <see cref="TokenResponse" /> class.
     /// </summary>
-    public sealed class TokenResponse
+    /// <param name="token"> The token value. </param>
+    public TokenResponse(string token)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TokenResponse"/> class.
-        /// </summary>
-        /// <param name="token">The token value.</param>
-        public TokenResponse(string token) => Token = token;
-        
-        /// <summary>
-        /// Gets the token.
-        /// </summary>
-        public string Token { get; }
+        Token = token;
     }
+
+    /// <summary>
+    ///     Gets the token.
+    /// </summary>
+    public string Token { get; }
 }

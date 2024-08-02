@@ -1,30 +1,38 @@
 ﻿using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.JobOffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AvBeacon.Persistence.Configurations
+namespace AvBeacon.Persistence.Configurations;
+
+public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplication>
 {
-    public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplication>
-    {
-        public void Configure(EntityTypeBuilder<JobApplication> builder)
+    public void Configure(EntityTypeBuilder<JobApplication> builder)
     {
         builder.HasKey(ja => ja.Id);
 
-        builder.Property(ja => ja.State)
-            .HasConversion(s => s.Value, v => JobApplicationState.FromValue(v).Value)
-            .IsRequired();
-
         // Relación uno a muchos con Applicant
-        builder.HasOne(ja => ja.Applicant)
-            .WithMany(a => a.JobApplications)
-            .HasForeignKey(ja => ja.ApplicantId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne<Applicant>()
+               .WithMany()
+               .HasForeignKey(ja => ja.ApplicantId)
+               .OnDelete(DeleteBehavior.Cascade)
+               .IsRequired();
 
         // Relación uno a muchos con JobOffer
-        builder.HasOne(ja => ja.JobOffer)
-            .WithMany(jo => jo.JobApplications)
-            .HasForeignKey(ja => ja.JobOfferId)
-            .OnDelete(DeleteBehavior.Restrict);
-    }
+        builder.HasOne<JobOffer>()
+               .WithMany()
+               .HasForeignKey(ja => ja.JobOfferId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .IsRequired();
+
+        builder.OwnsOne(ja => ja.State, jobApplicationStateBuilder =>
+        {
+            jobApplicationStateBuilder.WithOwner();
+            jobApplicationStateBuilder.Property(state => state.Value)
+                                      .HasColumnName(nameof(JobApplication.State))
+                                      .IsRequired();
+            jobApplicationStateBuilder.Ignore(state => state.Name);
+        });
     }
 }

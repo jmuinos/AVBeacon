@@ -1,8 +1,7 @@
-﻿namespace AvBeacon.Contracts.Skills
+﻿namespace AvBeacon.Contracts.Skills;
+
+public sealed record ApplicantSkillRequest
 {
-    public sealed record ApplicantSkillRequest
-    {
-        public Guid ApplicantId { get; set; }
-        public Guid SkillId { get; set; }
-    }
+    public Guid ApplicantId { get; set; }
+    public Guid SkillId { get; set; }
 }

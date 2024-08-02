@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\AvBeacon.Application\AvBeacon.Application.csproj"/>
+        <ProjectReference Include="..\AvBeacon.Contracts\AvBeacon.Contracts.csproj"/>
+        <ProjectReference Include="..\AvBeacon.Domain\AvBeacon.Domain.csproj"/>
+        <ProjectReference Include="..\AvBeacon.Infrastructure\AvBeacon.Infrastructure.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
+    </ItemGroup>
+
+</Project>
