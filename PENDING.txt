@@ -1,7 +1,7 @@
                                             GENERAL PENDING CHANGES
 ------------------------------------------------------------------------------------------------------------------------
 1. Domain events --> 
-        -Crear domain events para aprovechar aún mejor el package MediatR.
+        -Aprovecharr MediatR y usar domain events.
         -Útil para envío de mails, notificaciones, y ejecutar de forma automática determinadas 
          acciones sin necesidad de supervisión.
         - URLs útiles: 
