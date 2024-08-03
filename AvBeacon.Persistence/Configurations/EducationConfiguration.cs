@@ -1,5 +1,7 @@
-﻿using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Common;
+﻿using AvBeacon.Domain._Shared;
+using AvBeacon.Domain.Users.Applicants;
+using AvBeacon.Domain.Users.Applicants.Educations;
+using AvBeacon.Domain.Users.Applicants.Experiences;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,7 +23,6 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
                .IsRequired()
                .HasConversion(et => et.Value, etv => EducationType.FromValue(etv).Value);
 
-
         builder.OwnsOne(e => e.Title, titleBuilder =>
         {
             titleBuilder.WithOwner();
@@ -38,7 +39,7 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
 
             descriptionBuilder.Property(description => description.Value)
                               .HasColumnName(nameof(Experience.Description))
-                              .HasMaxLength(Title.MaxLength)
+                              .HasMaxLength(Description.MaxLength)
                               .IsRequired();
         });
     }

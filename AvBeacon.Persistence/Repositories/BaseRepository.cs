@@ -1,7 +1,7 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Common;
-using AvBeacon.Domain.Core.Primitives;
-using AvBeacon.Domain.Core.Primitives.Maybe;
+using AvBeacon.Domain._Core.Abstractions;
+using AvBeacon.Domain._Core.Primitives;
+using AvBeacon.Domain._Core.Primitives.Maybe;
 using AvBeacon.Persistence.Specifications;
 using Microsoft.EntityFrameworkCore;
 

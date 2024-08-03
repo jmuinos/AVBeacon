@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Users;
+﻿using AvBeacon.Domain.Users.Applicants;
 using AvBeacon.Domain.Users.Recruiters;
+using AvBeacon.Domain.Users.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

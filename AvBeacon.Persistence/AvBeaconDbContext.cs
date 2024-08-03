@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using AvBeacon.Application.Abstractions.Common;
 using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Core.Abstractions;
-using AvBeacon.Domain.Core.Primitives;
-using AvBeacon.Domain.Core.Primitives.Maybe;
+using AvBeacon.Domain._Core.Abstractions;
+using AvBeacon.Domain._Core.Primitives;
+using AvBeacon.Domain._Core.Primitives.Maybe;
 using AvBeacon.Persistence.Extensions;
 using MediatR;
 using Microsoft.Data.SqlClient;
@@ -16,35 +16,29 @@ namespace AvBeacon.Persistence;
 public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
 {
     private readonly IDateTime _dateTime;
-    private readonly IMediator _mediator;
 
     public AvBeaconDbContext(DbContextOptions options, IDateTime dateTime, IMediator mediator)
         : base(options)
     {
         _dateTime = dateTime;
-
-        _mediator = mediator;
     }
 
     /// <inheritdoc />
-    public new DbSet<TEntity> Set<TEntity>()
-        where TEntity : Entity
+    public new DbSet<TEntity> Set<TEntity>() where TEntity : Entity
     {
         return base.Set<TEntity>();
     }
 
     /// <inheritdoc />
-    public async Task<Maybe<TEntity>> GetByIdAsync<TEntity>(Guid id)
-        where TEntity : Entity
+    public async Task<Maybe<TEntity>> GetByIdAsync<TEntity>(Guid id) where TEntity : Entity
     {
         return id == Guid.Empty
                    ? Maybe<TEntity>.None
-                   : Maybe<TEntity>.From(await Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id));
+                   : Maybe<TEntity>.From((await Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id))!);
     }
 
     /// <inheritdoc />
-    public void Insert<TEntity>(TEntity entity)
-        where TEntity : Entity
+    public void Insert<TEntity>(TEntity entity) where TEntity : Entity
     {
         Set<TEntity>().Add(entity);
     }
@@ -57,8 +51,7 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     }
 
     /// <inheritdoc />
-    public new void Remove<TEntity>(TEntity entity)
-        where TEntity : Entity
+    public new void Remove<TEntity>(TEntity entity) where TEntity : Entity
     {
         Set<TEntity>().Remove(entity);
     }
@@ -78,12 +71,8 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var utcNow = _dateTime.UtcNow;
-
         UpdateAuditableEntities(utcNow);
-
         UpdateSoftDeletableEntities(utcNow);
-
-        await PublishDomainEvents(cancellationToken);
 
         return await base.SaveChangesAsync(cancellationToken);
     }
@@ -98,9 +87,7 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         modelBuilder.ApplyUtcDateTimeConverter();
-
         base.OnModelCreating(modelBuilder);
     }
 
@@ -112,10 +99,10 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     {
         foreach (var entityEntry in ChangeTracker.Entries<IAuditableEntity>())
         {
-            if (entityEntry.State == EntityState.Added)
+            if (entityEntry.State is EntityState.Added)
                 entityEntry.Property(nameof(IAuditableEntity.CreatedOnUtc)).CurrentValue = utcNow;
 
-            if (entityEntry.State == EntityState.Modified)
+            if (entityEntry.State is EntityState.Modified)
                 entityEntry.Property(nameof(IAuditableEntity.ModifiedOnUtc)).CurrentValue = utcNow;
         }
     }
@@ -128,13 +115,12 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     {
         foreach (var entityEntry in ChangeTracker.Entries<ISoftDeletableEntity>())
         {
-            if (entityEntry.State != EntityState.Deleted) continue;
+            if (entityEntry.State is not EntityState.Deleted)
+                continue;
 
             entityEntry.Property(nameof(ISoftDeletableEntity.DeletedOnUtc)).CurrentValue = utcNow;
-
-            entityEntry.Property(nameof(ISoftDeletableEntity.Deleted)).CurrentValue = true;
-
-            entityEntry.State = EntityState.Modified;
+            entityEntry.Property(nameof(ISoftDeletableEntity.Deleted)).CurrentValue      = true;
+            entityEntry.State                                                            = EntityState.Modified;
 
             UpdateDeletedEntityEntryReferencesToUnchanged(entityEntry);
         }
@@ -147,33 +133,17 @@ public class AvBeaconDbContext : DbContext, IDbContext, IUnitOfWork
     /// <param name="entityEntry"> The entity entry. </param>
     private static void UpdateDeletedEntityEntryReferencesToUnchanged(EntityEntry entityEntry)
     {
-        if (!entityEntry.References.Any()) return;
+        if (!entityEntry.References.Any())
+            return;
 
-        foreach (var referenceEntry in entityEntry.References.Where(r => r.TargetEntry.State == EntityState.Deleted))
+        foreach (var referenceEntry in entityEntry.References.Where(
+                     r => r.TargetEntry is { State: EntityState.Deleted }))
         {
+            if (referenceEntry.TargetEntry is null)
+                continue;
             referenceEntry.TargetEntry.State = EntityState.Unchanged;
 
             UpdateDeletedEntityEntryReferencesToUnchanged(referenceEntry.TargetEntry);
         }
-    }
-
-    /// <summary>
-    ///     Publishes and then clears all the domain events that exist within the current transaction.
-    /// </summary>
-    /// <param name="cancellationToken"> The cancellation token. </param>
-    private async Task PublishDomainEvents(CancellationToken cancellationToken)
-    {
-        var aggregateRoots = ChangeTracker
-                             .Entries<AggregateRoot>()
-                             .Where(entityEntry => entityEntry.Entity.DomainEvents.Any())
-                             .ToList();
-
-        var domainEvents = aggregateRoots.SelectMany(entityEntry => entityEntry.Entity.DomainEvents).ToList();
-
-        aggregateRoots.ForEach(entityEntry => entityEntry.Entity.ClearDomainEvents());
-
-        var tasks = domainEvents.Select(domainEvent => _mediator.Publish(domainEvent, cancellationToken));
-
-        await Task.WhenAll(tasks);
     }
 }

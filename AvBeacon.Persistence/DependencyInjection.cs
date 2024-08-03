@@ -1,9 +1,12 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.JobApplications;
-using AvBeacon.Domain.JobOffers;
-using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Applicants;
+using AvBeacon.Domain.Users.Applicants.Educations;
+using AvBeacon.Domain.Users.Applicants.Experiences;
+using AvBeacon.Domain.Users.Applicants.JobApplications;
+using AvBeacon.Domain.Users.Applicants.Skills;
 using AvBeacon.Domain.Users.Recruiters;
+using AvBeacon.Domain.Users.Recruiters.JobOffers;
+using AvBeacon.Domain.Users.Shared;
 using AvBeacon.Persistence.Infrastructure;
 using AvBeacon.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;

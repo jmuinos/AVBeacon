@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain.Common;
-using AvBeacon.Domain.JobOffers;
+﻿using AvBeacon.Domain._Shared;
 using AvBeacon.Domain.Users.Recruiters;
+using AvBeacon.Domain.Users.Recruiters.JobOffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -34,19 +34,19 @@ public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
 
             descriptionBuilder.Property(description => description.Value)
                               .HasColumnName(nameof(JobOffer.Description))
-                              .HasMaxLength(Title.MaxLength)
+                              .HasMaxLength(Description.MaxLength)
                               .IsRequired();
         });
 
-        builder.Property(jo => jo.DateTimeUtc).IsRequired();
-
-        builder.Property(jo => jo.CreatedOnUtc).IsRequired();
+        builder.Property(jo => jo.CreatedOnUtc)
+               .IsRequired();
 
         builder.Property(jo => jo.ModifiedOnUtc);
 
         builder.Property(jo => jo.DeletedOnUtc);
 
-        builder.Property(jo => jo.Deleted).HasDefaultValue(false);
+        builder.Property(jo => jo.Deleted)
+               .HasDefaultValue(false);
 
         builder.HasQueryFilter(jo => !jo.Deleted);
     }

@@ -1,5 +1,6 @@
-﻿using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.Common;
+﻿using AvBeacon.Domain._Shared;
+using AvBeacon.Domain.Users.Applicants;
+using AvBeacon.Domain.Users.Applicants.Experiences;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -27,7 +28,7 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
 
             descriptionBuilder.Property(description => description.Value)
                               .HasColumnName(nameof(Experience.Description))
-                              .HasMaxLength(Title.MaxLength)
+                              .HasMaxLength(Description.MaxLength)
                               .IsRequired();
         });
         builder.Property(e => e.Start)

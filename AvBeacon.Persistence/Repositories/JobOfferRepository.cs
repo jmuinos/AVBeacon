@@ -1,5 +1,5 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.JobOffers;
+using AvBeacon.Domain.Users.Recruiters.JobOffers;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;

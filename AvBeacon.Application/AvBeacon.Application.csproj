@@ -21,7 +21,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Authentication\"/>
+        <Folder Include="Commands\"/>
+        <Folder Include="Queries\JobApplications\"/>
+        <Folder Include="Queries\Users\Recruiters\"/>
+        <Folder Include="Queries\Users\Shared\"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using AvBeacon.Domain.Core.Primitives;
+﻿using AvBeacon.Domain._Core.Primitives;
 
 namespace AvBeacon.Services.Api.Contracts;
 

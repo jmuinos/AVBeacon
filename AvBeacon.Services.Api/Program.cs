@@ -1,13 +1,14 @@
 using AvBeacon.Application;
-using AvBeacon.Application.Applicants.Queries.GetAll;
-using AvBeacon.Application.Authentication.Login.Commands;
-using AvBeacon.Application.Users.CreateUser;
-using AvBeacon.Application.Users.UpdateUser;
+using AvBeacon.Application.Commands.Authentication.Login;
+using AvBeacon.Application.Commands.Users.Shared.CreateUser;
+using AvBeacon.Application.Commands.Users.Shared.UpdateUser;
+using AvBeacon.Application.Queries.Users.Applicants.GetAll;
 using AvBeacon.Contracts.Authentication;
 using AvBeacon.Contracts.Users;
-using AvBeacon.Domain.Core.Errors;
-using AvBeacon.Domain.Core.Primitives.Maybe;
-using AvBeacon.Domain.Core.Primitives.Result;
+using AvBeacon.Domain._Core.Errors;
+using AvBeacon.Domain._Core.Factories;
+using AvBeacon.Domain._Core.Primitives.Maybe;
+using AvBeacon.Domain._Core.Primitives.Result;
 using AvBeacon.Infrastructure;
 using AvBeacon.Persistence;
 using AvBeacon.Services.Api.Identity;
@@ -31,14 +32,17 @@ builder.Services
 builder.Services
        .AddFluentValidationAutoValidation()
        .AddFluentValidationClientsideAdapters();
+
 // Application layers services
 builder.Services
        .AddApplication()
        .AddInfrastructure(builder.Configuration)
        .AddPersistence(builder.Configuration);
 
-// // Authorization
-// builder.Services.AddAuthorization();
+// Add domain factories
+builder.Services
+       .AddTransient<IUserFactory, ApplicantFactory>()
+       .AddTransient<IUserFactory, RecruiterFactory>();
 
 // Authorization
 builder.Services.AddAuthorizationBuilder()

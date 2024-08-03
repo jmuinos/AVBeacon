@@ -1,5 +1,5 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.Users.Applicants.Skills;
 
 namespace AvBeacon.Persistence.Repositories;
 

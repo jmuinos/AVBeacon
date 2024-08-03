@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using AvBeacon.Application.Abstractions.Authentication;
 using AvBeacon.Application.Abstractions.Common;
-using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Shared;
 using AvBeacon.Infrastructure.Authentication.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

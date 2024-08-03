@@ -1,6 +1,6 @@
-﻿using AvBeacon.Domain.Applicants;
-using AvBeacon.Domain.JobApplications;
-using AvBeacon.Domain.JobOffers;
+﻿using AvBeacon.Domain.Users.Applicants;
+using AvBeacon.Domain.Users.Applicants.JobApplications;
+using AvBeacon.Domain.Users.Recruiters.JobOffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -34,5 +34,17 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
                                       .IsRequired();
             jobApplicationStateBuilder.Ignore(state => state.Name);
         });
+
+        builder.Property(ja => ja.CreatedOnUtc)
+               .IsRequired();
+
+        builder.Property(ja => ja.ModifiedOnUtc);
+
+        builder.Property(ja => ja.DeletedOnUtc);
+
+        builder.Property(ja => ja.Deleted)
+               .HasDefaultValue(false);
+
+        builder.HasQueryFilter(ja => !ja.Deleted);
     }
 }

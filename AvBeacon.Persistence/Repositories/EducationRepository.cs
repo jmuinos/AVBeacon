@@ -1,5 +1,5 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.Applicants;
+using AvBeacon.Domain.Users.Applicants.Educations;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;

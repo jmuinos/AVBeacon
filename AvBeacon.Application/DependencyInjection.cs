@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using AvBeacon.Application.Core.Behaviors;
+using AvBeacon.Application._Core.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

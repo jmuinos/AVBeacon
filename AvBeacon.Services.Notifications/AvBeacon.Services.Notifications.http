@@ -1,6 +1,0 @@
-@AvBeacon.Services.Notifications_HostAddress = http://localhost:5285
-
-GET {{AvBeacon.Services.Notifications_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -6,12 +6,12 @@
 public sealed class RegisterRequest
 {
     /// <summary>
-    ///     Gets or sets the first name.
+    ///     Gets or sets the firstname.
     /// </summary>
     public required string FirstName { get; set; }
 
     /// <summary>
-    ///     Gets or sets the last name.
+    ///     Gets or sets the lastname.
     /// </summary>
     public required string LastName { get; set; }
 

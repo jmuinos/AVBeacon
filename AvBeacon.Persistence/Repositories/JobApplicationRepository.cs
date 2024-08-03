@@ -1,5 +1,5 @@
 ﻿using AvBeacon.Application.Abstractions.Data;
-using AvBeacon.Domain.JobApplications;
+using AvBeacon.Domain.Users.Applicants.JobApplications;
 using Microsoft.EntityFrameworkCore;
 
 namespace AvBeacon.Persistence.Repositories;

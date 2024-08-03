@@ -2,19 +2,11 @@
 using AvBeacon.Application.Abstractions.Authentication;
 using AvBeacon.Application.Abstractions.Common;
 using AvBeacon.Application.Abstractions.Cryptography;
-using AvBeacon.Application.Abstractions.Emails;
-using AvBeacon.Application.Abstractions.Messaging;
-using AvBeacon.Application.Abstractions.Notifications;
-using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Shared;
 using AvBeacon.Infrastructure.Authentication;
 using AvBeacon.Infrastructure.Authentication.Settings;
 using AvBeacon.Infrastructure.Common;
 using AvBeacon.Infrastructure.Cryptography;
-using AvBeacon.Infrastructure.Emails;
-using AvBeacon.Infrastructure.Emails.Settings;
-using AvBeacon.Infrastructure.Messaging;
-using AvBeacon.Infrastructure.Messaging.Settings;
-using AvBeacon.Infrastructure.Notifications;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,10 +39,6 @@ public static class DependencyInjection
 
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SettingsKey));
 
-        services.Configure<MailSettings>(configuration.GetSection(MailSettings.SettingsKey));
-
-        services.Configure<MessageBrokerSettings>(configuration.GetSection(MessageBrokerSettings.SettingsKey));
-
         services.AddScoped<IUserIdentifierProvider, UserIdentifierProvider>();
 
         services.AddScoped<IJwtProvider, JwtProvider>();
@@ -60,12 +48,6 @@ public static class DependencyInjection
         services.AddTransient<IPasswordHasher, PasswordHasher>();
 
         services.AddTransient<IPasswordHashChecker, PasswordHasher>();
-
-        services.AddTransient<IEmailService, EmailService>();
-
-        services.AddTransient<IEmailNotificationService, EmailNotificationService>();
-
-        services.AddSingleton<IIntegrationEventPublisher, IntegrationEventPublisher>();
 
         return services;
     }

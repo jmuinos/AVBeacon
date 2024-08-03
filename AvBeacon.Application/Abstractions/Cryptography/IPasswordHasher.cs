@@ -1,4 +1,4 @@
-﻿using AvBeacon.Domain.Users;
+﻿using AvBeacon.Domain.Users.Shared;
 
 namespace AvBeacon.Application.Abstractions.Cryptography;
 

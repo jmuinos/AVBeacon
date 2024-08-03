@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using AvBeacon.Application.Abstractions.Cryptography;
-using AvBeacon.Domain.Users;
+using AvBeacon.Domain.Users.Shared;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace AvBeacon.Infrastructure.Cryptography;

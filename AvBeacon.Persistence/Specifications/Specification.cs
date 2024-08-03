@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using AvBeacon.Domain.Core.Primitives;
+using AvBeacon.Domain._Core.Primitives;
 
 namespace AvBeacon.Persistence.Specifications;
 
