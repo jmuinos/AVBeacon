@@ -17,7 +17,7 @@ public class Title : ValueObject
     /// <summary>
     ///     Initializes a new instance of the <see cref="Title" /> class.
     /// </summary>
-    /// <param name="value"> The name value. </param>
+    /// <param name="value"> The title value. </param>
     private Title(string value)
     {
         Value = value;

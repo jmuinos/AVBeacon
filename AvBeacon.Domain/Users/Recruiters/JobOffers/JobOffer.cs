@@ -41,8 +41,8 @@ public sealed class JobOffer : Entity, IAuditableEntity, ISoftDeletableEntity
     /// <summary>
     ///     Changes the job offer title and returns true if a change has occurred.
     /// </summary>
-    /// <param name="title"> The new event name. </param>
-    /// <returns> True if the events name has changed, otherwise false. </returns>
+    /// <param name="title"> The new job offer title. </param>
+    /// <returns> True if the job offer title has changed, otherwise false. </returns>
     public bool ChangeTitle(Title title)
     {
         string previousTitle = Title;
@@ -56,10 +56,10 @@ public sealed class JobOffer : Entity, IAuditableEntity, ISoftDeletableEntity
     }
 
     /// <summary>
-    ///     Changes the job offer title and returns true if a change has occurred.
+    ///     Changes the job offer description and returns true if a change has occurred.
     /// </summary>
-    /// <param name="description"> The new event name. </param>
-    /// <returns> True if the events name has changed, otherwise false. </returns>
+    /// <param name="description"> The new description. </param>
+    /// <returns> True if the job offer description has changed, otherwise false. </returns>
     public bool ChangeDescription(Description description)
     {
         string previousDescription = Description;

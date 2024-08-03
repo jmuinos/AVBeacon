@@ -18,12 +18,12 @@ public sealed class Maybe<T> : IEquatable<Maybe<T>>
     }
 
     /// <summary>
-    ///     Gets a value indicating whether or not the value exists.
+    ///     Gets a value indicating whether the value exists.
     /// </summary>
     public bool HasValue => !HasNoValue;
 
     /// <summary>
-    ///     Gets a value indicating whether or not the value does not exist.
+    ///     Gets a value indicating whether the value does not exist.
     /// </summary>
     public bool HasNoValue => _value is null;
 

@@ -11,7 +11,7 @@ public sealed class JobApplicationProcessedEmail
     /// <param name="emailTo"> The email receiver. </param>
     /// <param name="name"> The name. </param>
     /// <param name="jobOfferTitle"> The job offer title. </param>
-    /// <param name="recruiterName"> The event name. </param>
+    /// <param name="recruiterName"> The recruiter name. </param>
     public JobApplicationProcessedEmail(string emailTo, string name, string jobOfferTitle, string recruiterName)
     {
         EmailTo       = emailTo;
