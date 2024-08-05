@@ -58,6 +58,13 @@ public class User : Entity, IAuditableEntity, ISoftDeletableEntity
     /// <inheritdoc />
     public bool Deleted { get; init; }
 
+    public static User Create(FirstName firstName, LastName lastName, Email email, string passwordHash, UserType userType)
+    {
+        var user = new User(firstName, lastName, email, passwordHash, userType);
+
+        return user;
+    }
+    
     /// <summary>
     ///     Verifies that the provided password hash matches the password hash.
     /// </summary>
