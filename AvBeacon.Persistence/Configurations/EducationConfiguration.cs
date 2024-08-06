@@ -1,5 +1,4 @@
 ﻿using AvBeacon.Domain._Shared;
-using AvBeacon.Domain.Users.Applicants;
 using AvBeacon.Domain.Users.Applicants.Educations;
 using AvBeacon.Domain.Users.Applicants.Experiences;
 using Microsoft.EntityFrameworkCore;
@@ -12,12 +11,6 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
     public void Configure(EntityTypeBuilder<Education> builder)
     {
         builder.HasKey(e => e.Id);
-
-        // Relación uno a muchos con Applicant
-        builder.HasOne<Applicant>()
-               .WithMany()
-               .HasForeignKey(e => e.ApplicantId)
-               .OnDelete(DeleteBehavior.Cascade);
 
         builder.Property(e => e.EducationType)
                .IsRequired()
@@ -43,10 +36,10 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
                               .IsRequired();
         });
 
-        builder.Property(user => user.CreatedOnUtc).IsRequired();
-        builder.Property(user => user.ModifiedOnUtc);
-        builder.Property(user => user.DeletedOnUtc);
-        builder.Property(user => user.Deleted).HasDefaultValue(false);
-        builder.HasQueryFilter(user => !user.Deleted);
+        builder.Property(e => e.CreatedOnUtc).IsRequired();
+        builder.Property(e => e.ModifiedOnUtc);
+        builder.Property(e => e.DeletedOnUtc);
+        builder.Property(e => e.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(e => !e.Deleted);
     }
 }

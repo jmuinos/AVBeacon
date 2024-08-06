@@ -1,5 +1,4 @@
-﻿using AvBeacon.Domain.Users.Applicants;
-using AvBeacon.Domain.Users.Applicants.JobApplications;
+﻿using AvBeacon.Domain.Users.Applicants.JobApplications;
 using AvBeacon.Domain.Users.Recruiters.JobOffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,15 +10,7 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
     public void Configure(EntityTypeBuilder<JobApplication> builder)
     {
         builder.HasKey(ja => ja.Id);
-
-        // Relación uno a muchos con Applicant
-        builder.HasOne<Applicant>()
-               .WithMany()
-               .HasForeignKey(ja => ja.ApplicantId)
-               .OnDelete(DeleteBehavior.Cascade)
-               .IsRequired();
-
-        // Relación uno a muchos con JobOffer
+        
         builder.HasOne<JobOffer>()
                .WithMany()
                .HasForeignKey(ja => ja.JobOfferId)
@@ -35,10 +26,10 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
             jobApplicationStateBuilder.Ignore(state => state.Name);
         });
 
-        builder.Property(user => user.CreatedOnUtc).IsRequired();
-        builder.Property(user => user.ModifiedOnUtc);
-        builder.Property(user => user.DeletedOnUtc);
-        builder.Property(user => user.Deleted).HasDefaultValue(false);
-        builder.HasQueryFilter(user => !user.Deleted);
+        builder.Property(ja => ja.CreatedOnUtc).IsRequired();
+        builder.Property(ja => ja.ModifiedOnUtc);
+        builder.Property(ja => ja.DeletedOnUtc);
+        builder.Property(ja => ja.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(ja => !ja.Deleted);
     }
 }

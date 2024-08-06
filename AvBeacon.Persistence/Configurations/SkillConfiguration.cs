@@ -1,5 +1,4 @@
 ﻿using AvBeacon.Domain._Shared;
-using AvBeacon.Domain.Users.Applicants;
 using AvBeacon.Domain.Users.Applicants.Skills;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,9 +10,6 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
     public void Configure(EntityTypeBuilder<Skill> builder)
     {
         builder.HasKey(s => s.Id);
-        // Relación muchos a muchos con Applicant
-        builder.HasMany<Applicant>()
-               .WithMany();
 
         builder.OwnsOne(skill => skill.Title, titleBuilder =>
         {
@@ -23,15 +19,5 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
                         .HasMaxLength(Title.MaxLength)
                         .IsRequired();
         });
-        
-        builder.Property(user => user.CreatedOnUtc).IsRequired();
-
-        builder.Property(user => user.ModifiedOnUtc);
-
-        builder.Property(user => user.DeletedOnUtc);
-
-        builder.Property(user => user.Deleted).HasDefaultValue(false);
-
-        builder.HasQueryFilter(user => !user.Deleted);
     }
 }

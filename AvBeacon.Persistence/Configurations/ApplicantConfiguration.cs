@@ -2,6 +2,7 @@
 using AvBeacon.Domain.Users.Applicants.Educations;
 using AvBeacon.Domain.Users.Applicants.Experiences;
 using AvBeacon.Domain.Users.Applicants.JobApplications;
+using AvBeacon.Domain.Users.Applicants.Skills;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -25,5 +26,8 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
                .WithOne()
                .HasForeignKey(e => e.ApplicantId)
                .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany<Skill>()
+               .WithMany();
     }
 }

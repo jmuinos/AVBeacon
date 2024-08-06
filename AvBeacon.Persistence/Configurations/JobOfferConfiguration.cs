@@ -1,5 +1,4 @@
 ﻿using AvBeacon.Domain._Shared;
-using AvBeacon.Domain.Users.Recruiters;
 using AvBeacon.Domain.Users.Recruiters.JobOffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,12 +10,6 @@ public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
     public void Configure(EntityTypeBuilder<JobOffer> builder)
     {
         builder.HasKey(jo => jo.Id);
-
-        // Relación uno a muchos con Recruiter
-        builder.HasOne<Recruiter>()
-               .WithMany()
-               .HasForeignKey(jo => jo.RecruiterId)
-               .OnDelete(DeleteBehavior.Cascade);
 
         builder.OwnsOne(jo => jo.Title, titleBuilder =>
         {
@@ -38,10 +31,10 @@ public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
                               .IsRequired();
         });
 
-        builder.Property(user => user.CreatedOnUtc).IsRequired();
-        builder.Property(user => user.ModifiedOnUtc);
-        builder.Property(user => user.DeletedOnUtc);
-        builder.Property(user => user.Deleted).HasDefaultValue(false);
-        builder.HasQueryFilter(user => !user.Deleted);
+        builder.Property(jo => jo.CreatedOnUtc).IsRequired();
+        builder.Property(jo => jo.ModifiedOnUtc);
+        builder.Property(jo => jo.DeletedOnUtc);
+        builder.Property(jo => jo.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(jo => !jo.Deleted);
     }
 }

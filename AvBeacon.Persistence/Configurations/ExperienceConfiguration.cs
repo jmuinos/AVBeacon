@@ -1,5 +1,4 @@
 ﻿using AvBeacon.Domain._Shared;
-using AvBeacon.Domain.Users.Applicants;
 using AvBeacon.Domain.Users.Applicants.Experiences;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,12 +10,6 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
     public void Configure(EntityTypeBuilder<Experience> builder)
     {
         builder.HasKey(e => e.Id);
-
-        // Relación uno a muchos con Applicant
-        builder.HasOne<Applicant>()
-               .WithMany()
-               .HasForeignKey(e => e.ApplicantId)
-               .OnDelete(DeleteBehavior.Cascade);
 
         builder.OwnsOne(e => e.Title, titleBuilder =>
         {
@@ -41,10 +34,10 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
         builder.Property(e => e.Start).IsRequired(false);
         builder.Property(e => e.End).IsRequired(false);
         
-        builder.Property(user => user.CreatedOnUtc).IsRequired();
-        builder.Property(user => user.ModifiedOnUtc);
-        builder.Property(user => user.DeletedOnUtc);
-        builder.Property(user => user.Deleted).HasDefaultValue(false);
-        builder.HasQueryFilter(user => !user.Deleted);
+        builder.Property(e => e.CreatedOnUtc).IsRequired();
+        builder.Property(e => e.ModifiedOnUtc);
+        builder.Property(e => e.DeletedOnUtc);
+        builder.Property(e => e.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(e => !e.Deleted);
     }
 }
