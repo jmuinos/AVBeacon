@@ -9,6 +9,9 @@ public sealed class Recruiter : User
     internal Recruiter(FirstName firstName, LastName lastName, Email email, string passwordHash)
         : base(firstName, lastName, email, passwordHash, UserType.Recruiter) { }
 
+    private Recruiter() { }
+
+    
     /// <summary>
     ///     Creates a new job offer.
     /// </summary>

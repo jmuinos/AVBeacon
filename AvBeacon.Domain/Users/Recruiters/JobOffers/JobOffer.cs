@@ -22,9 +22,11 @@ public sealed class JobOffer : Entity, IAuditableEntity, ISoftDeletableEntity
         Description = description;
     }
 
-    public Title Title { get; set; }
-    public Description Description { get; set; }
+    private JobOffer() { }
     public Guid RecruiterId { get; init; }
+
+    public Title Title { get; set; } = null!;
+    public Description Description { get; set; } = null!;
 
     /// <inheritdoc />
     public DateTime CreatedOnUtc { get; init; }

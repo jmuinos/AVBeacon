@@ -9,9 +9,10 @@ namespace AvBeacon.Domain.Users.Applicants;
 
 public sealed class Applicant : User
 {
-
     internal Applicant(FirstName firstName, LastName lastName, Email email, string passwordHash)
         : base(firstName, lastName, email, passwordHash, UserType.Applicant) { }
+
+    private Applicant() { }
 
     /// <summary>
     ///     Creates a new job application.

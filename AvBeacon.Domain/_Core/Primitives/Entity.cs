@@ -23,7 +23,7 @@ public abstract class Entity : IEquatable<Entity>
     ///     Initializes a new instance of the <see cref="Entity" /> class.
     /// </summary>
     /// <remarks> Required by EF Core. </remarks>
-    private Entity() { }
+    protected Entity() { }
 
     /// <summary>
     ///     Gets or sets the entity identifier.

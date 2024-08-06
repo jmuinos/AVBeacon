@@ -13,6 +13,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(u => u.Id);
 
         builder.HasDiscriminator(u => u.UserType)
+               .HasValue<User>(UserType.Base)
                .HasValue<Recruiter>(UserType.Recruiter)
                .HasValue<Applicant>(UserType.Applicant);
 
@@ -52,13 +53,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                .IsRequired();
 
         builder.Property(user => user.CreatedOnUtc).IsRequired();
-
         builder.Property(user => user.ModifiedOnUtc);
-
         builder.Property(user => user.DeletedOnUtc);
-
         builder.Property(user => user.Deleted).HasDefaultValue(false);
-
         builder.HasQueryFilter(user => !user.Deleted);
 
         builder.Ignore(user => user.FullName);

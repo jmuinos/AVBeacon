@@ -12,6 +12,12 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
     {
         builder.HasKey(e => e.Id);
 
+        // Relación uno a muchos con Applicant
+        builder.HasOne<Applicant>()
+               .WithMany()
+               .HasForeignKey(e => e.ApplicantId)
+               .OnDelete(DeleteBehavior.Cascade);
+
         builder.OwnsOne(e => e.Title, titleBuilder =>
         {
             titleBuilder.WithOwner();
@@ -31,16 +37,14 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
                               .HasMaxLength(Description.MaxLength)
                               .IsRequired();
         });
-        builder.Property(e => e.Start)
-               .IsRequired(false);
-
-        builder.Property(e => e.End)
-               .IsRequired(false);
-
-        // Relación uno a muchos con Applicant
-        builder.HasOne<Applicant>()
-               .WithMany()
-               .HasForeignKey(e => e.ApplicantId)
-               .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Property(e => e.Start).IsRequired(false);
+        builder.Property(e => e.End).IsRequired(false);
+        
+        builder.Property(user => user.CreatedOnUtc).IsRequired();
+        builder.Property(user => user.ModifiedOnUtc);
+        builder.Property(user => user.DeletedOnUtc);
+        builder.Property(user => user.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(user => !user.Deleted);
     }
 }

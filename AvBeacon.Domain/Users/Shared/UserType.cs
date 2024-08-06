@@ -5,6 +5,7 @@
 /// </summary>
 public enum UserType
 {
-    Recruiter = 0,
-    Applicant = 1
+    Base = 0,
+    Recruiter = 1,
+    Applicant = 2
 }

@@ -38,16 +38,10 @@ public class JobOfferConfiguration : IEntityTypeConfiguration<JobOffer>
                               .IsRequired();
         });
 
-        builder.Property(jo => jo.CreatedOnUtc)
-               .IsRequired();
-
-        builder.Property(jo => jo.ModifiedOnUtc);
-
-        builder.Property(jo => jo.DeletedOnUtc);
-
-        builder.Property(jo => jo.Deleted)
-               .HasDefaultValue(false);
-
-        builder.HasQueryFilter(jo => !jo.Deleted);
+        builder.Property(user => user.CreatedOnUtc).IsRequired();
+        builder.Property(user => user.ModifiedOnUtc);
+        builder.Property(user => user.DeletedOnUtc);
+        builder.Property(user => user.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(user => !user.Deleted);
     }
 }

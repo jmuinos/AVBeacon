@@ -23,5 +23,15 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
                         .HasMaxLength(Title.MaxLength)
                         .IsRequired();
         });
+        
+        builder.Property(user => user.CreatedOnUtc).IsRequired();
+
+        builder.Property(user => user.ModifiedOnUtc);
+
+        builder.Property(user => user.DeletedOnUtc);
+
+        builder.Property(user => user.Deleted).HasDefaultValue(false);
+
+        builder.HasQueryFilter(user => !user.Deleted);
     }
 }

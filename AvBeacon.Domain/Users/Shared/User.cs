@@ -11,7 +11,7 @@ namespace AvBeacon.Domain.Users.Shared;
 /// </summary>
 public class User : Entity, IAuditableEntity, ISoftDeletableEntity
 {
-    private string _passwordHash;
+    private string _passwordHash = null!;
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="User" /> class.
@@ -36,9 +36,12 @@ public class User : Entity, IAuditableEntity, ISoftDeletableEntity
         UserType      = userType;
     }
 
-    public FirstName FirstName { get; private set; }
-    public LastName LastName { get; private set; }
-    public Email Email { get; private set; }
+    protected User() { }
+
+
+    public FirstName FirstName { get; private set; } = null!;
+    public LastName LastName { get; private set; } = null!;
+    public Email Email { get; private set; } = null!;
     public UserType UserType { get; private set; }
 
     /// <summary>
@@ -58,13 +61,6 @@ public class User : Entity, IAuditableEntity, ISoftDeletableEntity
     /// <inheritdoc />
     public bool Deleted { get; init; }
 
-    public static User Create(FirstName firstName, LastName lastName, Email email, string passwordHash, UserType userType)
-    {
-        var user = new User(firstName, lastName, email, passwordHash, userType);
-
-        return user;
-    }
-    
     /// <summary>
     ///     Verifies that the provided password hash matches the password hash.
     /// </summary>

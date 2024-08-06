@@ -35,16 +35,10 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
             jobApplicationStateBuilder.Ignore(state => state.Name);
         });
 
-        builder.Property(ja => ja.CreatedOnUtc)
-               .IsRequired();
-
-        builder.Property(ja => ja.ModifiedOnUtc);
-
-        builder.Property(ja => ja.DeletedOnUtc);
-
-        builder.Property(ja => ja.Deleted)
-               .HasDefaultValue(false);
-
-        builder.HasQueryFilter(ja => !ja.Deleted);
+        builder.Property(user => user.CreatedOnUtc).IsRequired();
+        builder.Property(user => user.ModifiedOnUtc);
+        builder.Property(user => user.DeletedOnUtc);
+        builder.Property(user => user.Deleted).HasDefaultValue(false);
+        builder.HasQueryFilter(user => !user.Deleted);
     }
 }

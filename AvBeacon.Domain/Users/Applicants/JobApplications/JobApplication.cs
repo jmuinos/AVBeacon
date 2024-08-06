@@ -20,9 +20,12 @@ public sealed class JobApplication : Entity, IAuditableEntity, ISoftDeletableEnt
         State       = JobApplicationState.Sent;
     }
 
-    public JobApplicationState State { get; private set; }
+    private JobApplication() { }
+
     public Guid ApplicantId { get; private init; }
     public Guid JobOfferId { get; private init; }
+    
+    public JobApplicationState State { get; private set; } = null!;
 
     /// <inheritdoc />
     public DateTime CreatedOnUtc { get; init; }
